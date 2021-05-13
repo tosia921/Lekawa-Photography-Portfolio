@@ -1,18 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import MobileMenu from './MobileMenu';
 
 const Navbar = () => (
     <StyledHeader>
         <Logo>
             <p>ATL Photoraphy</p>
         </Logo>
-        <nav>
+        <MobileMenu />
+        <Nav>
             <Link href="about">About Me</Link>
-        </nav>
-        <div>
+        </Nav>
+        <LangPicker>
             <p>Lang</p>
-        </div>
+        </LangPicker>
     </StyledHeader>
 );
 
@@ -24,8 +26,21 @@ const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 5;
 `;
 
 const Logo = styled.div`
-    font-size: 2.5rem;
+    p {
+        font-size: 2rem;
+    }
+`;
+
+const LangPicker = styled.div`
+    display: none;
+`;
+const Nav = styled.nav`
+    display: none;
+    @media only screen and (min-width: 768px) {
+        display: block;
+    }
 `;

@@ -41,9 +41,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   html {
-    
     font-size: 10px;
-    background: var(--PageBackground);
     color: var(--MainTextColor);
   }
   
