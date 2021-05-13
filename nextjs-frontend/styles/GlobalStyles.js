@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     --SecondaryTextColor: #FFC300;
     --TextShadowLarge: 10px 10px 10px rgba(0,0,0,0.5);
     --TextShadowMedium: 5px 5px 5px rgba(0,0,0,0.5);
+    --BoxBackground: #343333;
   }
   @font-face {
     font-family: 'kanit';

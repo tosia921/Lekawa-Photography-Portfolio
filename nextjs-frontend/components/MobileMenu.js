@@ -1,68 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const MobileMenu = () => {
-    const [burgerMenu, setBurgerMenu] = useState(false);
+const MobileMenu = ({ burgerMenu, setBurgerMenu }) => {
+    const router = useRouter();
+
+    // Since Next.js 'Link' does not pass onClick events,
+    // had to use useRouter hook and push to other page to
+    // have ability to close menu when clicking on Link.
+    const handleClick = (e, path) => {
+        e.preventDefault();
+        setBurgerMenu(!burgerMenu);
+        router.push(path);
+    };
+
     return (
-        <>
-            <StyledBurger burgerMenu={burgerMenu} onClick={() => setBurgerMenu(!burgerMenu)}>
-                <div className="hamburger" />
-            </StyledBurger>
-            <StyledMobileMenu>
-                <Link href="/">Home</Link>
-                <Link href="/about">About</Link>
-            </StyledMobileMenu>
-        </>
+        <StyledMobileMenu burgerMenu={burgerMenu}>
+            <Link href="/" passHref>
+                <a onClick={(e) => handleClick(e, '/')} aria-hidden="true">
+                    Home
+                </a>
+            </Link>
+            <Link href="/about" passHref>
+                <a onClick={(e) => handleClick(e, '/about')} aria-hidden="true">
+                    About
+                </a>
+            </Link>
+            <Link href="/gallery" passHref>
+                <a onClick={(e) => handleClick(e, '/gallery')} aria-hidden="true">
+                    Gallery
+                </a>
+            </Link>
+            <Link href="/publications" passHref>
+                <a onClick={(e) => handleClick(e, '/publications')} aria-hidden="true">
+                    Publications
+                </a>
+            </Link>
+            <Link href="/contact" passHref>
+                <a onClick={(e) => handleClick(e, '/contact')} aria-hidden="true">
+                    Contact
+                </a>
+            </Link>
+        </StyledMobileMenu>
     );
 };
 
 export default MobileMenu;
 
-const StyledBurger = styled.button`
-    outline: none;
-    height: 30px;
-    width: 30px;
-    border: 0px;
-    padding: 0px;
-    background: transparent;
-
-    .hamburger {
-        display: flex;
-        outline: none;
-        height: 30px;
-        width: 30px;
-        border: 0px;
-        padding: 0px;
-        background: transparent;
-        transition: all 250ms ease-out;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-    }
-    .hamburger:before,
-    .hamburger:after {
-        content: '';
-        width: 30px;
-        height: 1.5px;
-        position: absolute;
-        background: var(--MainTextColor);
-        transition: all 250ms ease-out;
-        will-change: transform;
-    }
-    .hamburger:before {
-        transform: ${(props) => (props.burgerMenu ? `translateY(12px) rotate(45deg)` : `translateY(12px)`)};
-    }
-    .hamburger:after {
-        transform: ${(props) => (props.burgerMenu ? `translateY(12px) rotate(-45deg)` : `translateY(6px)`)};
-    }
-`;
-
 const StyledMobileMenu = styled.nav`
     position: absolute;
     top: 0;
     left: 0;
+    opacity: ${(props) => (props.burgerMenu ? `1` : `0`)};
+    transition: opacity 0.5s ease-in-out;
     height: 100vh;
     width: 100vw;
-    z-index: 0;
-    background-color: grey;
+    z-index: 5;
+    background-color: var(--BoxBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        font-size: 4rem;
+        &:hover {
+            color: var(--SecondaryTextColor);
+        }
+    }
 `;

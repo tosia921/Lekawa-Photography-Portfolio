@@ -15,7 +15,7 @@ const StyledSection = styled.section`
         z-index: -1;
     }
     .landingPage-text {
-        height: calc(100vh - 5rem);
+        height: 100vw;
         padding-top: 5%;
         padding-bottom: 27%;
         display: flex;
