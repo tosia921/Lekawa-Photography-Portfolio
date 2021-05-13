@@ -4,12 +4,28 @@ import styled from 'styled-components';
 
 const Navbar = () => (
     <StyledHeader>
-        <Link href="about">About Me</Link>
+        <Logo>
+            <p>ATL Photoraphy</p>
+        </Logo>
+        <nav>
+            <Link href="about">About Me</Link>
+        </nav>
+        <div>
+            <p>Lang</p>
+        </div>
     </StyledHeader>
 );
 
 export default Navbar;
 
 const StyledHeader = styled.header`
-    background: lightblue;
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const Logo = styled.div`
+    font-size: 2.5rem;
 `;

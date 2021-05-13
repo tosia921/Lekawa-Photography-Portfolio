@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import styled from 'styled-components';
+import LandingPage from '../components/LandingPage';
 
-const StyledMain = styled.main`
-    background: red;
-`;
+const StyledMain = styled.main``;
 
 export default function Home() {
     return (
@@ -14,7 +13,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <StyledMain>
-                <h1>Hello</h1>
+                <LandingPage />
             </StyledMain>
         </>
     );
