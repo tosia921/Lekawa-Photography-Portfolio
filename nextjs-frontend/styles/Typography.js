@@ -11,6 +11,7 @@ const Typography = createGlobalStyle`
     font-size: 1.6rem;
     color: var(--MainTextColor);
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
   
   h1 {

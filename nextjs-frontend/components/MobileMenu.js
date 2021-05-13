@@ -51,7 +51,7 @@ export default MobileMenu;
 const StyledMobileMenu = styled.nav`
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     opacity: ${(props) => (props.burgerMenu ? `1` : `0`)};
     transition: opacity 0.5s ease-in-out;
     height: 100vh;

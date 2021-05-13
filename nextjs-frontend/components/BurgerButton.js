@@ -17,6 +17,7 @@ const StyledBurgerButton = styled.ul`
     cursor: pointer;
     position: relative;
     z-index: 10;
+    -webkit-tap-highlight-color: transparent;
     li {
         list-style: none;
         position: absolute;
@@ -45,7 +46,6 @@ const StyledBurgerButton = styled.ul`
         transform: ${(props) => (props.burgerMenu ? `translateY(-50%) rotate(-45deg)` : `translateY(0%) rotate(0deg)`)};
     }
     li:nth-of-type(3) {
-        left: ${(props) => (props.burgerMenu ? `100%` : `0`)};
         opacity: ${(props) => (props.burgerMenu ? `0` : `1`)};
     }
 `;
