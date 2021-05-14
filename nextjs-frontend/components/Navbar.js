@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import MobileMenu from './MobileMenu';
 import BurgerButton from './BurgerButton';
+import LangButton from './LangButton';
 
 const Navbar = () => {
     const [burgerMenu, setBurgerMenu] = useState(false);
@@ -11,13 +12,13 @@ const Navbar = () => {
             <Logo>
                 <p>ATL Photoraphy</p>
             </Logo>
-            <BurgerButton burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
             <Nav>
                 <Link href="about">About Me</Link>
             </Nav>
-            <LangPicker>
-                <p>Lang</p>
-            </LangPicker>
+            <div className="right-side">
+                <LangButton />
+                <BurgerButton burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+            </div>
             <MobileMenu burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
         </StyledHeader>
     );
@@ -30,8 +31,15 @@ const StyledHeader = styled.header`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    z-index: 10;
+
+    button {
+        position: relative;
+        z-index: 20;
+    }
+    .right-side {
+        margin-left: auto;
+        display: flex;
+    }
 `;
 
 const Logo = styled.div`
@@ -42,9 +50,6 @@ const Logo = styled.div`
     }
 `;
 
-const LangPicker = styled.div`
-    display: none;
-`;
 const Nav = styled.nav`
     display: none;
     @media only screen and (min-width: 768px) {

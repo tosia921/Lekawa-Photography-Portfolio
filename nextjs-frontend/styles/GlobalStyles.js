@@ -17,6 +17,18 @@ const GlobalStyles = createGlobalStyle`
   }
   @font-face {
     font-family: 'kanit';
+    src: url(fonts/Kanit/Kanit-Medium.ttf);
+    font-style: medium;
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'kanit';
+    src: url(fonts/Kanit/Kanit-ExtraBold.ttf);
+    font-style: bold;
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-BoldItalic.ttf);
     font-style: bold italic;
     font-weight: 600;
@@ -44,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 10px;
     color: var(--MainTextColor);
+    background: var(--PageBackground);
   }
   
 `;

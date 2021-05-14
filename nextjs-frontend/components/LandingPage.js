@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+// i18n
+import { useTranslation } from 'next-i18next';
 
 const StyledSection = styled.section`
     .bg-wrap {
@@ -27,25 +29,28 @@ const StyledSection = styled.section`
     }
 `;
 
-const LandingPage = () => (
-    <StyledSection>
-        <div className="bg-wrap">
-            <Image
-                className="image-hero"
-                src="/images/HeroImage.jpg"
-                alt="Women laying"
-                layout="fill"
-                objectFit="cover"
-                quality="100"
-            />
-        </div>
-        <div className="landingPage-text">
-            <h1>PORTRAIT PHOTOGRAPHY</h1>
-            <h2>
-                <span className="highlighted-text">T</span>omasz <span className="highlighted-text">L</span>ekawa
-            </h2>
-        </div>
-    </StyledSection>
-);
+const LandingPage = () => {
+    const { t } = useTranslation('homepage');
+    return (
+        <StyledSection>
+            <div className="bg-wrap">
+                <Image
+                    className="image-hero"
+                    src="/images/HeroImage.jpg"
+                    alt="Women laying"
+                    layout="fill"
+                    objectFit="cover"
+                    quality="100"
+                />
+            </div>
+            <div className="landingPage-text">
+                <h1>{t('h1')}</h1>
+                <h2>
+                    <span className="highlighted-text">T</span>omasz <span className="highlighted-text">L</span>ekawa
+                </h2>
+            </div>
+        </StyledSection>
+    );
+};
 
 export default LandingPage;

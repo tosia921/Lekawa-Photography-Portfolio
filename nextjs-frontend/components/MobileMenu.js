@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const MobileMenu = ({ burgerMenu, setBurgerMenu }) => {
     const router = useRouter();
+    const { t } = useTranslation('navigation');
 
     // Since Next.js 'Link' does not pass onClick events,
     // had to use useRouter hook and push to other page to
@@ -19,27 +21,27 @@ const MobileMenu = ({ burgerMenu, setBurgerMenu }) => {
         <StyledMobileMenu burgerMenu={burgerMenu}>
             <Link href="/" passHref>
                 <a onClick={(e) => handleClick(e, '/')} aria-hidden="true">
-                    Home
-                </a>
-            </Link>
-            <Link href="/about" passHref>
-                <a onClick={(e) => handleClick(e, '/about')} aria-hidden="true">
-                    About
+                    {t('Home')}
                 </a>
             </Link>
             <Link href="/gallery" passHref>
                 <a onClick={(e) => handleClick(e, '/gallery')} aria-hidden="true">
-                    Gallery
+                    {t('Gallery')}
                 </a>
             </Link>
             <Link href="/publications" passHref>
                 <a onClick={(e) => handleClick(e, '/publications')} aria-hidden="true">
-                    Publications
+                    {t('Publications')}
+                </a>
+            </Link>
+            <Link href="/about" passHref>
+                <a onClick={(e) => handleClick(e, '/about')} aria-hidden="true">
+                    {t('About Me')}
                 </a>
             </Link>
             <Link href="/contact" passHref>
                 <a onClick={(e) => handleClick(e, '/contact')} aria-hidden="true">
-                    Contact
+                    {t('Contact')}
                 </a>
             </Link>
         </StyledMobileMenu>
