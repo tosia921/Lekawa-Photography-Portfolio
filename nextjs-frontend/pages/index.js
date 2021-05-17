@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // Components
 import LandingPage from '../components/LandingPage';
+import Quote from '../components/Quote';
 
 const StyledMain = styled.main``;
 
@@ -16,6 +17,7 @@ const Homepage = () => (
         </Head>
         <StyledMain>
             <LandingPage />
+            <Quote />
         </StyledMain>
     </>
 );
