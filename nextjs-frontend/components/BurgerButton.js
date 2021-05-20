@@ -17,6 +17,7 @@ const StyledBurgerButton = styled.ul`
     cursor: pointer;
     position: relative;
     z-index: 10;
+    margin-left: 1rem;
     -webkit-tap-highlight-color: transparent;
     li {
         list-style: none;

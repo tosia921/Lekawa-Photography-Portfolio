@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import MobileMenu from './MobileMenu';
 import BurgerButton from './BurgerButton';
-import LangButton from './LangButton';
+import LangSelect from './LangSelect';
 
 const Navbar = () => {
     const [burgerMenu, setBurgerMenu] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
                 <Link href="about">About Me</Link>
             </Nav>
             <div className="right-side">
-                <LangButton />
+                <LangSelect />
                 <BurgerButton burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
             </div>
             <MobileMenu burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
