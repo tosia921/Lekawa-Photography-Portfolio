@@ -67,6 +67,7 @@ const StyledMobileMenu = styled.nav`
 
     a {
         font-size: 4rem;
+        pointer-events: ${(props) => (props.burgerMenu ? `auto` : `none`)};
         &:hover {
             color: var(--SecondaryTextColor);
         }

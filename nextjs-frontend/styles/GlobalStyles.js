@@ -57,8 +57,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 10px;
     color: var(--MainTextColor);
     background: var(--PageBackground);
-  }
-  
+  }  
 `;
 
 export default GlobalStyles;

@@ -38,7 +38,11 @@ const Typography = createGlobalStyle`
     line-height: inherit;
     color: var(--SecondaryTextColor);
   }
-  
+  span {
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+  }
 `;
 
 export default Typography;

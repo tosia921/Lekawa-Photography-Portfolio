@@ -17,15 +17,13 @@ const LangButton = () => {
         }
     }, []);
 
-    // function that handles redirecting use to different locale when changing Language in select Lang dropdown.
+    // function that handles redirecting user to different locale when changing Language in select Lang dropdown.
     const handleSelectedLang = (code) => {
         setSelected(code);
         if (code === 'GB') {
             router.push(router.asPath, router.asPath, { locale: 'en' });
-            console.log('changed to eng');
         } else if (code === 'PL') {
             router.push(router.asPath, router.asPath, { locale: 'pl' });
-            console.log('changed to pl');
         }
     };
 

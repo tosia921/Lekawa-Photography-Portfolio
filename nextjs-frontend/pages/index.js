@@ -6,10 +6,26 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // Components
 import LandingPage from '../components/LandingPage';
 import Quote from '../components/Quote';
+// Media Queries
+import { device } from '../styles/Media';
 
 const StyledMain = styled.main`
     .ImageAlicja {
         border-radius: 15px;
+    }
+    .page-padding {
+        @media ${device.tablet} {
+            padding: 0 1rem;
+        }
+        @media ${device.laptop} {
+            padding: 0 calc((100vw - 1100px) / 2);
+        }
+        @media ${device.laptopL} {
+            padding: 0 calc((100vw - 1200px) / 2);
+        }
+        @media ${device.desktop} {
+            padding: 0 calc((100vw - 1400px) / 2);
+        }
     }
 `;
 
@@ -22,15 +38,17 @@ const Homepage = () => (
         </Head>
         <StyledMain>
             <LandingPage />
-            <Quote />
-            <Image
-                className="ImageAlicja"
-                src="/images/alicjaHome.jpg"
-                alt="Women in Hat"
-                layout="responsive"
-                width={5100}
-                height={3300}
-            />
+            <div className="page-padding">
+                <Quote />
+                <Image
+                    className="ImageAlicja"
+                    src="/images/alicjaHome.jpg"
+                    alt="Women in Hat"
+                    layout="responsive"
+                    width={5100}
+                    height={3300}
+                />
+            </div>
         </StyledMain>
     </>
 );
