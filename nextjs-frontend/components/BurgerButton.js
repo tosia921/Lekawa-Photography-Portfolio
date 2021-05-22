@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+// Media Queries
+import { device } from '../styles/Media';
 
 const BurgerButton = ({ burgerMenu, setBurgerMenu }) => (
     <StyledBurgerButton burgerMenu={burgerMenu} onClick={() => setBurgerMenu(!burgerMenu)}>
@@ -19,6 +21,9 @@ const StyledBurgerButton = styled.ul`
     z-index: 10;
     margin-left: 1rem;
     -webkit-tap-highlight-color: transparent;
+    @media ${device.tablet} {
+        display: none;
+    }
     li {
         list-style: none;
         position: absolute;

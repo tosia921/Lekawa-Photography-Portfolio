@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 // Library that let me easly implement select dropdown to change languages.
 import ReactFlagsSelect from 'react-flags-select';
+// Media Queries
+import { device } from '../styles/Media';
 
 const LangButton = () => {
     const router = useRouter();
@@ -51,6 +53,9 @@ const StyledReactFlagsSelect = styled(ReactFlagsSelect)`
         color: black;
         padding: 0 5px 0 0;
         transform: translateY(5px);
+        @media ${device.tablet} {
+            transform: translateY(3px);
+        }
         span {
             font-size: 1rem;
         }

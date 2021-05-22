@@ -74,6 +74,16 @@ const StyledSection = styled.section`
         @media ${device.laptop} {
             padding: 3% 0 6% 0;
             h1 {
+                font-size: 10rem;
+                line-height: 10rem;
+            }
+            h2 {
+                font-size: 8rem;
+            }
+        }
+        @media ${device.laptopL} {
+            padding: 3% 0 6% 0;
+            h1 {
                 font-size: 8rem;
                 line-height: 8rem;
             }
