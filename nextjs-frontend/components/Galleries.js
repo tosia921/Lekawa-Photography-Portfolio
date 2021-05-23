@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
 // Media Queries
@@ -18,7 +19,7 @@ const GalleryPreview = ({ data }) => {
                 objectFit="cover"
                 quality="100"
             />
-            <h3>{data.Name}</h3>
+            <Link href={`/gallery/${data.Slug}`}>{data.Name}</Link>
         </StyledPreviewGallery>
     );
 };
@@ -54,7 +55,7 @@ const StyledPreviewGallery = styled.div`
             transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
         }
     }
-    h3 {
+    a {
         position: relative;
         z-index: 2;
         background-color: rgba(0, 0, 0, 0.5);
