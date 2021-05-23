@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-Medium.ttf);
-    font-style: medium;
+    font-style: none;
     font-weight: 500;
   }
   @font-face {

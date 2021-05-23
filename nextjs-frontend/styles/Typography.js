@@ -30,6 +30,14 @@ const Typography = createGlobalStyle`
     line-height: 3.5rem;
     text-align: center;
   }
+  h3 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    font-style: medium italic;
+    text-shadow: var(--TextShadowMedium);
+    line-height: 3.5rem;
+    text-align: center;
+  }
   .highlighted-text {
     font-size: inherit;
     font-weight: inherit;

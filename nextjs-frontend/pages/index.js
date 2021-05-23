@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import Image from 'next/image';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// Apollo Client
+import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Components
 import LandingPage from '../components/LandingPage';
 import Quote from '../components/Quote';
+import Galleries from '../components/Galleries';
 // Media Queries
 import { device } from '../styles/Media';
 
@@ -29,7 +32,7 @@ const StyledMain = styled.main`
     }
 `;
 
-const Homepage = () => (
+const Homepage = ({ galleryTypes }) => (
     <>
         <Head>
             <title>Lekawa Portfolio</title>
@@ -48,15 +51,45 @@ const Homepage = () => (
                     width={5100}
                     height={3300}
                 />
+                <Galleries galleryTypes={galleryTypes} />
             </div>
         </StyledMain>
     </>
 );
 
-export const getStaticProps = async ({ locale }) => ({
-    props: {
-        ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
-    },
-});
+export async function getStaticProps({ locale }) {
+    const client = new ApolloClient({
+        uri: process.env.STRAPI_GRAPHQL_API,
+        cache: new InMemoryCache(),
+    });
+
+    const { data } = await client.query({
+        query: gql`
+            query {
+                galleryTypes(locale: "${locale}") {
+                    id
+                    Name
+                    Slug
+                    Image {
+                        AltText
+                        Image {
+                            url
+                            width
+                            height
+                        }
+                    }
+                }
+            }
+        `,
+    });
+
+    return {
+        props: {
+            galleryTypes: data.galleryTypes,
+            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
+            // Will be passed to the page component as props
+        },
+    };
+}
 
 export default Homepage;
