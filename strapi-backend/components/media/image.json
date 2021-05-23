@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_media_images",
+  "info": {
+    "name": "Image",
+    "icon": "photo-video",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "AltText": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/gallery-types",
+      "handler": "gallery-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gallery-types/count",
+      "handler": "gallery-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gallery-types/:id",
+      "handler": "gallery-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/gallery-types",
+      "handler": "gallery-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/gallery-types/:id",
+      "handler": "gallery-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/gallery-types/:id",
+      "handler": "gallery-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
