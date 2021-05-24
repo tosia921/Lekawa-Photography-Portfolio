@@ -56,10 +56,14 @@ const StyledPreviewGallery = styled.div`
         }
     }
     a {
+        font-size: 3rem;
         position: relative;
         z-index: 2;
         background-color: rgba(0, 0, 0, 0.5);
         padding: 5px 10px;
+        &:hover {
+            color: var(--SecondaryTextColor);
+        }
     }
 `;
 
