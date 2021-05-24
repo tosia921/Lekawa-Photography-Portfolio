@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import { device } from '../styles/Media';
 
 // Gallery Preiview Card Component
-const GalleryPreview = ({ data }) => {
+const GalleryPreview = ({ data, currLocale }) => {
+    console.log(currLocale);
     const ImageSrc = data.Image[0].Image[0].url;
 
     return (
@@ -19,18 +20,20 @@ const GalleryPreview = ({ data }) => {
                 objectFit="cover"
                 quality="100"
             />
-            <Link href={`/gallery/${data.Slug}`}>{data.Name}</Link>
+            <Link href={`/gallery/${data.Slug}`} locale={currLocale}>
+                {data.Name}
+            </Link>
         </StyledPreviewGallery>
     );
 };
 
 // All Galleries Component
-const Galleries = ({ galleryTypes }) => (
+const Galleries = ({ galleryTypes, currLocale }) => (
     <StyledGalleryTypes>
         <h2>Galleries</h2>
         <div className="galleryTypes-grid">
             {galleryTypes.map((GalleryType) => (
-                <GalleryPreview data={GalleryType} />
+                <GalleryPreview data={GalleryType} currLocale={currLocale} />
             ))}
         </div>
     </StyledGalleryTypes>

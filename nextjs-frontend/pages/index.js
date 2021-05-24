@@ -32,7 +32,7 @@ const StyledMain = styled.main`
     }
 `;
 
-const Homepage = ({ galleryTypes }) => (
+const Homepage = ({ galleryTypes, currLocale }) => (
     <>
         <Head>
             <title>Lekawa Portfolio</title>
@@ -51,7 +51,7 @@ const Homepage = ({ galleryTypes }) => (
                     width={5100}
                     height={3300}
                 />
-                <Galleries galleryTypes={galleryTypes} />
+                <Galleries galleryTypes={galleryTypes} currLocale={currLocale} />
             </div>
         </StyledMain>
     </>
@@ -85,6 +85,7 @@ export async function getStaticProps({ locale }) {
 
     return {
         props: {
+            currLocale: locale,
             galleryTypes: data.galleryTypes,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
             // Will be passed to the page component as props
