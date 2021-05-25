@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "gallery_types",
+  "collectionName": "image_galleries",
   "info": {
-    "name": "Gallery Type",
+    "name": "Image Galleries",
     "description": ""
   },
   "options": {
@@ -18,40 +18,40 @@
   "attributes": {
     "Name": {
       "type": "string",
-      "required": true,
-      "maxLength": 10,
-      "unique": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
     },
-    "Slug": {
-      "type": "uid",
-      "targetField": "Name",
-      "required": true
+    "slug": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
-    "Image": {
+    "FeaturedImage": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "media.image",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
     },
-    "GalleryPageImages": {
+    "GalleryImages": {
       "type": "component",
       "repeatable": true,
+      "component": "media.gallery-image",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "component": "media.gallery-image"
+      }
     }
   }
 }

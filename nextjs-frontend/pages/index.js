@@ -32,7 +32,7 @@ const StyledMain = styled.main`
     }
 `;
 
-const Homepage = ({ galleryTypes, currLocale }) => (
+const Homepage = ({ imageGalleries, currLocale }) => (
     <>
         <Head>
             <title>Lekawa Portfolio</title>
@@ -51,7 +51,7 @@ const Homepage = ({ galleryTypes, currLocale }) => (
                     width={5100}
                     height={3300}
                 />
-                <Galleries galleryTypes={galleryTypes} currLocale={currLocale} />
+                <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
             </div>
         </StyledMain>
     </>
@@ -66,12 +66,20 @@ export async function getStaticProps({ locale }) {
     const { data } = await client.query({
         query: gql`
             query {
-                galleryTypes(locale: "${locale}") {
-                    id
+                imageGalleries(locale: "${locale}") {
                     Name
-                    Slug
-                    Image {
+                    slug
+                    FeaturedImage {
                         AltText
+                        Image {
+                            alternativeText
+                            url
+                            width
+                            height
+                        }
+                    }
+                    GalleryImages {
+                        Alt
                         Image {
                             url
                             width
@@ -86,7 +94,7 @@ export async function getStaticProps({ locale }) {
     return {
         props: {
             currLocale: locale,
-            galleryTypes: data.galleryTypes,
+            imageGalleries: data.imageGalleries,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
             // Will be passed to the page component as props
         },

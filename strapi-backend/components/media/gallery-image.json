@@ -1,7 +1,7 @@
 {
   "collectionName": "components_media_gallery_images",
   "info": {
-    "name": "GalleryImage",
+    "name": "Gallery Image",
     "icon": "image",
     "description": ""
   },
@@ -23,7 +23,7 @@
       "type": "string",
       "required": true
     },
-    "Featured": {
+    "FeaturedAtTop": {
       "type": "boolean",
       "default": false,
       "required": false

@@ -8,19 +8,19 @@ import { device } from '../styles/Media';
 // Gallery Preiview Card Component
 const GalleryPreview = ({ data, currLocale }) => {
     console.log(currLocale);
-    const ImageSrc = data.Image[0].Image[0].url;
+    const ImageSrc = data.FeaturedImage.Image[0].url;
 
     return (
         <StyledPreviewGallery>
             <Image
                 className="gallery-preview-background"
                 src={`http://localhost:1337${ImageSrc}`}
-                alt={data.Image[0].AltText}
+                alt={data.FeaturedImage.AltText}
                 layout="fill"
                 objectFit="cover"
                 quality="100"
             />
-            <Link href={`/gallery/${data.Slug}`} locale={currLocale}>
+            <Link href={`/gallery/${data.slug}`} locale={currLocale}>
                 {data.Name}
             </Link>
         </StyledPreviewGallery>
@@ -28,12 +28,12 @@ const GalleryPreview = ({ data, currLocale }) => {
 };
 
 // All Galleries Component
-const Galleries = ({ galleryTypes, currLocale }) => (
+const Galleries = ({ imageGalleries, currLocale }) => (
     <StyledGalleryTypes>
         <h2>Galleries</h2>
         <div className="galleryTypes-grid">
-            {galleryTypes.map((GalleryType) => (
-                <GalleryPreview data={GalleryType} currLocale={currLocale} />
+            {imageGalleries.map((imageGallery) => (
+                <GalleryPreview data={imageGallery} currLocale={currLocale} />
             ))}
         </div>
     </StyledGalleryTypes>
