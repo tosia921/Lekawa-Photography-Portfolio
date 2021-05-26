@@ -9,6 +9,7 @@ import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 import LandingPage from '../components/LandingPage';
 import Quote from '../components/Quote';
 import Galleries from '../components/Galleries';
+import Icons from '../components/Icons';
 // Media Queries
 import { device } from '../styles/Media';
 
@@ -52,6 +53,7 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                     height={3300}
                 />
                 <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
+                <Icons />
             </div>
         </StyledMain>
     </>
@@ -67,6 +69,7 @@ export async function getStaticProps({ locale }) {
         query: gql`
             query {
                 imageGalleries(locale: "${locale}") {
+                    id
                     Name
                     slug
                     FeaturedImage {

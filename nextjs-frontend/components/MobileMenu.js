@@ -55,12 +55,12 @@ const StyledMobileMenu = styled.nav`
     top: 0;
     right: 0;
     opacity: ${(props) => (props.burgerMenu ? `1` : `0`)};
-    transition: opacity 0.5s ease-in-out;
+    display: ${(props) => (props.burgerMenu ? `flex` : `none`)};
+    transition: all 0.5s ease-in-out;
     height: 100vh;
     width: 100vw;
     z-index: 5;
     background-color: var(--BoxBackground);
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

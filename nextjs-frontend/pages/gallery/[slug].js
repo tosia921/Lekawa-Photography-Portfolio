@@ -1,37 +1,83 @@
-import React from 'react';
-import Image from 'next/image';
+import React, { useState, useCallback } from 'react';
+import styled from 'styled-components';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+// React Gallery Lib
+import Gallery from 'react-photo-gallery';
+import Carousel, { Modal, ModalGateway } from 'react-images';
+// Media Queries
+import { device } from '../../styles/Media';
 
-// Gallery Component
-const Gallery = ({ galleryImages }) => {
+// {galleryImages[0].GalleryImages.map((galleryImage) => (
+//     <Image
+//         src={`http://localhost:1337${galleryImage.Image.url}`}
+//         alt={galleryImage.Alt}
+//         width={galleryImage.Image.width}
+//         height={galleryImage.Image.height}
+//         quality="100"
+//         key={galleryImage.Image.id}
+//     />
+// ))}
+
+// GalleryPageTemplate Component
+const GalleryPageTemplate = ({ galleryImages }) => {
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+    const openLightbox = useCallback((event, { photo, index }) => {
+        setCurrentImage(index);
+        setViewerIsOpen(true);
+    }, []);
+
+    const closeLightbox = () => {
+        setCurrentImage(0);
+        setViewerIsOpen(false);
+    };
+
+    const photos = [];
+
+    galleryImages[0].GalleryImages.forEach((galleryImage) => {
+        photos.push({
+            src: `http://localhost:1337${galleryImage.Image.url}`,
+            width: galleryImage.Image.width,
+            height: galleryImage.Image.height,
+            alt: galleryImage.Alt,
+        });
+    });
+
     return (
-        <div>
+        <StyledGalleryPage>
             <h1>
                 {t('Gallery')} {galleryImages[0].Name}
             </h1>
-            <div>
-                {galleryImages[0].GalleryImages.map((galleryImage) => (
-                    <Image
-                        src={`http://localhost:1337${galleryImage.Image.url}`}
-                        alt={galleryImage.Alt}
-                        width={galleryImage.Image.width}
-                        height={galleryImage.Image.height}
-                        quality="100"
-                    />
-                ))}
+            <div className="images-container">
+                <Gallery photos={photos} targetRowHeight={400} onClick={openLightbox} />
+                <ModalGateway>
+                    {viewerIsOpen ? (
+                        <Modal onClose={closeLightbox}>
+                            <Carousel
+                                currentIndex={currentImage}
+                                views={photos.map((x) => ({
+                                    ...x,
+                                    srcset: x.srcSet,
+                                    caption: x.title,
+                                }))}
+                            />
+                        </Modal>
+                    ) : null}
+                </ModalGateway>
             </div>
-        </div>
+        </StyledGalleryPage>
     );
 };
 
-export default Gallery;
+export default GalleryPageTemplate;
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
 export async function getStaticProps({ locale, params }) {
@@ -59,6 +105,7 @@ export async function getStaticProps({ locale, params }) {
               GalleryImages {
                 Alt
                   Image {
+                  id
                   url
                   width
                   height
@@ -113,24 +160,24 @@ export async function getStaticPaths({ locales }) {
     };
 }
 
-/// /////////////////////
+// Styles
 
-// const { data } = await client.query({
-//     query: gql`
-//         query {
-//             galleryTypes(locale: "all") {
-//                 Slug
-//             }
-//         }
-//     `,
-// });
-
-// const paths = [];
-
-// locales.forEach((local) => {
-//     data.galleryTypes.forEach((galleryType) => {
-//         paths.push(`${local === 'pl' ? '/pl' : ''}/gallery/${galleryType.Slug}`);
-//     });
-// });
-
-// return { paths, fallback: false };
+const StyledGalleryPage = styled.div`
+    h1 {
+        margin: 5rem 0;
+    }
+    .images-container {
+        @media ${device.tablet} {
+            padding: 0 1rem;
+        }
+        @media ${device.laptop} {
+            padding: 0 calc((100vw - 1100px) / 2);
+        }
+        @media ${device.laptopL} {
+            padding: 0 calc((100vw - 1200px) / 2);
+        }
+        @media ${device.desktop} {
+            padding: 0 calc((100vw - 1400px) / 2);
+        }
+    }
+`;
