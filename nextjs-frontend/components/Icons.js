@@ -11,16 +11,16 @@ const Quote = () => (
     <StyledIconsSection>
         <div className="icon-container">
             <AiFillCamera />
-            <p>Using only top end equipment.</p>
         </div>
+        <p className="text1">Top End Equipment</p>
         <div className="icon-container">
             <BsImages />
-            <p>Huge work experience.</p>
         </div>
+        <p className="text2">Huge Work Experience</p>
         <div className="icon-container">
             <MdHighQuality />
-            <p>High Quality</p>
         </div>
+        <p className="text3">High Quality Photos</p>
     </StyledIconsSection>
 );
 
@@ -28,7 +28,8 @@ export default Quote;
 
 const StyledIconsSection = styled.section`
     margin: 1rem 0 1rem 0;
-    height: 20rem;
+    height: fit-content;
+    padding: 5rem 0;
     width: 100%;
     background-image: url('/images/concrete-wall.png'),
         linear-gradient(to top, #4d4d4d, #464647, #404040, #3a393a, #343333);
@@ -37,14 +38,16 @@ const StyledIconsSection = styled.section`
     background-size: contain;
     border-radius: 15px;
 
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    justify-items: center;
     align-items: center;
     @media ${device.tablet} {
-        height: 25rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
     }
     @media ${device.laptop} {
-        height: 30rem;
     }
     .icon-container {
         width: 25%;
@@ -55,23 +58,38 @@ const StyledIconsSection = styled.section`
         svg {
             font-size: 5rem;
         }
-        p {
-            text-align: center;
-            font-family: Kanit, sans-serif;
-            font-style: regular;
-            font-weight: 400;
-            font-size: 1.6rem;
-            @media ${device.tablet} {
-                font-size: 2rem;
-            }
-            @media ${device.laptop} {
-                font-size: 2.5rem;
-            }
-        }
+    }
+    p {
+        text-align: center;
+        font-family: Kanit, sans-serif;
+        font-style: regular;
+        font-weight: 400;
+        font-size: 2rem;
+        margin-bottom: 5rem;
 
-        span {
-            color: var(--SecondaryTextColor);
-            font-family: inherit;
+        @media ${device.tablet} {
+            font-size: 2rem;
+        }
+        @media ${device.laptop} {
+            font-size: 2.5rem;
+        }
+    }
+    .text1 {
+        @media ${device.laptop} {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+    }
+    .text2 {
+        @media ${device.laptop} {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+    }
+    .text3 {
+        @media ${device.laptop} {
+            grid-column: 3 / 4;
+            grid-row: 2 / 3;
         }
     }
 `;
