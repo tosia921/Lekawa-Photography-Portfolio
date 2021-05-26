@@ -11,17 +11,6 @@ import Carousel, { Modal, ModalGateway } from 'react-images';
 // Media Queries
 import { device } from '../../styles/Media';
 
-// {galleryImages[0].GalleryImages.map((galleryImage) => (
-//     <Image
-//         src={`http://localhost:1337${galleryImage.Image.url}`}
-//         alt={galleryImage.Alt}
-//         width={galleryImage.Image.width}
-//         height={galleryImage.Image.height}
-//         quality="100"
-//         key={galleryImage.Image.id}
-//     />
-// ))}
-
 // GalleryPageTemplate Component
 const GalleryPageTemplate = ({ galleryImages }) => {
     // Hook that allows me to use nexti18next translations

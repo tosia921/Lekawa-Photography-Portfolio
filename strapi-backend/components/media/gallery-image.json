@@ -22,11 +22,6 @@
     "Alt": {
       "type": "string",
       "required": true
-    },
-    "FeaturedAtTop": {
-      "type": "boolean",
-      "default": false,
-      "required": false
     }
   }
 }
