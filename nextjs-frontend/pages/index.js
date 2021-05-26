@@ -31,6 +31,47 @@ const StyledMain = styled.main`
             padding: 0 calc((100vw - 1400px) / 2);
         }
     }
+    .homepage-images {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        @media ${device.tablet} {
+            flex-direction: row;
+        }
+        .image-home-container {
+            position: relative;
+            width: 100%;
+            height: 50rem;
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+            @media screen and (min-width: 450px) {
+                height: 60rem;
+            }
+            @media screen and (min-width: 500px) {
+                height: 70rem;
+            }
+            @media screen and (min-width: 600px) {
+                height: 80rem;
+            }
+            @media screen and (min-width: 700px) {
+                height: 90rem;
+            }
+            @media ${device.tablet} {
+                width: 49.5%;
+                height: 50rem;
+            }
+            @media ${device.laptop} {
+                width: 49.5%;
+                height: 70rem;
+            }
+            @media ${device.laptopL} {
+                width: 49.5%;
+                height: 80rem;
+            }
+        }
+    }
 `;
 
 const Homepage = ({ imageGalleries, currLocale }) => (
@@ -54,6 +95,24 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                 />
                 <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
                 <Icons />
+                <div className="homepage-images">
+                    <div className="image-home-container">
+                        <Image
+                            src="/images/ManInSuitHome.jpg"
+                            alt="Men wearing a suit and glasses"
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
+                    <div className="image-home-container">
+                        <Image
+                            src="/images/WomenYellowTopHome.jpg"
+                            alt="Women in yellow top"
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
+                </div>
             </div>
         </StyledMain>
     </>
