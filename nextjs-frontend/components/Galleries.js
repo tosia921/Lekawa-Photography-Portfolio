@@ -7,7 +7,6 @@ import { device } from '../styles/Media';
 
 // Gallery Preiview Card Component
 const GalleryPreview = ({ data, currLocale }) => {
-    console.log(currLocale);
     const ImageSrc = data.FeaturedImage.Image[0].url;
 
     return (
@@ -33,7 +32,7 @@ const Galleries = ({ imageGalleries, currLocale }) => (
         <h2>Galleries</h2>
         <div className="galleryTypes-grid">
             {imageGalleries.map((imageGallery) => (
-                <GalleryPreview data={imageGallery} currLocale={currLocale} />
+                <GalleryPreview data={imageGallery} currLocale={currLocale} key={imageGallery.id} />
             ))}
         </div>
     </StyledGalleryTypes>

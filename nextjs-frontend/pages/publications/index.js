@@ -1,19 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+// Custom Components
+import PublicationCard from '../../components/PublicationCard';
+import { device } from '../../styles/Media';
 
 const Publications = ({ publications }) => {
-    console.log(publications);
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
     return (
-        <div>
+        <StyledPublications>
             <h1>{t('Publications')}</h1>
-        </div>
+            {publications.map((publication) => (
+                <PublicationCard publication={publication} key={publication.id} />
+            ))}
+        </StyledPublications>
     );
 };
 
@@ -59,3 +65,26 @@ export async function getStaticProps({ locale }) {
         },
     };
 }
+
+// Styles
+
+const StyledPublications = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media ${device.tablet} {
+        padding: 0 1rem;
+    }
+    @media ${device.laptop} {
+        padding: 0 calc((100vw - 1100px) / 2);
+    }
+    @media ${device.laptopL} {
+        padding: 0 calc((100vw - 1200px) / 2);
+    }
+    @media ${device.desktop} {
+        padding: 0 calc((100vw - 1400px) / 2);
+    }
+    h1 {
+        margin: 2rem 0;
+    }
+`;

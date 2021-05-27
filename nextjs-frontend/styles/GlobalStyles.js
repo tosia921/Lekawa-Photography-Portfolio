@@ -7,12 +7,13 @@ const GlobalStyles = createGlobalStyle`
     --SecondaryTextColor: #FFC300;
     --TextShadowLarge: 10px 10px 10px rgba(0,0,0,0.5);
     --TextShadowMedium: 5px 5px 5px rgba(0,0,0,0.5);
+    --TextShadowSmall: 2px 2px 2px rgba(0,0,0,0.3);
     --BoxBackground: #343333;
   }
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-Regular.ttf);
-    font-style: regular;
+    font-style: normal;
     font-weight: 400;
   }
   @font-face {
@@ -44,6 +45,12 @@ const GlobalStyles = createGlobalStyle`
     src: url(fonts/Caveat/Caveat-Regular.ttf);
     font-style: regular;
     font-weight: 400;
+  }
+  @font-face {
+    font-family: 'kanit';
+    src: url(fonts/Caveat/Kanit-ExtraLightItalic.ttf);
+    font-style: italic;
+    font-weight: 300;
   }
   * {
     font-family: kanit;
