@@ -15,6 +15,7 @@ const PublicationCard = ({ publication }) => {
                     alt="Men wearing a suit and glasses"
                     height={publication.FeaturedImage.Image[0].height}
                     width={publication.FeaturedImage.Image[0].width}
+                    quality={100}
                 />
             </div>
             <div className="content">
@@ -61,7 +62,8 @@ const StyledPublicationCard = styled.article`
         }
     }
     .content {
-        margin-top: 1rem;
+        margin-left: 1rem;
+        padding-left: 2rem;
         display: flex;
         flex-direction: column;
         justify-content: top;
@@ -78,6 +80,9 @@ const StyledPublicationCard = styled.article`
             @media ${device.tablet} {
                 font-size: 3.5rem;
             }
+            @media ${device.laptop} {
+                font-size: 4rem;
+            }
         }
 
         p {
@@ -85,6 +90,9 @@ const StyledPublicationCard = styled.article`
             text-align: center;
             @media ${device.tablet} {
                 font-size: 2rem;
+            }
+            @media ${device.laptop} {
+                font-size: 2.5rem;
             }
         }
         .smalltext {
@@ -94,6 +102,9 @@ const StyledPublicationCard = styled.article`
             @media ${device.tablet} {
                 font-size: 1.6rem;
             }
+            @media ${device.laptop} {
+                font-size: 2.1rem;
+            }
         }
         .location {
             font-style: normal;
@@ -102,11 +113,17 @@ const StyledPublicationCard = styled.article`
             @media ${device.tablet} {
                 font-size: 1.6rem;
             }
+            @media ${device.laptop} {
+                font-size: 2.1rem;
+            }
         }
         .publication-type {
             font-size: 1.8rem;
             @media ${device.tablet} {
                 font-size: 2rem;
+            }
+            @media ${device.laptop} {
+                font-size: 2.5rem;
             }
         }
     }
@@ -119,6 +136,9 @@ const StyledPublicationCard = styled.article`
             position: absolute;
             right: 2rem;
             bottom: 2rem;
+        }
+        @media ${device.laptop} {
+            font-size: 2rem;
         }
     }
 `;

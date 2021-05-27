@@ -92,6 +92,7 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                     layout="responsive"
                     width={5100}
                     height={3300}
+                    quality={100}
                 />
                 <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
                 <Icons />
@@ -102,6 +103,7 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                             alt="Men wearing a suit and glasses"
                             layout="fill"
                             objectFit="cover"
+                            quality={100}
                         />
                     </div>
                     <div className="image-home-container">
@@ -110,6 +112,7 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                             alt="Women in yellow top"
                             layout="fill"
                             objectFit="cover"
+                            quality={100}
                         />
                     </div>
                 </div>

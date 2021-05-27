@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { device } from './Media';
 
 const Typography = createGlobalStyle`
   html {
@@ -21,6 +22,9 @@ const Typography = createGlobalStyle`
     text-align: center;
     text-shadow: var(--TextShadowLarge);
     line-height: 3.6rem;
+    @media ${device.laptop} {
+      font-size: 6rem;
+    }
     }
   h2 {
     font-size: 4rem;
