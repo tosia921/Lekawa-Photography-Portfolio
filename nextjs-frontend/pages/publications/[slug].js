@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+import Link from 'next/link';
 // React Markdown
 import ReactMarkdown from 'react-markdown';
-import MarkdownIt from 'markdown-it';
-import Markdown from 'markdown-to-jsx';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // i18n
@@ -20,7 +18,18 @@ const Publication = ({ publication }) => {
         <StyledPublicationPage>
             <h1 className="title">{publication[0].Title}</h1>
             <div className="markdown-background">
-                <ReactMarkdown transformImageUri={(src, alt, title) => `http://localhost:1337${src}`}>
+                <ReactMarkdown
+                    transformImageUri={(src) => `http://localhost:1337${src}`}
+                    components={{
+                        // Map `h1` (`# heading`) to use `h2`s.
+                        h1: 'h2',
+                        a: ({ href, children }) => (
+                            <Link href={href}>
+                                <a>{children}</a>
+                            </Link>
+                        ), // All other links
+                    }}
+                >
                     {publication[0].PublicationContent}
                 </ReactMarkdown>
             </div>

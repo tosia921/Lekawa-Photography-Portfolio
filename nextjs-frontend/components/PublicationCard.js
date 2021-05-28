@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 // Media Queries
+import Link from 'next/link';
 import { device } from '../styles/Media';
 
 const PublicationCard = ({ publication }) => {
@@ -19,7 +20,9 @@ const PublicationCard = ({ publication }) => {
                 />
             </div>
             <div className="content">
-                <h2>{publication.Title}</h2>
+                <Link href={`publications/${publication.Slug}`}>
+                    <h2>{publication.Title}</h2>
+                </Link>
                 <p className="publication-type">{publication.SmallText1}</p>
                 <p className="smalltext">{publication.SmallText2}</p>
                 <p className="location">{publication.Location}</p>
@@ -76,6 +79,10 @@ const StyledPublicationCard = styled.article`
             text-align: left;
             font-size: 2.5rem;
             text-shadow: var(--TextShadowSmall);
+            cursor: pointer;
+            &:hover {
+                color: var(--SecondaryTextColor);
+            }
             @media ${device.tablet} {
                 font-size: 3.5rem;
             }
