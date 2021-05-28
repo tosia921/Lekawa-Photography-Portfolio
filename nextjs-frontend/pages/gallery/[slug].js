@@ -31,6 +31,7 @@ const GalleryPageTemplate = ({ galleryImages }) => {
 
     const photos = [];
 
+    // Populating photos Array with Images from CMS with correct url's and other neccessery data.
     galleryImages[0].GalleryImages.forEach((galleryImage) => {
         photos.push({
             src: `http://localhost:1337${galleryImage.Image.url}`,

@@ -62,8 +62,6 @@ const StyledPublicationCard = styled.article`
         }
     }
     .content {
-        margin-left: 1rem;
-        padding-left: 2rem;
         display: flex;
         flex-direction: column;
         justify-content: top;
@@ -72,6 +70,7 @@ const StyledPublicationCard = styled.article`
             height: 100%;
             align-items: flex-start;
             margin-left: 1rem;
+            padding-left: 2rem;
         }
         h2 {
             text-align: left;
