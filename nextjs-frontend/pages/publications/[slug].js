@@ -11,31 +11,27 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
-const Publication = ({ publication }) => {
-    console.log(publication[0].PublicationContent);
-
-    return (
-        <StyledPublicationPage>
-            <h1 className="title">{publication[0].Title}</h1>
-            <div className="markdown-background">
-                <ReactMarkdown
-                    transformImageUri={(src) => `http://localhost:1337${src}`}
-                    components={{
-                        // Map `h1` (`# heading`) to use `h2`s.
-                        h1: 'h2',
-                        a: ({ href, children }) => (
-                            <Link href={href}>
-                                <a>{children}</a>
-                            </Link>
-                        ), // All other links
-                    }}
-                >
-                    {publication[0].PublicationContent}
-                </ReactMarkdown>
-            </div>
-        </StyledPublicationPage>
-    );
-};
+const Publication = ({ publication }) => (
+    <StyledPublicationPage>
+        <h1 className="title">{publication[0].Title}</h1>
+        <div className="markdown-background">
+            <ReactMarkdown
+                transformImageUri={(src) => `http://localhost:1337${src}`}
+                components={{
+                    // Map `h1` (`# heading`) to use `h2`s.
+                    h1: 'h2',
+                    a: ({ href, children }) => (
+                        <Link href={href}>
+                            <a>{children}</a>
+                        </Link>
+                    ), // All other links
+                }}
+            >
+                {publication[0].PublicationContent}
+            </ReactMarkdown>
+        </div>
+    </StyledPublicationPage>
+);
 
 export default Publication;
 
@@ -79,7 +75,7 @@ export async function getStaticPaths({ locales }) {
     const { data } = await client.query({
         query: gql`
             query {
-                publications(locale: "en") {
+                publications {
                     Slug
                 }
             }

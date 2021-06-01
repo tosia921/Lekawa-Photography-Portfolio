@@ -17,7 +17,8 @@ const GalleryPreview = ({ data, currLocale }) => {
                 alt={data.FeaturedImage.AltText}
                 layout="fill"
                 objectFit="cover"
-                quality="100"
+                quality="50"
+                priority
             />
             <Link href={`/gallery/${data.slug}`} locale={currLocale}>
                 {data.Name}

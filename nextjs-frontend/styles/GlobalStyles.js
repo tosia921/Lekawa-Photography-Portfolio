@@ -15,42 +15,49 @@ const GlobalStyles = createGlobalStyle`
     src: url(fonts/Kanit/Kanit-Regular.ttf);
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
   }
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-Medium.ttf);
     font-style: medium;
     font-weight: 500;
+    font-display: swap;
   }
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-ExtraBold.ttf);
     font-style: bold;
     font-weight: 700;
+    font-display: swap;
   }
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-BoldItalic.ttf);
     font-style: bold italic;
     font-weight: 600;
+    font-display: swap;
   }
   @font-face {
     font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-MediumItalic.ttf);
     font-style: medium italic;
     font-weight: 500;
+    font-display: swap;
   }
   @font-face {
     font-family: 'caveat';
     src: url(fonts/Caveat/Caveat-Regular.ttf);
     font-style: regular;
     font-weight: 400;
+    font-display: swap;
   }
   @font-face {
     font-family: 'kanit';
-    src: url(fonts/Caveat/Kanit-ExtraLightItalic.ttf);
+    src: url(fonts/Kanit/Kanit-ExtraLightItalic.ttf);
     font-style: italic;
     font-weight: 300;
+    font-display: swap;
   }
   * {
     font-family: kanit;

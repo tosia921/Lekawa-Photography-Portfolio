@@ -105,7 +105,8 @@ const LandingPage = () => {
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="100"
+                    quality="75"
+                    priority
                 />
                 <Image
                     className="image-hero-tablet"
@@ -113,7 +114,8 @@ const LandingPage = () => {
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="100"
+                    quality="75"
+                    priority
                 />
                 <Image
                     className="image-hero-desktop"
@@ -121,7 +123,8 @@ const LandingPage = () => {
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="100"
+                    quality="75"
+                    priority
                 />
             </div>
             <div className="landingPage-text">

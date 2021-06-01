@@ -16,7 +16,8 @@ const PublicationCard = ({ publication }) => {
                     alt="Men wearing a suit and glasses"
                     height={publication.FeaturedImage.Image[0].height}
                     width={publication.FeaturedImage.Image[0].width}
-                    quality={100}
+                    quality={50}
+                    priority
                 />
             </div>
             <div className="content">
@@ -92,6 +93,7 @@ const StyledPublicationCard = styled.article`
         }
 
         p {
+            font-family: Kanit;
             font-size: 1.6rem;
             text-align: center;
             @media ${device.tablet} {
@@ -102,8 +104,9 @@ const StyledPublicationCard = styled.article`
             }
         }
         .smalltext {
+            font-family: Kanit;
             font-size: 1.4rem;
-            font-style: normal;
+            font-style: italic;
             font-weight: 400;
             @media ${device.tablet} {
                 font-size: 1.6rem;
@@ -113,7 +116,7 @@ const StyledPublicationCard = styled.article`
             }
         }
         .location {
-            font-style: normal;
+            font-style: italic;
             font-weight: 400;
             font-size: 1.4rem;
             @media ${device.tablet} {
@@ -125,6 +128,8 @@ const StyledPublicationCard = styled.article`
         }
         .publication-type {
             font-size: 1.8rem;
+            font-style: italic;
+            font-weight: 600;
             @media ${device.tablet} {
                 font-size: 2rem;
             }

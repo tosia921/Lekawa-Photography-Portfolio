@@ -10,7 +10,7 @@ import { MdEmail } from 'react-icons/md';
 import { useTranslation } from 'next-i18next';
 import MobileMenu from './MobileMenu';
 import BurgerButton from './BurgerButton';
-import LangSelect from './LangSelect';
+// import LangSelect from './LangSelect';
 // Media Queries
 import { device } from '../styles/Media';
 // i18n
@@ -49,7 +49,6 @@ const Navbar = () => {
                         <Link href="/contact">{t('Contact')}</Link>
                     </div>
                 </Nav>
-                <LangSelect />
                 <BurgerButton burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
             </div>
             <MobileMenu burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
