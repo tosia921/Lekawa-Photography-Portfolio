@@ -26,6 +26,13 @@ const GlobalStyles = createGlobalStyle`
   }
   @font-face {
     font-family: 'kanit';
+    src: url(fonts/Kanit/Kanit-SemiBold.ttf);
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'kanit';
     src: url(fonts/Kanit/Kanit-ExtraBold.ttf);
     font-style: bold;
     font-weight: 700;
