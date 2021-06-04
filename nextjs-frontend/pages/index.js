@@ -10,6 +10,8 @@ import LandingPage from '../components/LandingPage';
 import Quote from '../components/Quote';
 import Galleries from '../components/Galleries';
 import Icons from '../components/Icons';
+import PublicationsPreview from '../components/PublicationsPreview';
+import BookingSection from '../components/BookingSection';
 // Media Queries
 import { device } from '../styles/Media';
 
@@ -35,7 +37,7 @@ const StyledMain = styled.main`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         @media ${device.tablet} {
             flex-direction: row;
         }
@@ -74,7 +76,7 @@ const StyledMain = styled.main`
     }
 `;
 
-const Homepage = ({ imageGalleries, currLocale }) => (
+const Homepage = ({ imageGalleries, currLocale, publications }) => (
     <>
         <Head>
             <title>Lekawa Portfolio</title>
@@ -120,6 +122,8 @@ const Homepage = ({ imageGalleries, currLocale }) => (
                     </div>
                 </div>
             </div>
+            <PublicationsPreview publications={publications} />
+            <BookingSection />
         </StyledMain>
     </>
 );
@@ -155,6 +159,24 @@ export async function getStaticProps({ locale }) {
                         }
                     }
                 }
+                publications(locale: "${locale}") {
+                    id
+                    Title
+                    Slug
+                    HomePage
+                    FeaturedImage {
+                        AltText
+                        Image {
+                            url
+                            width
+                            height
+                        }
+                    }
+                    SmallText1
+                    SmallText2
+                    Location
+                    Date
+                }
             }
         `,
     });
@@ -163,6 +185,7 @@ export async function getStaticProps({ locale }) {
         props: {
             currLocale: locale,
             imageGalleries: data.imageGalleries,
+            publications: data.publications,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
             // Will be passed to the page component as props
         },

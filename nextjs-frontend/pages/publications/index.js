@@ -11,7 +11,6 @@ import { device } from '../../styles/Media';
 
 const Publications = ({ publications }) => {
     // Hook that allows me to use nexti18next translations
-    console.log(publications);
     const { t } = useTranslation('commons');
 
     return (

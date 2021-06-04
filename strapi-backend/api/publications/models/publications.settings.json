@@ -85,6 +85,16 @@
         }
       },
       "type": "string"
+    },
+    "HomePage": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   }
 }
