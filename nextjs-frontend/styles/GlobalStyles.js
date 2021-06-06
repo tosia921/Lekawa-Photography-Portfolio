@@ -66,6 +66,13 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 300;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'kanit';
+    src: url(fonts/Kanit/Kanit-Light.ttf);
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+  }
   * {
     font-family: kanit;
     font-weight: 400;

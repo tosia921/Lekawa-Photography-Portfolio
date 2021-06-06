@@ -16,7 +16,7 @@ const About = () => {
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['commons', 'commons', 'navigation', 'about-page'])),
+        ...(await serverSideTranslations(locale, ['commons', 'commons', 'navigation', 'about-page', 'footer'])),
     },
 });
 

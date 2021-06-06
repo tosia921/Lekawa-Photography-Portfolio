@@ -85,18 +85,18 @@ const StyledGalleryTypes = styled.section`
         display: grid;
         gap: 3rem;
         justify-content: space-around;
-        grid-template-columns: repeat(1, 29rem);
+        grid-template-columns: repeat(1, 30%);
         grid-auto-rows: 40rem;
         @media ${device.tablet} {
-            grid-template-columns: repeat(2, 29rem);
+            grid-template-columns: repeat(2, 30%);
             grid-auto-rows: 40rem;
         }
         @media ${device.laptop} {
-            grid-template-columns: repeat(3, 32rem);
+            grid-template-columns: repeat(3, 30%);
             grid-auto-rows: 42rem;
         }
         @media ${device.desktop} {
-            grid-template-columns: repeat(3, 40rem);
+            grid-template-columns: repeat(3, 30%);
             grid-auto-rows: 51rem;
         }
     }

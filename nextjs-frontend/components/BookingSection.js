@@ -1,19 +1,27 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+// i18n
+import { useTranslation } from 'next-i18next';
 // Media Queries
 import { device } from '../styles/Media';
 
-const BookingSection = () => (
-    <StyledBookingSection>
-        <p>
-            "Don't wait, <span>book</span> your session today!"
-        </p>
-        <Link href="/contact">
-            <button type="button">Contact Me</button>
-        </Link>
-    </StyledBookingSection>
-);
+const BookingSection = () => {
+    // i18n hook that allows to use translations
+    const { t } = useTranslation('commons');
+    return (
+        <StyledBookingSection>
+            <p>
+                {t("Don't wait,")}
+                <span>{t('book')}</span>
+                {t('your session today!')}
+            </p>
+            <Link href="/contact">
+                <button type="button">{t('Contact Us!')}</button>
+            </Link>
+        </StyledBookingSection>
+    );
+};
 
 export default BookingSection;
 
@@ -60,6 +68,7 @@ const StyledBookingSection = styled.section`
             font-size: 4rem;
         }
         span {
+            margin: 0 1rem;
             color: var(--SecondaryTextColor);
             font-family: inherit;
         }

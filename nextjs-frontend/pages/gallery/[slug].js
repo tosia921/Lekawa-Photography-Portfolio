@@ -110,7 +110,7 @@ export async function getStaticProps({ locale, params }) {
         props: {
             galleryImages: data.imageGalleries,
 
-            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
+            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },
     };

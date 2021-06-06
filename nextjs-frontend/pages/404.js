@@ -14,7 +14,7 @@ const Custom404 = () => {
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['commons', 'commons', 'custom404', 'navigation'])),
+        ...(await serverSideTranslations(locale, ['commons', 'commons', 'custom404', 'navigation', 'footer'])),
     },
 });
 

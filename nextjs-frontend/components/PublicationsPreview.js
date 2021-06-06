@@ -17,7 +17,6 @@ const responsive = {
 };
 
 const PublicationsPreview = ({ publications }) => {
-    console.log(publications);
     // translations hook
     const { t } = useTranslation('commons');
 

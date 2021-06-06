@@ -60,7 +60,7 @@ export async function getStaticProps({ locale }) {
     return {
         props: {
             publications: data.publications,
-            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
+            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },
     };
