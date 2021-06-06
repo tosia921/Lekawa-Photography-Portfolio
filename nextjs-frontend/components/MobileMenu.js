@@ -34,6 +34,16 @@ const MobileMenu = ({ burgerMenu, setBurgerMenu }) => {
                     {t('Publications')}
                 </a>
             </Link>
+            <Link href="/modeling" passHref>
+                <a onClick={(e) => handleClick(e, '/modeling')} aria-hidden="true">
+                    {t('Modeling')}
+                </a>
+            </Link>
+            <Link href="/pricing" passHref>
+                <a onClick={(e) => handleClick(e, '/pricing')} aria-hidden="true">
+                    {t('Pricing')}
+                </a>
+            </Link>
             <Link href="/about" passHref>
                 <a onClick={(e) => handleClick(e, '/about')} aria-hidden="true">
                     {t('About Me')}

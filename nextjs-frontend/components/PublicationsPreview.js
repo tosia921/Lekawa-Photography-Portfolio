@@ -55,7 +55,7 @@ const PublicationsPreview = ({ publications }) => {
                 disableButtonsControls
             />
             <p className="link-to-publications">
-                <Link href="/publications">Click to see all</Link>
+                <Link href="/publications">{t('Click to see all')}</Link>
             </p>
         </StyledPublicationsPreview>
     );

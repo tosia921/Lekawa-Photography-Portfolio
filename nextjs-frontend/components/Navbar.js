@@ -6,6 +6,8 @@ import { AiFillHome, AiFillCamera } from 'react-icons/ai';
 import { BsFillImageFill } from 'react-icons/bs';
 import { FaUserAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { GiLargeDress } from 'react-icons/gi';
+import { RiMoneyPoundBoxFill } from 'react-icons/ri';
 // components
 import { useTranslation } from 'next-i18next';
 import MobileMenu from './MobileMenu';
@@ -39,6 +41,14 @@ const Navbar = () => {
                     <div className="link-container">
                         <AiFillCamera className="icons" />
                         <Link href="/publications">{t('Publications')}</Link>
+                    </div>
+                    <div className="link-container">
+                        <GiLargeDress className="icons" />
+                        <Link href="/modeling">{t('Modeling')}</Link>
+                    </div>
+                    <div className="link-container">
+                        <RiMoneyPoundBoxFill className="icons" />
+                        <Link href="/pricing">{t('Pricing')}</Link>
                     </div>
                     <div className="link-container">
                         <FaUserAlt className="icons-smaller" />
