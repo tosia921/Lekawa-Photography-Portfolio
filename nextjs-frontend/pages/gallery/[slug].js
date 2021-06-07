@@ -31,10 +31,12 @@ const GalleryPageTemplate = ({ galleryImages }) => {
 
     const photos = [];
 
+    console.log(process.env.NEXT_PUBLIC_GRAPHQL_API_URL);
+
     // Populating photos Array with Images from CMS with correct url's and other neccessery data.
     galleryImages[0].GalleryImages.forEach((galleryImage) => {
         photos.push({
-            src: `http://localhost:1337${galleryImage.Image.url}`,
+            src: `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${galleryImage.Image.url}`,
             width: galleryImage.Image.width,
             height: galleryImage.Image.height,
             alt: galleryImage.Alt,
