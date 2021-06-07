@@ -26,7 +26,7 @@ const BookingSection = () => {
 export default BookingSection;
 
 const StyledBookingSection = styled.section`
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0;
     @media ${device.tablet} {
         margin: 1rem 1rem;
     }

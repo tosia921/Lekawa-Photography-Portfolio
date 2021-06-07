@@ -13,7 +13,7 @@ import { device } from '../styles/Media';
 const responsive = {
     0: { items: 1 },
     568: { items: 2 },
-    1024: { items: 3 },
+    1100: { items: 3 },
 };
 
 const PublicationsPreview = ({ publications }) => {
@@ -72,9 +72,6 @@ const StyledPublicationsPreview = styled.section`
     @media ${device.tablet} {
         margin: 0 1rem;
     }
-    @media ${device.laptop} {
-        margin: 0 calc((100vw - 1100px) / 2);
-    }
     @media ${device.laptopL} {
         margin: 0 calc((100vw - 1200px) / 2);
     }
@@ -95,8 +92,8 @@ const StyledPublicationsPreview = styled.section`
         }
     }
     .alice-carousel__stage-item {
-        height: 45rem;
-        width: 30rem;
+        height: 43rem;
+        width: 28rem;
         position: relative;
         cursor: pointer;
     }

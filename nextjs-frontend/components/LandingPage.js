@@ -49,13 +49,13 @@ const StyledSection = styled.section`
     }
     .landingPage-text {
         height: calc(100vh - 50px);
+        padding-top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: start;
         z-index: 2;
         position: relative;
-        padding: 5% 0 10% 0;
 
         h1 {
             span {
@@ -63,16 +63,19 @@ const StyledSection = styled.section`
             }
         }
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             span {
-                font-size: 2rem;
+                font-size: inherit;
+                margin-right: 0.3rem;
             }
         }
         @media ${device.tablet} {
             padding: 4% 0 20% 0;
+
             h1 {
                 font-size: 6rem;
                 line-height: 5.5rem;
+                margin-bottom: 1rem;
             }
             h2 {
                 font-size: 3rem;
@@ -81,21 +84,33 @@ const StyledSection = styled.section`
         @media ${device.laptop} {
             padding: 3% 0 6% 0;
             h1 {
-                font-size: 10rem;
-                line-height: 10rem;
+                font-size: 8rem;
+                line-height: 8rem;
+                span {
+                    margin-top: -1.7rem;
+                }
             }
             h2 {
-                font-size: 8rem;
+                font-size: 3rem;
             }
         }
         @media ${device.laptopL} {
-            padding: 3% 0 6% 0;
+            padding: 2rem;
             h1 {
                 font-size: 8rem;
                 line-height: 8rem;
             }
             h2 {
-                font-size: 6.5rem;
+                font-size: 3rem;
+            }
+        }
+        @media ${device.desktop} {
+            h1 {
+                font-size: 10rem;
+                line-height: 10rem;
+            }
+            h2 {
+                font-size: 5rem;
             }
         }
     }
@@ -108,29 +123,29 @@ const LandingPage = () => {
             <div className="bg-wrap">
                 <Image
                     className="image-hero-mobile"
-                    src="/images/HomepageMobile.jpg"
+                    src="/images/LandingPagePhone.jpg"
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="75"
+                    quality="100"
                     priority
                 />
                 <Image
                     className="image-hero-tablet"
-                    src="/images/HomepageTablet.png"
+                    src="/images/LandingPageTabletVertical.jpg"
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="75"
+                    quality="100"
                     priority
                 />
                 <Image
                     className="image-hero-desktop"
-                    src="/images/HomepageDesktop.jpg"
+                    src="/images/LandingPageDesktop.jpg"
                     alt="Women with red hair"
                     layout="fill"
                     objectFit="cover"
-                    quality="75"
+                    quality="100"
                     priority
                 />
             </div>

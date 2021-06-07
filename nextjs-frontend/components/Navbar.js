@@ -118,24 +118,43 @@ const Nav = styled.nav`
             margin-right: 1rem;
         }
         a {
-            font-size: 1.6rem;
+            font-size: 1.2rem;
+            @media ${device.tablet} {
+                font-size: 1.4rem;
+            }
             @media ${device.laptop} {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            @media ${device.laptopL} {
+                font-size: 1.8rem;
             }
         }
     }
     .icons {
-        font-size: 1.6rem;
-        margin-right: 0.6rem;
+        font-size: 1.2rem;
+        margin-right: 0.4rem;
+        font-size: 1.2rem;
+        @media ${device.tablet} {
+            font-size: 1.4rem;
+        }
         @media ${device.laptop} {
-            font-size: 2rem;
+            font-size: 1.6rem;
+        }
+        @media ${device.laptopL} {
+            font-size: 1.8rem;
         }
     }
     .icons-smaller {
-        font-size: 1.6rem;
-        margin-right: 0.6rem;
+        font-size: 1.2rem;
+        margin-right: 0.4rem;
+        @media ${device.tablet} {
+            font-size: 1.2rem;
+        }
         @media ${device.laptop} {
-            height: 2rem;
+            font-size: 1.4rem;
+        }
+        @media ${device.laptopL} {
+            font-size: 1.6rem;
         }
     }
 `;
