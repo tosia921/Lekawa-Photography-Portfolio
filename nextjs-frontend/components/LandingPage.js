@@ -52,13 +52,20 @@ const StyledSection = styled.section`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: start;
         z-index: 2;
         position: relative;
         padding: 5% 0 10% 0;
+
         h1 {
             span {
                 display: block;
+            }
+        }
+        h2 {
+            font-size: 2.5rem;
+            span {
+                font-size: 2rem;
             }
         }
         @media ${device.tablet} {
@@ -68,7 +75,7 @@ const StyledSection = styled.section`
                 line-height: 5.5rem;
             }
             h2 {
-                font-size: 5rem;
+                font-size: 3rem;
             }
         }
         @media ${device.laptop} {
@@ -133,7 +140,7 @@ const LandingPage = () => {
                     <span>{t('h1line2')}</span>
                 </h1>
                 <h2>
-                    <span className="highlighted-text">T</span>omasz <span className="highlighted-text">L</span>ekawa
+                    <span className="highlighted-text">by</span>Tomasz Lekawa
                 </h2>
             </div>
         </StyledSection>
