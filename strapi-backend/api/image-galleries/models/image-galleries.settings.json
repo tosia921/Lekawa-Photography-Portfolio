@@ -52,6 +52,27 @@
           "localized": true
         }
       }
+    },
+    "SeoTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "SeoDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "maxLength": 160,
+      "minLength": 50
     }
   }
 }

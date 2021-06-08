@@ -8,11 +8,17 @@ import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // Media Queries
+import Head from 'next/head';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
 const Publication = ({ publication }) => (
     <StyledPublicationPage>
+        <Head>
+            <title>{publication[0].SeoTitle}</title>
+            <meta name="description" content={publication[0].SeoDescription} />
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <h1 className="title">{publication[0].Title}</h1>
         <div className="markdown-background">
             <ReactMarkdown
@@ -48,6 +54,8 @@ export async function getStaticProps({ locale, params }) {
         query {
             publications(locale: "${locale}", where: { Slug: "${params.slug}" }) {
               Title
+              SeoTitle
+              SeoDescription
               PublicationContent  
             }
           }

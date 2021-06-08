@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import Head from 'next/head';
 import styled from 'styled-components';
 import axios from 'axios';
 // Apollo Client
@@ -79,6 +80,11 @@ const ModelingPage = ({ pageData }) => {
     // RETURNING JSX
     return (
         <StyledModelingPage>
+            <Head>
+                <title>{pageData.SeoTitle}</title>
+                <meta name="description" content={pageData.SeoDescription} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <section className="page-content">
                 <h1>Modeling</h1>
                 <p>{pageData.PageText}</p>
@@ -239,6 +245,8 @@ export async function getStaticProps({ locale }) {
         query {
             modelingPage(locale: "${locale}")  {
               PageText
+              SeoTitle
+              SeoDescription
               PageGallery {
                 Image {
                   url

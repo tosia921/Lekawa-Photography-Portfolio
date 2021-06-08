@@ -9,6 +9,7 @@ import { useTranslation } from 'next-i18next';
 import Gallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 // Media Queries
+import Head from 'next/head';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
@@ -43,6 +44,11 @@ const GalleryPageTemplate = ({ galleryImages }) => {
 
     return (
         <StyledGalleryPage>
+            <Head>
+                <title>{galleryImages.SeoTitle}</title>
+                <meta name="description" content={galleryImages.SeoDescription} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <h1>
                 {t('Gallery')} {galleryImages[0].Name}
             </h1>
@@ -83,6 +89,8 @@ export async function getStaticProps({ locale, params }) {
             imageGalleries(locale: "${locale}", where: { slug: "${params.slug}" }) {
               Name
               slug
+              SeoTitle
+              SeoDescription
               FeaturedImage {
                 AltText
                 Image {

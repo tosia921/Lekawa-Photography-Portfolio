@@ -1,19 +1,31 @@
 import React from 'react';
 // i18n
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+
 // Components
 import styled from 'styled-components';
+import Head from 'next/head';
 import Galleries from '../../components/Galleries';
 import { device } from '../../styles/Media';
 
 // Gallery Page component
-const GalleryPage = ({ imageGalleries, currLocale }) => (
-    <StyledGalleryPage>
-        <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
-    </StyledGalleryPage>
-);
+const GalleryPage = ({ imageGalleries, currLocale }) => {
+    // Hook that allows me to use nexti18next translations
+    const { t } = useTranslation('commons');
+    return (
+        <StyledGalleryPage>
+            <Head>
+                <title>{t('Gallery Title')}</title>
+                <meta name="description" content={t('Gallery Description')} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
+        </StyledGalleryPage>
+    );
+};
 
 export default GalleryPage;
 

@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Custom Components
+import Head from 'next/head';
 import PublicationCard from '../../components/PublicationCard';
 import { device } from '../../styles/Media';
 
@@ -15,6 +16,11 @@ const Publications = ({ publications }) => {
 
     return (
         <StyledPublications>
+            <Head>
+                <title>{t('Publications Title')}</title>
+                <meta name="description" content={t('Publications Description')} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <h1>{t('Publications')}</h1>
             {publications.map((publication) => (
                 <PublicationCard publication={publication} key={publication.id} />

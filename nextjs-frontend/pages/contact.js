@@ -12,6 +12,7 @@ import { AiFillPhone, AiTwotoneMail } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 // Media Queries
 import axios from 'axios';
+import Head from 'next/head';
 import { device } from '../styles/Media';
 // Axios
 
@@ -50,6 +51,11 @@ const ContactPage = () => {
     }
     return (
         <StyledContactPage>
+            <Head>
+                <title>{t('Contact Title')}</title>
+                <meta name="description" content={t('Contact Description')} />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <h1>{t('Contact Us')}</h1>
             <div className="page-content">
                 <div className="email-form">
@@ -176,6 +182,7 @@ export async function getStaticProps({ locale }) {
 // Styles
 
 const StyledContactPage = styled.section`
+    min-height: 100vh;
     h1 {
         margin: 4rem 0;
     }
