@@ -19,7 +19,7 @@ const GalleryPageTemplate = ({ galleryImages }) => {
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
-    const openLightbox = useCallback((event, { photo, index }) => {
+    const openLightbox = useCallback((event, { index }) => {
         setCurrentImage(index);
         setViewerIsOpen(true);
     }, []);
@@ -30,8 +30,6 @@ const GalleryPageTemplate = ({ galleryImages }) => {
     };
 
     const photos = [];
-
-    console.log(process.env.NEXT_PUBLIC_GRAPHQL_API_URL);
 
     // Populating photos Array with Images from CMS with correct url's and other neccessery data.
     galleryImages[0].GalleryImages.forEach((galleryImage) => {
