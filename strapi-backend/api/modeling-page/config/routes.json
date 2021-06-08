@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/modeling-page",
+      "handler": "modeling-page.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/modeling-page",
+      "handler": "modeling-page.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/modeling-page",
+      "handler": "modeling-page.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
