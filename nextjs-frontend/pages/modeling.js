@@ -12,12 +12,15 @@ import { useForm } from 'react-hook-form';
 import Gallery from 'react-photo-gallery';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 // Media Queries
+import { useRouter } from 'next/router';
 import { device } from '../styles/Media';
 
 // GalleryPageTemplate Component
 const ModelingPage = ({ pageData }) => {
     // Hook that allows me to use nexti18next translations
-    const { t } = useTranslation('commons');
+    const { t } = useTranslation('modeling');
+    // defining next router
+    const router = useRouter();
 
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -44,9 +47,6 @@ const ModelingPage = ({ pageData }) => {
         });
     });
 
-    // defining next router
-    const router = useRouter();
-    
     // destructuring values from provided useForm hook
     const {
         register,
@@ -54,10 +54,8 @@ const ModelingPage = ({ pageData }) => {
         formState: { errors },
         reset,
     } = useForm();
-
     // function that handles form submit
     async function onSubmitForm(values) {
-        // sending post request using axios to created next API route
         const config = {
             method: 'post',
             url: `${process.env.NEXT_PUBLIC_API_URL}/api/modeling`,
@@ -76,14 +74,16 @@ const ModelingPage = ({ pageData }) => {
         } catch (error) {
             console.error(error);
         }
+    }
 
+    // RETURNING JSX
     return (
         <StyledModelingPage>
             <section className="page-content">
                 <h1>Modeling</h1>
                 <p>{pageData.PageText}</p>
                 <div className="images-container">
-                    <Gallery photos={photos} targetRowHeight={250} onClick={openLightbox} />
+                    <Gallery photos={photos} targetRowHeight={275} onClick={openLightbox} />
                     <ModalGateway>
                         {viewerIsOpen ? (
                             <Modal onClose={closeLightbox}>
@@ -99,28 +99,24 @@ const ModelingPage = ({ pageData }) => {
                         ) : null}
                     </ModalGateway>
                 </div>
-                <h3>Fill the form below if you want to work with us.</h3>
+                <h3>{t('Fill Form')}</h3>
                 <div className="email-form">
                     <form onSubmit={handleSubmit(onSubmitForm)}>
                         <div>
-                            <label htmlFor="name">{t('Full name')}</label>
+                            <label htmlFor="companyname">{t('Company Name')}</label>
                             <input
                                 type="text"
-                                name="name"
+                                name="companyname"
                                 className="input"
-                                placeholder={t('Full name')}
-                                {...register('fullname', {
+                                placeholder={t('Company Name')}
+                                {...register('companyname', {
                                     required: {
                                         value: true,
-                                        message: 'You must enter your name',
-                                    },
-                                    minLength: {
-                                        value: 3,
-                                        message: "Your name can't be shorter than 3 characters",
+                                        message: 'You must enter your company name',
                                     },
                                     maxLength: {
                                         value: 50,
-                                        message: "Your name can't be longer than 50 characters",
+                                        message: "Your company name can't be longer than 50 characters",
                                     },
                                 })}
                             />
@@ -153,6 +149,49 @@ const ModelingPage = ({ pageData }) => {
                                 })}
                             />
                             {errors.email && <p>{errors.email.message}</p>}
+                        </div>
+                        <div>
+                            <label htmlFor="phone">{t('Phone')}</label>
+                            <input
+                                type="text"
+                                name="phone"
+                                className="input"
+                                placeholder={t('Phone')}
+                                {...register('phone', {
+                                    minLength: {
+                                        value: 9,
+                                        message: 'Your phone number is too short',
+                                    },
+                                    maxLength: {
+                                        value: 20,
+                                        message: 'Your phone number is too long',
+                                    },
+                                })}
+                            />
+                            {errors.phone && <p>{errors.phone.message}</p>}
+                        </div>
+                        <div>
+                            <label htmlFor="products">{t('Products')}</label>
+                            <textarea
+                                name="products"
+                                className="input products"
+                                placeholder={t('Products')}
+                                {...register('products', {
+                                    required: {
+                                        value: true,
+                                        message: 'You must enter type of products you would like to be photographed',
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: 'Your product list is too short',
+                                    },
+                                    maxLength: {
+                                        value: 1000,
+                                        message: 'Your product list is too long',
+                                    },
+                                })}
+                            />
+                            {errors.products && <p>{errors.products.message}</p>}
                         </div>
                         <div>
                             <label htmlFor="message">{t('Message')}</label>
@@ -216,7 +255,15 @@ export async function getStaticProps({ locale }) {
         props: {
             pageData: data.modelingPage,
 
-            ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
+            ...(await serverSideTranslations(locale, [
+                'common',
+                'commons',
+                'navigation',
+                'homepage',
+                'footer',
+                'contact',
+                'modeling',
+            ])),
             // Will be passed to the page component as props
         },
     };
@@ -238,6 +285,10 @@ const StyledModelingPage = styled.div`
         background-size: contain;
         border-radius: 15px;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         @media ${device.tablet} {
             margin: 0 1rem;
         }
@@ -257,7 +308,7 @@ const StyledModelingPage = styled.div`
     }
     h3 {
         font-size: 2.5rem;
-        margin: 2rem 0;
+        margin: 5rem 0;
     }
 
     p {
@@ -280,76 +331,83 @@ const StyledModelingPage = styled.div`
         }
     }
     .email-form {
-            width: 80%;
-            margin-bottom: 5rem;
-            @media ${device.tablet} {
-                width: 50%;
-            }
-            @media ${device.desktop} {
-                width: 40%;
-            }
-            form {
-                height: fit-content;
-                width: 100%;
+        width: 80%;
+        margin-bottom: 10rem;
+        @media ${device.tablet} {
+            width: 50%;
+        }
+        @media ${device.desktop} {
+            width: 40%;
+        }
+        form {
+            height: fit-content;
+            width: 100%;
 
-                label {
-                    position: absolute;
-                    width: 1px;
-                    height: 1px;
-                    padding: 0;
-                    margin: -1px;
-                    overflow: hidden;
-                    clip: rect(0, 0, 0, 0);
-                    white-space: nowrap;
-                    border-width: 0;
+            label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border-width: 0;
+            }
+            input {
+                width: 100%;
+                padding: 0.5rem 1rem;
+                outline: none;
+                margin-bottom: 0.5rem;
+            }
+            textarea {
+                width: 100%;
+                height: 20rem;
+                resize: none;
+                padding: 1rem;
+                outline: none;
+                @media ${device.tablet} {
+                    height: 30rem;
                 }
-                input {
-                    width: 100%;
-                    padding: 0.5rem 1rem;
-                    outline: none;
-                    margin-bottom: 0.5rem;
+            }
+            .products {
+                width: 100%;
+                height: 8rem;
+                resize: none;
+                padding: 1rem;
+                outline: none;
+            }
+            .button-container {
+                display: flex;
+                justify-content: center;
+            }
+            .submit-button {
+                font-size: 1.6rem;
+                font-weight: 500;
+                padding: 0.5rem 2rem;
+                border-radius: 50px;
+                border: none;
+                margin-top: 1rem;
+                box-shadow: var(--TextShadowSmall);
+                transition: all 0.2s ease-in;
+                cursor: pointer;
+                &:hover {
+                    transform: translateY(-2px);
+                    background-color: var(--SecondaryTextColor);
+                    box-shadow: var(--TextShadowMedium);
                 }
-                textarea {
-                    width: 100%;
-                    height: 20rem;
-                    resize: none;
-                    padding: 1rem;
-                    outline: none;
-                    @media ${device.tablet} {
-                        height: 30rem;
-                    }
-                }
-                .button-container {
-                    display: flex;
-                    justify-content: center;
-                }
-                .submit-button {
-                    font-size: 1.6rem;
-                    font-weight: 500;
-                    padding: 0.5rem 2rem;
-                    border-radius: 50px;
-                    border: none;
-                    margin-top: 1rem;
+                &:active,
+                &:focus {
+                    transform: translateY(0);
                     box-shadow: var(--TextShadowSmall);
-                    transition: all 0.2s ease-in;
-                    cursor: pointer;
-                    &:hover {
-                        transform: translateY(-2px);
-                        background-color: var(--SecondaryTextColor);
-                        box-shadow: var(--TextShadowMedium);
-                    }
-                    &:active,
-                    &:focus {
-                        transform: translateY(0);
-                        box-shadow: var(--TextShadowSmall);
-                    }
                 }
-                p {
-                    color: #ff5757;
-                    margin-top: -0.5rem;
-                    margin-bottom: 1rem;
-                    font-size: 1.1rem;
-                }
+            }
+            p {
+                color: #ff5757;
+                margin-top: -0.5rem;
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
             }
         }
+    }
 `;
