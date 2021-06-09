@@ -61,10 +61,6 @@ const Footer = () => {
                     <Link href="/terms-and-conditions" className="terms">
                         {t('Terms and Conditions')}
                     </Link>
-                    <span>|</span>
-                    <Link href="/sitemap" className="terms">
-                        {t('Sitemap')}
-                    </Link>
                 </div>
                 <div className="Copyright">{t('Copyright ©2021 Tomasz Lekawa Photography. All rights reserved.')}</div>
             </div>
