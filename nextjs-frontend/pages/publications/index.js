@@ -14,6 +14,14 @@ const Publications = ({ publications }) => {
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
+    // Sorting list of publications to display at the top the ones that were marked as DisplayTop = true in Strapi CMS
+    // filtering the ones that have value set to true
+    const DisplayAtTopPublications = publications.filter((publication) => publication.DisplayTop === true);
+    // filtering the ones that have value set to false
+    const DisplayAtBottomPublications = publications.filter((publication) => publication.DisplayTop === false);
+    // combining both arrays with the ones that have DisplayTop value set to true at begginning of the new array
+    const SortedPublications = DisplayAtTopPublications.concat(DisplayAtBottomPublications);
+
     return (
         <StyledPublications>
             <Head>
@@ -22,9 +30,13 @@ const Publications = ({ publications }) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <h1>{t('Publications')}</h1>
-            {publications.map((publication) => (
-                <PublicationCard publication={publication} key={publication.id} />
-            ))}
+            {SortedPublications.length > 0 ? (
+                SortedPublications.map((publication) => (
+                    <PublicationCard publication={publication} key={publication.id} />
+                ))
+            ) : (
+                <h3>There is not a single Publication to display yet!</h3>
+            )}
         </StyledPublications>
     );
 };
@@ -46,6 +58,7 @@ export async function getStaticProps({ locale }) {
                     id
                     Title
                     Slug
+                    DisplayTop
                     FeaturedImage {
                         AltText
                         Image {
@@ -78,8 +91,10 @@ const StyledPublications = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: calc(100vh - 452px);
     @media ${device.tablet} {
         padding: 0 1rem;
+        min-height: calc(100vh - 219px);
     }
     @media ${device.laptop} {
         padding: 0 calc((100vw - 1100px) / 2);
@@ -92,5 +107,8 @@ const StyledPublications = styled.section`
     }
     h1 {
         margin: 2rem 0;
+    }
+    h3 {
+        font-size: 1.6rem;
     }
 `;

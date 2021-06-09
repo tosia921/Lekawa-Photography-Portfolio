@@ -14,8 +14,8 @@ const PublicationCard = ({ publication }) => {
                     className="image"
                     src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${publication.FeaturedImage.Image[0].url}`}
                     alt="Men wearing a suit and glasses"
-                    height={publication.FeaturedImage.Image[0].height}
-                    width={publication.FeaturedImage.Image[0].width}
+                    layout="fill"
+                    objectFit="contain"
                     quality={50}
                     priority
                 />

@@ -155,9 +155,7 @@ const LandingPage = () => {
                     {t('h1line1')}
                     <span>{t('h1line2')}</span>
                 </h1>
-                <h2>
-                    <span className="highlighted-text">by</span>Tomasz Lekawa
-                </h2>
+                <h2>Tomasz Lekawa</h2>
             </div>
         </StyledSection>
     );
