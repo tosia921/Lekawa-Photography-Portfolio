@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+// i18n
+import { useTranslation } from 'next-i18next';
 // Icons
 import { AiFillCamera } from 'react-icons/ai';
 import { BsImages } from 'react-icons/bs';
@@ -7,22 +9,26 @@ import { MdHighQuality } from 'react-icons/md';
 // Media Queries
 import { device } from '../styles/Media';
 
-const Quote = () => (
-    <StyledIconsSection>
-        <div className="icon-container">
-            <AiFillCamera />
-        </div>
-        <p className="text1">Top End Equipment</p>
-        <div className="icon-container">
-            <BsImages />
-        </div>
-        <p className="text2">Huge Work Experience</p>
-        <div className="icon-container">
-            <MdHighQuality />
-        </div>
-        <p className="text3">High Quality Photos</p>
-    </StyledIconsSection>
-);
+const Quote = () => {
+    // i18n hook that allows to use translations
+    const { t } = useTranslation('commons');
+    return (
+        <StyledIconsSection>
+            <div className="icon-container">
+                <AiFillCamera />
+            </div>
+            <p className="text1">{t('Top End Equipment')}</p>
+            <div className="icon-container">
+                <BsImages />
+            </div>
+            <p className="text2">{t('Huge Work Experience')}</p>
+            <div className="icon-container">
+                <MdHighQuality />
+            </div>
+            <p className="text3">{t('High Quality Photos')}</p>
+        </StyledIconsSection>
+    );
+};
 
 export default Quote;
 

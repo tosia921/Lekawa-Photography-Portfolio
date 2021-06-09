@@ -1,15 +1,23 @@
 {
     "change-locale": "ENG",
     "Gallery": "Galeria",
+    "Galleries": "Galerie",
     "Publications": "Publikacje",
     "Contact Us!": "Napisz do Nas!",
     "Click to see all": "Zobacz wszystkie",
     "Don't wait,": "Nie czekaj,",
-    "book" : "zabukuj",
+    "book" : "zarezerwuj",
     "your session today!": "swoją sesję już dziś!",
     "Publications Description": "Lista najlepszych zdjęć wykonanych przez Tomasza Lekawe, opublikowanych w wielu róznych magazynach modowych.",
     "Publications Title": "Lista najlepszych publikacji modowych.",
     "Gallery Description": "Lista galerii autorstwa Tomasza Łękawy, zawierające jego najlepsze zdjęcia.",
-    "Gallery Title": "Lista galerii autorstwa Tomasza Łękawy"
-    
+    "Gallery Title": "Lista galerii autorstwa Tomasza Łękawy",
+    "A": "Jedno",
+    "picture": "zdjęcie",
+    "is worth a": "mówi więcej niż",
+    "thousand": "tysiąc",
+    "words" : "słów",
+    "Top End Equipment":"Tylko najlepszy sprzęt",
+    "Huge Work Experience":"Wieloletnie doświadczenie",
+    "High Quality Photos":"Najwyższa jakość zdjęć"
 }

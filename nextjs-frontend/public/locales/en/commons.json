@@ -1,15 +1,23 @@
 {
     "change-locale": "PL",
     "Gallery": "Gallery",
+    "Galleries": "Galleries",
     "Publications": "Publications",
     "Contact Us!": "Contact Us!",
     "Click to see all": "Click to see all",
     "Don't wait,": "Don't wait,",
     "book" : "book",
     "your session today!": "your session today!",
+    "A": "A",
+    "picture": "picture",
+    "is worth a": "is worth a",
+    "thousand": "thousand",
+    "words" : "words",
     "Publications Description": "List of publications by Tomasz Lekawa, featuring his best Photos that were published in various fashion magazines. ",
     "Publications Title": "List of featured fashion magazine's publications.",
     "Gallery Description": "List of galleries by Tomasz Lekawa, containing his best Photos",
-    "Gallery Title": "List of galleries"
-    
+    "Gallery Title": "List of galleries",
+    "Top End Equipment":"Top End Equipment",
+    "Huge Work Experience":"Huge Work Experience",
+    "High Quality Photos":"High Quality Photos"
 }

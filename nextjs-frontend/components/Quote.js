@@ -1,15 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 // Media Queries
+import { useTranslation } from 'next-i18next';
 import { device } from '../styles/Media';
+// i18n
 
-const Quote = () => (
-    <StyledQuoteSection>
-        <p>
-            "A <span>picture</span> is worth a <span>thousand</span> words."
-        </p>
-    </StyledQuoteSection>
-);
+const Quote = () => {
+    // i18n hook that allows to use translations
+    const { t } = useTranslation('commons');
+    return (
+        <StyledQuoteSection>
+            <p>
+                "{t('A')} <span>{t('picture')}</span>
+                {t('is worth a')}
+                <span>{t('thousand')}</span>
+                {t('words')}"
+            </p>
+        </StyledQuoteSection>
+    );
+};
 
 export default Quote;
 
@@ -45,6 +54,10 @@ const StyledQuoteSection = styled.section`
         span {
             color: var(--SecondaryTextColor);
             font-family: inherit;
+            margin: 0 1rem;
+        }
+        span:first-child {
+            margin-left: 0rem;
         }
     }
 `;

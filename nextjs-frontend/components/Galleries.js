@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
+// i18n
+import { useTranslation } from 'next-i18next';
 // Media Queries
 import { device } from '../styles/Media';
 
@@ -28,16 +30,20 @@ const GalleryPreview = ({ data, currLocale }) => {
 };
 
 // All Galleries Component
-const Galleries = ({ imageGalleries, currLocale }) => (
-    <StyledGalleryTypes>
-        <h2>Galleries</h2>
-        <div className="galleryTypes-grid">
-            {imageGalleries.map((imageGallery) => (
-                <GalleryPreview data={imageGallery} currLocale={currLocale} key={imageGallery.id} />
-            ))}
-        </div>
-    </StyledGalleryTypes>
-);
+const Galleries = ({ imageGalleries, currLocale }) => {
+    // i18n hook that allows to use translations
+    const { t } = useTranslation('commons');
+    return (
+        <StyledGalleryTypes>
+            <h2>{t('Galleries')}</h2>
+            <div className="galleryTypes-grid">
+                {imageGalleries.map((imageGallery) => (
+                    <GalleryPreview data={imageGallery} currLocale={currLocale} key={imageGallery.id} />
+                ))}
+            </div>
+        </StyledGalleryTypes>
+    );
+};
 
 export default Galleries;
 
