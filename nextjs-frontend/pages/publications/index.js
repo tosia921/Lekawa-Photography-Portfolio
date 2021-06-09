@@ -106,7 +106,7 @@ const StyledPublications = styled.section`
         padding: 0 calc((100vw - 1400px) / 2);
     }
     h1 {
-        margin: 2rem 0;
+        margin: 4rem 0 6rem 0;
     }
     h3 {
         font-size: 1.6rem;
