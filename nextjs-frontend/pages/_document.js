@@ -31,51 +31,7 @@ export default class MyDocument extends Document {
     render() {
         return (
             <Html>
-                <Head>
-                    <link
-                        rel="preload"
-                        href="/fonts/Kanit/Kanit-Regular.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                    <link rel="preload" href="/fonts/Kanit/Kanit-Medium.ttf" as="font" type="font/ttf" crossOrigin="" />
-                    <link
-                        rel="preload"
-                        href="/fonts/Kanit/Kanit-ExtraBold.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Kanit/Kanit-BoldItalic.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Kanit/Kanit-MediumItalic.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Kanit/Kanit-ExtraLightItalic.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                    <link
-                        rel="preload"
-                        href="/fonts/Caveat/Caveat-Regular.ttf"
-                        as="font"
-                        type="font/ttf"
-                        crossOrigin=""
-                    />
-                </Head>
+                <Head />
                 <body>
                     <Main />
                     <NextScript />

@@ -42,7 +42,6 @@ const LangButton = () => {
                                 layout="fill"
                                 objectFit="cover"
                                 quality={50}
-                                priority
                             />
                         </div>
                         <p>EN</p>
@@ -57,7 +56,6 @@ const LangButton = () => {
                                 layout="fill"
                                 objectFit="cover"
                                 quality={50}
-                                priority
                             />
                         </div>
                         <p>PL</p>

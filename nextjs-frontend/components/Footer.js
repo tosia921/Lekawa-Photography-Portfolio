@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 // icons
 import { AiFillFacebook, AiFillInstagram, AiFillPhone, AiTwotoneMail } from 'react-icons/ai';
-import { IconContext } from 'react-icons';
 // i18n
 import { useTranslation } from 'next-i18next';
 // Media Queries
@@ -37,17 +36,13 @@ const Footer = () => {
                     <p>{t('Tomasz Lekawa')}</p>
                     <p>Nottingham</p>
                     <div className="email">
-                        <IconContext.Provider value={{ size: '1.6rem', className: 'email-svg' }}>
-                            <AiTwotoneMail />
-                        </IconContext.Provider>
+                        <AiTwotoneMail />
                         <a href="mailto:tomaszlewaka@gmail.com" className="email-address">
                             tomaszlewaka@gmail.com
                         </a>
                     </div>
                     <a href="tel:07476-33-66-55">
-                        <IconContext.Provider value={{ size: '1.6rem', className: 'phone-svg' }}>
-                            <AiFillPhone />
-                        </IconContext.Provider>
+                        <AiFillPhone />
                         <p className="phone-number">07476 33 66 55</p>
                     </a>
                 </div>
