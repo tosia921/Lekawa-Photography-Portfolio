@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import Image from 'next/image';
 // Icons
 import { AiFillHome, AiFillCamera } from 'react-icons/ai';
 import { BsFillImageFill } from 'react-icons/bs';
@@ -8,14 +9,14 @@ import { FaUserAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { GiLargeDress } from 'react-icons/gi';
 import { RiMoneyPoundBoxFill } from 'react-icons/ri';
-// components
+// i18n
 import { useTranslation } from 'next-i18next';
+// components
 import MobileMenu from './MobileMenu';
 import BurgerButton from './BurgerButton';
 import LangSelect from './LangSelect';
 // Media Queries
 import { device } from '../styles/Media';
-// i18n
 
 const Navbar = () => {
     // state that holds value of open and closed mobile menu.
@@ -25,8 +26,10 @@ const Navbar = () => {
 
     return (
         <StyledHeader>
-            <Logo>
-                <p>ATL Photoraphy</p>
+            <Logo href="/">
+                <Link href="/">
+                    <img src="/images/LogoWhite.png" alt="logo" />
+                </Link>
             </Logo>
             <div className="right-side">
                 <Nav>
@@ -89,10 +92,18 @@ const StyledHeader = styled.header`
 const Logo = styled.div`
     position: relative;
     z-index: 10;
-    p {
-        font-size: 1.6rem;
+    cursor: pointer;
+    img {
+        height: 5rem;
+        width: auto;
+        margin-top: 2rem;
+        @media ${device.tablet} {
+            height: 6rem;
+            margin-top: 3rem;
+        }
         @media ${device.laptop} {
-            font-size: 2rem;
+            height: 7rem;
+            margin-top: 4rem;
         }
     }
 `;

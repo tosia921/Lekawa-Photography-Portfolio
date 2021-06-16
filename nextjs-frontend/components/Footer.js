@@ -16,7 +16,9 @@ const Footer = () => {
             <div className="top">
                 <div className="logo-socials">
                     <div className="logo">
-                        <Link href="/">Logo</Link>
+                        <Link href="/">
+                            <img src="/images/LogoWhite.png" alt="logo" />
+                        </Link>
                     </div>
                     <div className="socials">
                         <AiFillFacebook className="fb" />
@@ -125,10 +127,17 @@ const StyledFooter = styled.footer`
                 margin-right: 5rem;
             }
             .logo {
-                a {
-                    font-size: 2.5rem;
-                    line-height: 2.5rem;
+                img {
+                    height: 5rem;
+                    width: auto;
                     margin-bottom: 1rem;
+
+                    @media ${device.tablet} {
+                        height: 6rem;
+                    }
+                    @media ${device.laptop} {
+                        height: 7rem;
+                    }
                 }
             }
             .socials {
