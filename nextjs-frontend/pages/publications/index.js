@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Custom Components
 import Head from 'next/head';
+import Link from 'next/link';
 import PublicationCard from '../../components/PublicationCard';
 import { device } from '../../styles/Media';
 
@@ -30,6 +31,7 @@ const Publications = ({ publications }) => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <h1>{t('Publications')}</h1>
+            <Link href="/publications/publications-list">{t('Click here to see full list of publications')}</Link>
             {SortedPublications.length > 0 ? (
                 SortedPublications.map((publication) => (
                     <PublicationCard publication={publication} key={publication.id} />
@@ -106,9 +108,24 @@ const StyledPublications = styled.section`
         padding: 0 calc((100vw - 1400px) / 2);
     }
     h1 {
-        margin: 4rem 0 6rem 0;
+        margin: 4rem 0 2rem 0;
     }
     h3 {
         font-size: 1.6rem;
+    }
+    a {
+        font-size: 1.4rem;
+        @media ${device.tablet} {
+            font-size: 1.5rem;
+        }
+        @media ${device.laptop} {
+            font-size: 1.6rem;
+        }
+        font-weight: 500;
+        text-decoration: underline;
+        margin-bottom: 3rem;
+        &:hover {
+            text-decoration-color: var(--SecondaryTextColor);
+        }
     }
 `;

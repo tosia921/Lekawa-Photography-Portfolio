@@ -79,7 +79,7 @@ const StyledMain = styled.main`
 const Homepage = ({ imageGalleries, currLocale, publications }) => (
     <>
         <Head>
-            <title>Lekawa Portfolio</title>
+            <title>ATL Photography</title>
             <meta name="description" content="Tomasz Lekawa Photography Portfolio Website" />
             <link rel="icon" href="/favicon.ico" />
             <link rel="preload" href="/fonts/Caveat/Caveat-Regular.ttf" as="font" type="font/ttf" crossOrigin="" />
