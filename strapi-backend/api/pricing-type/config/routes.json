@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pricing-types",
+      "handler": "pricing-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pricing-types/count",
+      "handler": "pricing-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pricing-types/:id",
+      "handler": "pricing-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/pricing-types",
+      "handler": "pricing-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pricing-types/:id",
+      "handler": "pricing-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pricing-types/:id",
+      "handler": "pricing-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

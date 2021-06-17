@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_pricing_pricing_packages",
+  "info": {
+    "name": "PricingPackage",
+    "icon": "coins"
+  },
+  "options": {},
+  "attributes": {
+    "PricingFeature": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pricing.pricing-feature",
+      "required": true,
+      "max": 10
+    },
+    "PackagePrice": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

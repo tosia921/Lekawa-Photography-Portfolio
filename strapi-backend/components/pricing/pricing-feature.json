@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_pricing_pricing_features",
+  "info": {
+    "name": "PricingFeature",
+    "icon": "pen-square"
+  },
+  "options": {},
+  "attributes": {
+    "FeatureName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    }
+  }
+}

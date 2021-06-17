@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pricing_categories",
+  "info": {
+    "name": "PricingCategory",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Category": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "pricing_types": {
+      "via": "pricing_category",
+      "collection": "pricing-type"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pricing_types",
+  "info": {
+    "name": "PricingType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true
+    },
+    "pricing_category": {
+      "model": "pricing-category",
+      "via": "pricing_types"
+    },
+    "PreviewImages": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "media.gallery-image",
+      "max": 8,
+      "min": 8,
+      "required": true
+    },
+    "PricingPackage": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "pricing.pricing-package",
+      "max": 3,
+      "min": 3,
+      "required": true
+    }
+  }
+}
