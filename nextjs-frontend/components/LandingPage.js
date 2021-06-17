@@ -4,7 +4,6 @@ import Image from 'next/image';
 // i18n
 import { useTranslation } from 'next-i18next';
 // Media Queries
-import { Head } from 'next/document';
 import { device } from '../styles/Media';
 
 const StyledSection = styled.section`

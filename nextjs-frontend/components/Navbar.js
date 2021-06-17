@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Image from 'next/image';
 // Icons
 import { AiFillHome, AiFillCamera } from 'react-icons/ai';
 import { BsFillImageFill } from 'react-icons/bs';

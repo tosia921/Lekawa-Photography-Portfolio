@@ -129,7 +129,6 @@ const ModelingPage = ({ pageData }) => {
                             {errors.fullname && <p>{errors.fullname.message}</p>}
                         </div>
                         <div>
-                            <label htmlFor="email">Email</label>
                             <input
                                 name="email"
                                 type="text"

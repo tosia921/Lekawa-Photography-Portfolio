@@ -5,33 +5,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { device } from '../styles/Media';
 
-const PublicationCard = ({ publication }) => {
-    const a = 3;
-    return (
-        <StyledPublicationCard>
-            <div className="publication-featured-image">
-                <Image
-                    className="image"
-                    src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${publication.FeaturedImage.Image[0].url}`}
-                    alt="Men wearing a suit and glasses"
-                    layout="fill"
-                    objectFit="contain"
-                    quality={50}
-                    priority
-                />
-            </div>
-            <div className="content">
-                <Link href={`publications/${publication.Slug}`}>
-                    <h2>{publication.Title}</h2>
-                </Link>
-                <p className="publication-type">{publication.SmallText1}</p>
-                <p className="smalltext">{publication.SmallText2}</p>
-                <p className="location">{publication.Location}</p>
-            </div>
-            <p className="date">{publication.Date}</p>
-        </StyledPublicationCard>
-    );
-};
+const PublicationCard = ({ publication }) => (
+    <StyledPublicationCard>
+        <div className="publication-featured-image">
+            <Image
+                className="image"
+                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${publication.FeaturedImage.Image[0].url}`}
+                alt="Men wearing a suit and glasses"
+                layout="fill"
+                objectFit="contain"
+                quality={50}
+                priority
+            />
+        </div>
+        <div className="content">
+            <Link href={`publications/${publication.Slug}`}>
+                <h2>{publication.Title}</h2>
+            </Link>
+            <p className="publication-type">{publication.SmallText1}</p>
+            <p className="smalltext">{publication.SmallText2}</p>
+            <p className="location">{publication.Location}</p>
+        </div>
+        <p className="date">{publication.Date}</p>
+    </StyledPublicationCard>
+);
 
 export default PublicationCard;
 

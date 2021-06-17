@@ -83,7 +83,7 @@ export async function getStaticPaths({ locales }) {
     const { data } = await client.query({
         query: gql`
             query {
-                publications {
+                publications(locale: "en") {
                     Slug
                 }
             }

@@ -4,8 +4,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 // Icons
 import { MdKeyboardArrowDown } from 'react-icons/md';
-// Media Queries
-import { device } from '../styles/Media';
 
 const LangButton = () => {
     const router = useRouter();
@@ -19,7 +17,7 @@ const LangButton = () => {
         } else if (router.locale === 'pl') {
             setSelected('PL');
         }
-    }, []);
+    }, [router.locale]);
 
     // function that handles redirecting user to different locale when changing Language in select Lang dropdown.
     const handleSelectedLang = () => {
