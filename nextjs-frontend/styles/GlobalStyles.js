@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
     --TextShadowMedium: 5px 5px 5px rgba(0,0,0,0.5);
     --TextShadowSmall: 2px 2px 2px rgba(0,0,0,0.3);
     --BoxBackground: #343333;
+    --PricingCardBackground: #575757;
   }
   @font-face {
     font-family: 'kanit';
