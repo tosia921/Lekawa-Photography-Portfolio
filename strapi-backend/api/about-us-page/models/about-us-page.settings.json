@@ -2,24 +2,39 @@
   "kind": "singleType",
   "collectionName": "about_us_pages",
   "info": {
-    "name": "AboutUsPage"
+    "name": "AboutUsPage",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "PageContent": {
       "type": "text",
       "required": true,
-      "minLength": 500
+      "minLength": 500,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "AboutImage": {
       "type": "component",
       "repeatable": false,
-      "component": "media.gallery-image"
+      "component": "media.gallery-image",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -28,6 +28,7 @@ const ModelingPage = ({ pageData }) => {
             </Head>
             <h1>{t('Pricing')}</h1>
             <section className="pricing-container">
+                <p className="side-info">{t('Booking photo session date and time costs 30£ (non-refundable)  fee')}</p>
                 {pageData.pricingCategories.map((pricingCategory) => (
                     <div className="pricing-categories">
                         <h2 key={pricingCategory.id}>{pricingCategory.Category}</h2>
@@ -91,6 +92,14 @@ const ModelingPage = ({ pageData }) => {
                         ))}
                     </div>
                 ))}
+                <p className="side-info">
+                    {t('All images are in digital version but prints are also available on request')}
+                </p>
+                <p className="side-info">
+                    {t(
+                        'Travel expenses will be charged if the photoshoot is more than 50 miles from Nottingham (NG5).Cost of travel expenses will be agreed with client in advance'
+                    )}
+                </p>
             </section>
         </StyledPricingPage>
     );
@@ -218,6 +227,11 @@ const StyledPricingPage = styled.div`
         background-position: center bottom;
         background-size: contain;
         border-radius: 15px;
+        .side-info {
+            text-align: center;
+            margin: 3rem 0;
+            color: lightgrey;
+        }
         .pricing-categories {
             .pricing-types {
                 background-color: var(--PricingCardBackground);
@@ -258,7 +272,6 @@ const StyledPricingPage = styled.div`
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    
 
                     @media ${device.laptopL} {
                         flex-direction: row;

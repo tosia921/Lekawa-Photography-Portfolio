@@ -22,7 +22,7 @@ const Publication = ({ publication }) => (
         <h1 className="title">{publication[0].Title}</h1>
         <div className="markdown-background">
             <ReactMarkdown
-                transformImageUri={(src) => `http://localhost:1337${src}`}
+                transformImageUri={(src) => `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${src}`}
                 components={{
                     // Map `h1` (`# heading`) to use `h2`s.
                     h1: 'h2',
