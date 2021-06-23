@@ -60,6 +60,10 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div className="Copyright">{t('Copyright ©2021 Tomasz Lekawa Photography. All rights reserved.')}</div>
+                <div className="developed">
+                    {t('Designed and developed by ')}
+                    <a href="https://www.tomaszposiadala.co.uk">Tomasz Posiadala</a>
+                </div>
             </div>
         </StyledFooter>
     );
@@ -199,6 +203,12 @@ const StyledFooter = styled.footer`
             }
             span {
                 margin: 0 0.5rem;
+            }
+        }
+        .developed {
+            margin-top: 0.5rem;
+            a {
+                font-size: inherit;
             }
         }
     }

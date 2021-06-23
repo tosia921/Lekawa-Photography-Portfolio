@@ -39,14 +39,18 @@ const ModelingPage = ({ pageData }) => {
     const photos = [];
 
     // Populating photos Array with Images from CMS with correct url's and other neccessery data.
-    pageData.PageGallery.forEach((pageGalleryImage) => {
-        photos.push({
-            src: `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageGalleryImage.Image.url}`,
-            width: pageGalleryImage.Image.width,
-            height: pageGalleryImage.Image.height,
-            alt: pageGalleryImage.Alt,
+    if (pageData === null) {
+        console.log('missing image data');
+    } else {
+        pageData.PageGallery.forEach((pageGalleryImage) => {
+            photos.push({
+                src: `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageGalleryImage.Image.url}`,
+                width: pageGalleryImage.Image.width,
+                height: pageGalleryImage.Image.height,
+                alt: pageGalleryImage.Alt,
+            });
         });
-    });
+    }
 
     // destructuring values from provided useForm hook
     const {
@@ -81,13 +85,13 @@ const ModelingPage = ({ pageData }) => {
     return (
         <StyledModelingPage>
             <Head>
-                <title>{pageData.SeoTitle}</title>
-                <meta name="description" content={pageData.SeoDescription} />
+                <title>{pageData === null ? 'no data' : pageData.SeoTitle}</title>
+                <meta name="description" content={pageData === null ? 'no data' : pageData.SeoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <section className="page-content">
                 <h1>Modeling</h1>
-                <p>{pageData.PageText}</p>
+                <p>{pageData === null ? 'Add text yo your CMS' : pageData.PageText}</p>
                 <div className="images-container">
                     <Gallery photos={photos} targetRowHeight={275} onClick={openLightbox} />
                     <ModalGateway>

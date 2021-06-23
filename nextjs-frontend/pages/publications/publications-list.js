@@ -14,7 +14,7 @@ const PublicationsList = ({ publicationsList }) => {
     // i18n hook that allows to use translations
     const { t } = useTranslation('publicationsListPage');
     // Calculating current number of Publications
-    const currNum = publicationsList.length;
+    const currNum = publicationsList === null ? 0 : publicationsList.length;
     return (
         <StyledPublicationsList>
             <Head>
@@ -32,12 +32,14 @@ const PublicationsList = ({ publicationsList }) => {
                     <span>{currNum}</span>
                 </p>
                 <div className="line-throught" />
-                {publicationsList.map((publication) => (
-                    <li className="publication-item">
-                        <p>{publication.ListItem}</p>
-                        <div className="line-throught" />
-                    </li>
-                ))}
+                {publicationsList === null
+                    ? 'No publications added to your CMS'
+                    : publicationsList.PublicationsListItems.map((publication) => (
+                          <li className="publication-item">
+                              <p>{publication.ListItem}</p>
+                              <div className="line-throught" />
+                          </li>
+                      ))}
             </ul>
         </StyledPublicationsList>
     );
@@ -68,7 +70,7 @@ export async function getStaticProps({ locale }) {
 
     return {
         props: {
-            publicationsList: data.publicationsListPage.PublicationsListItems,
+            publicationsList: data.publicationsListPage,
 
             ...(await serverSideTranslations(locale, [
                 'common',

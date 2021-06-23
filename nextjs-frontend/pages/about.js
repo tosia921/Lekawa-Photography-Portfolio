@@ -12,7 +12,6 @@ import { device } from '../styles/Media';
 
 const About = ({ pageData }) => {
     const { t } = useTranslation('about-page');
-    console.log(pageData);
 
     return (
         <AboutPage>
@@ -24,18 +23,24 @@ const About = ({ pageData }) => {
             <h1>{t('About Us')}</h1>
             <div className="about-content">
                 <div className="image-container">
-                    <Image
-                        className="gallery-preview-background"
-                        src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage.Image.url}`}
-                        alt={pageData.aboutUsPage.AboutImage.Alt}
-                        layout="responsive"
-                        width={pageData.aboutUsPage.AboutImage.Image.width}
-                        height={pageData.aboutUsPage.AboutImage.Image.height}
-                        quality="50"
-                        priority
-                    />
+                    {pageData.aboutUsPage === null ? (
+                        'Add image to your CMS'
+                    ) : (
+                        <Image
+                            className="gallery-preview-background"
+                            src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage.Image.url}`}
+                            alt={pageData.aboutUsPage.AboutImage.Alt}
+                            layout="responsive"
+                            width={pageData.aboutUsPage.AboutImage.Image.width}
+                            height={pageData.aboutUsPage.AboutImage.Image.height}
+                            quality="50"
+                            priority
+                        />
+                    )}
                 </div>
-                <p className="page-content">{pageData.aboutUsPage.PageContent}</p>
+                <p className="page-content">
+                    {pageData.aboutUsPage === null ? 'Update text to your CMS' : pageData.aboutUsPage.PageContent}
+                </p>
             </div>
         </AboutPage>
     );
