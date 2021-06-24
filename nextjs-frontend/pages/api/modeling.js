@@ -1,22 +1,29 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import nodemailer from 'nodemailer';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 
 export default async (req, res) => {
     const { companyname, email, phone, products, message } = req.body;
 
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS,
-        },
-    });
+    // const transporter = nodemailer.createTransport({
+    //     host: 'smtp.gmail.com',
+    //     port: 465,
+    //     secure: true,
+    //     auth: {
+    //         user: process.env.GMAIL_USER,
+    //         pass: process.env.GMAIL_PASS,
+    //     },
+    // });
+
+    const transporter = nodemailer.createTransport(
+        nodemailerSendgrid({
+            apiKey: process.env.SENDGRID_API_KEY,
+        })
+    );
 
     try {
         const emailResponse = await transporter.sendMail({
-            from: email,
+            from: 'tomaszposiadala@gmail.com',
             to: 'tomaszposiadala@gmail.com',
             subject: `Modeling form submission from ${companyname}`,
             html: `<p>You have a new contact form submission</p><br>
