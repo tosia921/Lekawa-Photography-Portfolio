@@ -81,8 +81,6 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => (
         <Head>
             <title>ATL Photography</title>
             <meta name="description" content="Tomasz Lekawa Photography Portfolio Website" />
-            <link rel="preload" href="/fonts/Caveat/Caveat-Regular.ttf" as="font" type="font/ttf" crossOrigin="" />
-            <link rel="preload" href="/fonts/Kanit/Kanit-BoldItalic.ttf" as="font" type="font/ttf" crossOrigin="" />
         </Head>
         <StyledMain>
             <LandingPage />
