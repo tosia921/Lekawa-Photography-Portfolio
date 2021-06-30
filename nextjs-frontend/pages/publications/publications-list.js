@@ -13,8 +13,6 @@ import { device } from '../../styles/Media';
 const PublicationsList = ({ publicationsList }) => {
     // i18n hook that allows to use translations
     const { t } = useTranslation('publicationsListPage');
-    // Calculating current number of Publications
-    const currNum = publicationsList === null ? 0 : publicationsList.length;
     return (
         <StyledPublicationsList>
             <Head>
@@ -27,19 +25,12 @@ const PublicationsList = ({ publicationsList }) => {
             </Head>
             <h1>{t('Publications List')}</h1>
             <ul className="publications-list">
-                <p className="num-of-pub">
-                    {t('Number of Publications')}
-                    <span>{currNum}</span>
-                </p>
-                <div className="line-throught" />
                 {publicationsList === null
                     ? 'No publications added to your CMS'
                     : publicationsList.PublicationsListItems.map((publication) => (
-                          <li className="publication-item">
-                              <p>{publication.ListItem}</p>
-                              <div className="line-throught" />
-                          </li>
+                          <li className="publication-item">{publication.ListItem}</li>
                       ))}
+                <li className="publication-item">magazyn 2</li>
             </ul>
         </StyledPublicationsList>
     );
@@ -131,28 +122,23 @@ const StyledPublicationsList = styled.section`
         height: fit-content;
         display: flex;
         flex-direction: column;
-        list-style: none;
+        list-style-position: inside;
     }
     .publication-item {
-        margin: 0.5rem 0;
+        margin-bottom: 1.2rem;
+        font-size: 1rem;
+
+        @media ${device.tablet} {
+            font-size: 1.4rem;
+        }
+        @media ${device.laptop} {
+            font-size: 1.6rem;
+        }
+
         &:first-child {
             margin-top: 0.5rem;
         }
         p {
-            margin-bottom: 1.2rem;
-            font-size: 1rem;
-
-            @media ${device.tablet} {
-                font-size: 1.4rem;
-            }
-            @media ${device.laptop} {
-                font-size: 1.6rem;
-            }
         }
-    }
-    .line-throught {
-        height: 1px;
-        width: 100%;
-        background-color: grey;
     }
 `;
