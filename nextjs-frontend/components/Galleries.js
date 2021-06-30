@@ -15,7 +15,7 @@ const GalleryPreview = ({ data, currLocale }) => {
         <StyledPreviewGallery>
             <Image
                 className="gallery-preview-background"
-                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${ImageSrc}`}
+                src={ImageSrc}
                 alt={data.FeaturedImage.AltText}
                 layout="fill"
                 objectFit="cover"

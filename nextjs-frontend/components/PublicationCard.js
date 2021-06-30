@@ -10,7 +10,7 @@ const PublicationCard = ({ publication }) => (
         <div className="publication-featured-image">
             <Image
                 className="image"
-                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${publication.FeaturedImage.Image[0].url}`}
+                src={publication.FeaturedImage.Image[0].url}
                 alt="Men wearing a suit and glasses"
                 layout="fill"
                 objectFit="contain"
