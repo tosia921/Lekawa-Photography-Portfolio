@@ -30,7 +30,6 @@ const PublicationsList = ({ publicationsList }) => {
                     : publicationsList.PublicationsListItems.map((publication) => (
                           <li className="publication-item">{publication.ListItem}</li>
                       ))}
-                <li className="publication-item">magazyn 2</li>
             </ul>
         </StyledPublicationsList>
     );
