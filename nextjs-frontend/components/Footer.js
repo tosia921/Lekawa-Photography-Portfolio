@@ -15,11 +15,6 @@ const Footer = () => {
         <StyledFooter>
             <div className="top">
                 <div className="logo-socials">
-                    <div className="logo">
-                        <Link href="/">
-                            <img src="/images/LogoWhite.png" alt="logo" />
-                        </Link>
-                    </div>
                     <div className="socials">
                         <AiFillFacebook className="fb" />
                         <AiFillInstagram className="insta" />
@@ -30,7 +25,6 @@ const Footer = () => {
                     <Link href="/gallery">{t('Gallery')}</Link>
                     <Link href="/publications">{t('Publications')}</Link>
                     <Link href="/modeling">{t('Modeling')}</Link>
-                    <Link href="/pricing">{t('Pricing')}</Link>
                     <Link href="/about">{t('About Us')}</Link>
                     <Link href="/contact">{t('Contact')}</Link>
                 </div>
@@ -129,20 +123,6 @@ const StyledFooter = styled.footer`
             margin-bottom: 1rem;
             @media ${device.tablet} {
                 margin-right: 5rem;
-            }
-            .logo {
-                img {
-                    height: 5rem;
-                    width: auto;
-                    margin-bottom: 1rem;
-
-                    @media ${device.tablet} {
-                        height: 6rem;
-                    }
-                    @media ${device.laptop} {
-                        height: 7rem;
-                    }
-                }
             }
             .socials {
                 svg {

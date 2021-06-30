@@ -25,11 +25,6 @@ const Navbar = () => {
 
     return (
         <StyledHeader>
-            <Logo href="/">
-                <Link href="/">
-                    <img src="/images/LogoWhite.png" alt="logo" />
-                </Link>
-            </Logo>
             <div className="right-side">
                 <Nav>
                     <div className="link-container">
@@ -47,10 +42,6 @@ const Navbar = () => {
                     <div className="link-container">
                         <GiLargeDress className="icons" />
                         <Link href="/modeling">{t('Modeling')}</Link>
-                    </div>
-                    <div className="link-container">
-                        <RiMoneyPoundBoxFill className="icons" />
-                        <Link href="/pricing">{t('Pricing')}</Link>
                     </div>
                     <div className="link-container">
                         <FaUserAlt className="icons-smaller" />

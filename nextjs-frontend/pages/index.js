@@ -79,7 +79,7 @@ const StyledMain = styled.main`
 const Homepage = ({ imageGalleries, currLocale, publications }) => (
     <>
         <Head>
-            <title>ATL Photography</title>
+            <title>Tomasz Lekawa Photography</title>
             <meta name="description" content="Tomasz Lekawa Photography Portfolio Website" />
         </Head>
         <StyledMain>
