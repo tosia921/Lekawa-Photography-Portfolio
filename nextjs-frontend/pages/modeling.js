@@ -63,7 +63,7 @@ const ModelingPage = ({ pageData }) => {
     async function onSubmitForm(values) {
         const config = {
             method: 'post',
-            url: `${process.env.NEXT_PUBLIC_API_URL}/api/modeling`,
+            url: 'https://lekawa-photography.co.uk/api/contact',
             headers: {
                 'Content-Type': 'application/json',
             },
