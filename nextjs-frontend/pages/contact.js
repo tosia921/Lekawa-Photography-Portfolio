@@ -19,6 +19,8 @@ import { device } from '../styles/Media';
 const ContactPage = () => {
     // defining next router
     const router = useRouter();
+    // defining current locale
+    const currLocale = router.locale;
     // i18n hook that allows to use translations
     const { t } = useTranslation('contactpage');
     // destructuring values from provided useForm hook
@@ -32,7 +34,7 @@ const ContactPage = () => {
     async function onSubmitForm(values) {
         const config = {
             method: 'post',
-            url: 'https://lekawa-photography.co.uk/api/contact',
+            url: `/${currLocale}/api/contact`,
             headers: {
                 'Content-Type': 'application/json',
             },

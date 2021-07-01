@@ -22,6 +22,8 @@ const ModelingPage = ({ pageData }) => {
     const { t } = useTranslation('modeling');
     // defining next router
     const router = useRouter();
+    // defining current locale
+    const currLocale = router.locale;
 
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
@@ -63,7 +65,7 @@ const ModelingPage = ({ pageData }) => {
     async function onSubmitForm(values) {
         const config = {
             method: 'post',
-            url: 'https://lekawa-photography.co.uk/api/contact',
+            url: `/${currLocale}/api/modeling`,
             headers: {
                 'Content-Type': 'application/json',
             },
