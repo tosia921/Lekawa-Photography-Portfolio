@@ -144,17 +144,11 @@ const ContactPage = () => {
                     <p>{t('Tomasz Lekawa')}</p>
                     <p>Nottingham</p>
                     <div className="email">
-                        <IconContext.Provider value={{ size: '1.5rem' }}>
-                            <AiTwotoneMail />
-                        </IconContext.Provider>
                         <a href="mailto:tomaszlewaka@gmail.com" className="email-address">
                             tomasz@lekawa-photography.co.uk
                         </a>
                     </div>
                     <a href="tel:07476-33-66-55" className="phone">
-                        <IconContext.Provider value={{ size: '1.5rem', className: 'phone-svg' }}>
-                            <AiFillPhone />
-                        </IconContext.Provider>
                         <p className="phone-number">07476 33 66 55</p>
                     </a>
                 </div>
@@ -184,7 +178,7 @@ export async function getStaticProps({ locale }) {
 // Styles
 
 const StyledContactPage = styled.section`
-    min-height: 100vh;
+    min-height: 100%;
     h1 {
         margin: 4rem 0;
     }
@@ -196,18 +190,19 @@ const StyledContactPage = styled.section`
         background-size: contain;
         border-radius: 15px;
         margin-bottom: 1rem;
-        padding: 2rem;
+        padding: 7rem 2rem 2rem 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        min-height: 100%;
         @media ${device.laptop} {
-            margin: 0 calc((100vw - 1100px) / 2);
+            margin: 1rem calc((100vw - 1100px) / 2);
         }
         @media ${device.laptopL} {
-            margin: 0 calc((100vw - 1200px) / 2);
+            margin: 1rem calc((100vw - 1200px) / 2);
         }
         @media ${device.desktop} {
-            margin: 0 calc((100vw - 1400px) / 2);
+            margin: 1rem calc((100vw - 1400px) / 2);
         }
         .email-form {
             width: 80%;
