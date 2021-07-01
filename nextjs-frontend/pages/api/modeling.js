@@ -1,45 +1,27 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import nodemailer from 'nodemailer';
-import nodemailerSendgrid from 'nodemailer-sendgrid';
+const mail = require('@sendgrid/mail');
+
+mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async (req, res) => {
     const { companyname, email, phone, products, message } = req.body;
 
-    // const transporter = nodemailer.createTransport({
-    //     host: 'smtp.gmail.com',
-    //     port: 465,
-    //     secure: true,
-    //     auth: {
-    //         user: process.env.GMAIL_USER,
-    //         pass: process.env.GMAIL_PASS,
-    //     },
-    // });
+    const messagecontent = `
+        CompanyName: ${companyname}\r\n
+        Email: ${email}\r\n
+        Phone: ${phone}\r\n
+        Products: ${products}\r\n
+        Message: ${message}\r\n
+    `;
 
-    const transporter = nodemailer.createTransport(
-        nodemailerSendgrid({
-            apiKey: process.env.SENDGRID_API_KEY,
-        })
-    );
+    const data = {
+        to: 'lekawa.tomasz@gmail.com',
+        from: 'tomasz@lekawa-photography.co.uk',
+        subject: `New Modeling From Submission from ${companyname}!`,
+        text: messagecontent,
+        html: messagecontent.replace(/\r\n/g, '<br>'),
+    };
 
-    try {
-        const emailResponse = await transporter.sendMail({
-            from: 'tomaszposiadala@gmail.com',
-            to: 'tomaszposiadala@gmail.com',
-            subject: `Modeling form submission from ${companyname}`,
-            html: `<p>You have a new contact form submission</p><br>
-            <p><strong>Name: </strong>${companyname}</p>
-            <p><strong>Email: </strong>${email}</p>
-            <p><strong>Phone: </strong>${phone}</p>
-            <p><strong>Products: </strong>${products}</p>
-            <p><strong>Message: </strong>${message}</p>
-            `,
-        });
+    mail.send(data);
 
-        console.log('Message Sent', emailResponse.messageId);
-    } catch (err) {
-        console.log(err);
-    }
-
-    console.log(req.body);
     res.status(200).json(req.body);
 };
