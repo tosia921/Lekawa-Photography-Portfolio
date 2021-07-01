@@ -16,8 +16,12 @@ const Footer = () => {
             <div className="top">
                 <div className="logo-socials">
                     <div className="socials">
-                        <AiFillFacebook className="fb" />
-                        <AiFillInstagram className="insta" />
+                        <a href="https://www.facebook.com/TomekPLekawa" target="_blank" rel="noreferrer">
+                            <AiFillFacebook className="fb" />
+                        </a>
+                        <a href="https://www.instagram.com/tpl.photography" target="_blank" rel="noreferrer">
+                            <AiFillInstagram className="insta" />
+                        </a>
                     </div>
                 </div>
                 <div className="footer-menu">
@@ -34,7 +38,7 @@ const Footer = () => {
                     <div className="email">
                         <AiTwotoneMail />
                         <a href="mailto:tomaszlewaka@gmail.com" className="email-address">
-                            tomaszlewaka@gmail.com
+                            tomasz@lekawa-photography.co.uk
                         </a>
                     </div>
                     <a href="tel:07476-33-66-55">
@@ -125,15 +129,18 @@ const StyledFooter = styled.footer`
                 margin-right: 5rem;
             }
             .socials {
+                display: flex;
                 svg {
                     font-size: 2.5rem;
                 }
                 .fb {
+                    cursor: pointer;
                     &:hover {
                         color: #4267b2;
                     }
                 }
                 .insta {
+                    cursor: pointer;
                     &:hover {
                         color: #f77737;
                     }

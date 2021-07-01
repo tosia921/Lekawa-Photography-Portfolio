@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Components
@@ -37,17 +38,17 @@ const StyledMain = styled.main`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-bottom: 0.5rem;
+
         @media ${device.tablet} {
             flex-direction: row;
+            margin-bottom: 1rem;
         }
         .image-home-container {
             position: relative;
             width: 100%;
             height: 50rem;
-            &:not(:last-child) {
-                margin-bottom: 1rem;
-            }
+            margin-bottom: 1rem;
+
             @media screen and (min-width: 450px) {
                 height: 60rem;
             }
@@ -63,6 +64,7 @@ const StyledMain = styled.main`
             @media ${device.tablet} {
                 width: 49.5%;
                 height: 50rem;
+                margin-bottom: 0;
             }
             @media ${device.laptop} {
                 width: 49.5%;
@@ -76,56 +78,65 @@ const StyledMain = styled.main`
     }
 `;
 
-const Homepage = ({ imageGalleries, currLocale, publications }) => (
-    <>
-        <Head>
-            <title>Tomasz Lekawa Photography</title>
-            <meta name="description" content="Tomasz Lekawa Photography Portfolio Website" />
-        </Head>
-        <StyledMain>
-            <LandingPage />
-            <div className="page-padding">
-                <Quote />
-                <Image
-                    className="ImageAlicja"
-                    src="/images/alicjaHome.jpg"
-                    alt="Women in Hat"
-                    layout="responsive"
-                    width={2550}
-                    height={1650}
-                    quality={75}
-                    priority
+const Homepage = ({ imageGalleries, currLocale, publications }) => {
+    // Hook that allows me to use nexti18next translations
+    const { t } = useTranslation('commons');
+    return (
+        <>
+            <Head>
+                <title>{t('Tomasz Lekawa Photography')}</title>
+                <meta
+                    name="description"
+                    content={t(
+                        'Tomasz Lekawa Photography portfolio website, featuring his best work aswell as past and present magazine publications.'
+                    )}
                 />
-                <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
-                <Icons />
-                <div className="homepage-images">
-                    <div className="image-home-container">
-                        <Image
-                            src="/images/ManInSuitHome.jpg"
-                            alt="Men wearing a suit and glasses"
-                            layout="fill"
-                            objectFit="cover"
-                            quality={75}
-                            priority
-                        />
-                    </div>
-                    <div className="image-home-container">
-                        <Image
-                            src="/images/WomenYellowTopHome.jpg"
-                            alt="Women in yellow top"
-                            layout="fill"
-                            objectFit="cover"
-                            quality={75}
-                            priority
-                        />
+            </Head>
+            <StyledMain>
+                <LandingPage />
+                <div className="page-padding">
+                    <Quote />
+                    <Image
+                        className="ImageAlicja"
+                        src="/images/alicjaHome.jpg"
+                        alt="Women in Hat"
+                        layout="responsive"
+                        width={2550}
+                        height={1650}
+                        quality={75}
+                        priority
+                    />
+                    <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
+                    <Icons />
+                    <div className="homepage-images">
+                        <div className="image-home-container">
+                            <Image
+                                src="/images/ManInSuitHome.jpg"
+                                alt="Men wearing a suit and glasses"
+                                layout="fill"
+                                objectFit="cover"
+                                quality={75}
+                                priority
+                            />
+                        </div>
+                        <div className="image-home-container">
+                            <Image
+                                src="/images/WomenYellowTopHome.jpg"
+                                alt="Women in yellow top"
+                                layout="fill"
+                                objectFit="cover"
+                                quality={75}
+                                priority
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <PublicationsPreview publications={publications} />
-            <BookingSection />
-        </StyledMain>
-    </>
-);
+                <PublicationsPreview publications={publications} />
+                <BookingSection />
+            </StyledMain>
+        </>
+    );
+};
 
 export async function getStaticProps({ locale }) {
     const client = new ApolloClient({

@@ -165,6 +165,7 @@ const StyledGalleryPage = styled.div`
         margin: 5rem 0;
     }
     .images-container {
+        margin-bottom: 1rem;
         @media ${device.tablet} {
             padding: 0 1rem;
         }

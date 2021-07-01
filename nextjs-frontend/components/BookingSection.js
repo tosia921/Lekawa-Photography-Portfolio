@@ -81,6 +81,7 @@ const StyledBookingSection = styled.section`
         border: none;
         box-shadow: var(--TextShadowSmall);
         transition: all 0.2s ease-in;
+        cursor: pointer;
         &:hover {
             transform: translateY(-2px);
             background-color: var(--SecondaryTextColor);

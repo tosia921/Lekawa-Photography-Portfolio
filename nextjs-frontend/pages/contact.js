@@ -148,7 +148,7 @@ const ContactPage = () => {
                             <AiTwotoneMail />
                         </IconContext.Provider>
                         <a href="mailto:tomaszlewaka@gmail.com" className="email-address">
-                            tomaszlewaka@gmail.com
+                            tomasz@lekawa-photography.co.uk
                         </a>
                     </div>
                     <a href="tel:07476-33-66-55" className="phone">
