@@ -38,7 +38,7 @@ For the tech stack I decided to choose:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://www.lekawa-photography.co.uk)
+- Live Site URL: [www.lekawa-photography.co.uk](https://www.lekawa-photography.co.uk)
 
 ### Screenshot
 
