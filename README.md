@@ -2,6 +2,8 @@
 
 This is a freelance project designed and developed by myself. Tomasz Lekawa is a photographer based in Nottingham and I had a great pleasure to work on his new website with a focus on showcasing his past and recent work aswell as bring new clients to his business.
 
+At the moment it's still waiting for client to update the content, as the website handover happened just few days ago.
+
 ## Table of contents
 
 - [Tomasz Lekawa Photography Portfolio Website](#tomasz-lekawa-photography-portfolio-website)
@@ -83,9 +85,8 @@ You can see the most important things i learned while building this project belo
 
 - How to buy and configure custom domain name's and create cusrtom email addresses.
 
-
 - How to build multilanguage website (handle i18n routing and translations)
-  
+
 ```js
 module.exports = {
   i18n: {
@@ -250,34 +251,32 @@ const handleSelectedLang = () => {
 - How to create next.js api routes and send emails using @sendgrid/mail CLI
 
 ```js
-const mail = require('@sendgrid/mail');
+const mail = require("@sendgrid/mail");
 
 mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async (req, res) => {
-    const { fullname, email, message } = req.body;
+  const { fullname, email, message } = req.body;
 
-    const messagecontent = `
+  const messagecontent = `
         Name: ${fullname}\r\n
         Email: ${email}\r\n
         Message: ${message}\r\n
     `;
 
-    const data = {
-        to: 'tomasz@lekawa-photography.co.uk',
-        from: 'tomasz@lekawa-photography.co.uk',
-        subject: `New Contact From Submission from ${fullname}!`,
-        text: messagecontent,
-        html: messagecontent.replace(/\r\n/g, '<br>'),
-    };
+  const data = {
+    to: "tomasz@lekawa-photography.co.uk",
+    from: "tomasz@lekawa-photography.co.uk",
+    subject: `New Contact From Submission from ${fullname}!`,
+    text: messagecontent,
+    html: messagecontent.replace(/\r\n/g, "<br>"),
+  };
 
-    await mail.send(data);
+  await mail.send(data);
 
-    res.status(200).json(req.body);
+  res.status(200).json(req.body);
 };
-
 ```
-
 
 ### Continued development
 
@@ -293,5 +292,5 @@ In my future projects i would definitly like to continue using Next.js, most lik
 
 ## Author
 
-- Website - [Tomasz Posiadala](https://www.tomaszposiadala.co.uk)
+- Website - [Tomasz Posiadala](https://www.tomaszposiadala.com)
 - LinkedIn - [Tomasz Posiadala](https://www.linkedin.com/in/tomasz-posiadala/)
