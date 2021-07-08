@@ -76,7 +76,7 @@ export async function getStaticProps({ locale }) {
 
 // Styles
 const StyledPublicationsList = styled.section`
-    min-height: calc(100vh - 11rem);
+    min-height: calc(100vh - 8rem);
     @media ${device.tablet} {
         padding: 0 1rem;
     }
@@ -111,18 +111,18 @@ const StyledPublicationsList = styled.section`
         }
     }
     .publications-list {
-        padding: 2rem 2rem;
+        padding: 2rem 0 2rem 4rem;
         background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
-        height: fit-content;
         display: flex;
         flex-direction: column;
-        list-style-position: inside;
+        overflow-wrap: break-word;
     }
     .publication-item {
         margin-bottom: 1.2rem;
-        font-size: 1rem;
+        font-size: 1.2rem;
         width: 80%;
+        height: fit-content;
 
         @media ${device.tablet} {
             font-size: 1.4rem;
