@@ -18,6 +18,8 @@ import { device } from '../styles/Media';
 
 // GalleryPageTemplate Component
 const ModelingPage = ({ pageData }) => {
+    // defining state for succesfully send message text
+    const [sendSuccesfully, setSendSuccesfully] = useState(false);
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('modeling');
     // defining next router
@@ -75,8 +77,10 @@ const ModelingPage = ({ pageData }) => {
             const response = await axios(config);
             // reseting form and redirecting user to homepage after succesfully sent email.
             if (response.status === 200) {
+                // reseting form content
                 reset();
-                router.push('/');
+                // setting up state to display succes message
+                setSendSuccesfully(true);
             }
         } catch (error) {
             console.error(error);
@@ -224,9 +228,13 @@ const ModelingPage = ({ pageData }) => {
                             {errors.message && <p>{errors.message.message}</p>}
                         </div>
                         <div className="button-container">
-                            <button type="submit" className="submit-button">
-                                {t('Send')}
-                            </button>
+                            {sendSuccesfully === true ? (
+                                <p className="succes-message">{t('Thank you your message has been sent!')}</p>
+                            ) : (
+                                <button type="submit" className="submit-button">
+                                    {t('Send')}
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>
@@ -396,6 +404,11 @@ const StyledModelingPage = styled.div`
             .button-container {
                 display: flex;
                 justify-content: center;
+                .succes-message {
+                    color: #40eb34;
+                    margin-top: 1rem;
+                    font-size: 1.8rem;
+                }
             }
             .submit-button {
                 font-size: 1.6rem;

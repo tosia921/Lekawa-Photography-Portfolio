@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 // i18n
@@ -7,9 +7,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 // Form validation
 import { useForm } from 'react-hook-form';
-// icons
-import { AiFillPhone, AiTwotoneMail } from 'react-icons/ai';
-import { IconContext } from 'react-icons';
 // Media Queries
 import axios from 'axios';
 import Head from 'next/head';
@@ -17,6 +14,8 @@ import { device } from '../styles/Media';
 // Axios
 
 const ContactPage = () => {
+    // defining state for succesfully send message text
+    const [sendSuccesfully, setSendSuccesfully] = useState(false);
     // defining next router
     const router = useRouter();
     // defining current locale
@@ -44,8 +43,10 @@ const ContactPage = () => {
             const response = await axios(config);
             // reseting form and redirecting user to homepage after succesfully sent email.
             if (response.status === 200) {
+                // reseting form content
                 reset();
-                router.push('/');
+                // setting up state to display succes message
+                setSendSuccesfully(true);
             }
         } catch (error) {
             console.error(error);
@@ -134,9 +135,13 @@ const ContactPage = () => {
                             {errors.message && <p>{errors.message.message}</p>}
                         </div>
                         <div className="button-container">
-                            <button type="submit" className="submit-button">
-                                {t('Send')}
-                            </button>
+                            {sendSuccesfully === true ? (
+                                <p className="succes-message">{t('Thank you your message has been sent!')}</p>
+                            ) : (
+                                <button type="submit" className="submit-button">
+                                    {t('Send')}
+                                </button>
+                            )}
                         </div>
                     </form>
                 </div>
@@ -243,6 +248,11 @@ const StyledContactPage = styled.section`
                 .button-container {
                     display: flex;
                     justify-content: center;
+                    .succes-message {
+                        color: #40eb34;
+                        margin-top: 1rem;
+                        font-size: 1.8rem;
+                    }
                 }
                 .submit-button {
                     font-size: 1.6rem;

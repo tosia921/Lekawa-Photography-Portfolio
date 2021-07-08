@@ -16,7 +16,7 @@ export default async (req, res) => {
     const data = {
         to: 'tomasz@lekawa-photography.co.uk',
         from: 'tomasz@lekawa-photography.co.uk',
-        subject: `New Contact From Submission from ${companyname}!`,
+        subject: `Nowa wiadomość z twojej strony MODELING od ${companyname}!`,
         text: messagecontent,
         html: messagecontent.replace(/\r\n/g, '<br>'),
     };
