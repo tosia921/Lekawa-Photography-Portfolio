@@ -109,6 +109,7 @@ export async function getStaticPaths({ locales }) {
 // Styles
 const StyledPublicationPage = styled.section`
     min-height: calc(100vh - 11rem);
+    margin-bottom: 1rem;
     @media ${device.tablet} {
         padding: 0 1rem;
     }

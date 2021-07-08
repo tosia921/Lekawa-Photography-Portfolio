@@ -28,7 +28,9 @@ const PublicationsList = ({ publicationsList }) => {
                 {publicationsList === null
                     ? 'No publications added to your CMS'
                     : publicationsList.PublicationsListItems.map((publication) => (
-                          <li className="publication-item">{publication.ListItem}</li>
+                          <li className="publication-item" key={publication.id}>
+                              {publication.ListItem}
+                          </li>
                       ))}
             </ul>
         </StyledPublicationsList>
