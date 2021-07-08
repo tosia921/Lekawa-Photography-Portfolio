@@ -61,15 +61,6 @@
       },
       "type": "string"
     },
-    "Date": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "date",
-      "required": true
-    },
     "PublicationContent": {
       "pluginOptions": {
         "i18n": {
@@ -127,6 +118,14 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "Date": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
     }
   }
 }
