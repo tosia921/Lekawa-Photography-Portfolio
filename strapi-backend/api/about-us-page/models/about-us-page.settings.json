@@ -35,6 +35,26 @@
           "localized": true
         }
       }
+    },
+    "PageContent2": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text",
+      "required": true
+    },
+    "AboutImage2": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "media.gallery-image",
+      "required": true
     }
   }
 }
