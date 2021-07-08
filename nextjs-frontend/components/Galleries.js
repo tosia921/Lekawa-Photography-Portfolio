@@ -77,10 +77,7 @@ const StyledPreviewGallery = styled.div`
 `;
 
 const StyledGalleryTypes = styled.section`
-    background-image: url('/images/concrete-wall.png');
-    background-repeat: repeat;
-    background-position: center bottom;
-    background-size: contain;
+    background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
     background-color: var(--BoxBackground);
     border-radius: 15px;
     height: fit-content;

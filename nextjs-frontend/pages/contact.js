@@ -183,11 +183,7 @@ const StyledContactPage = styled.section`
         margin: 4rem 0;
     }
     .page-content {
-        background-image: url('/images/concrete-wall.png'),
-            linear-gradient(to top, #4d4d4d, #464647, #404040, #3a393a, #343333);
-        background-repeat: repeat;
-        background-position: center bottom;
-        background-size: contain;
+        background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
         margin-bottom: 1rem;
         padding: 7rem 2rem 2rem 2rem;

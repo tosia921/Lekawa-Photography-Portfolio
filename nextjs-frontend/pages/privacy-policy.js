@@ -238,11 +238,7 @@ const StyledPrivacyPolicy = styled.section`
         @media ${device.desktop} {
             margin: 1rem calc((100vw - 1400px) / 2);
         }
-        background-image: url('/images/concrete-wall.png'),
-            linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
-        background-repeat: repeat;
-        background-position: center bottom;
-        background-size: contain;
+        background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
 
         p {

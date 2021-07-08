@@ -26,11 +26,7 @@ const StyledQuoteSection = styled.section`
     margin: 1rem 0 1rem 0;
     height: 12rem;
     width: 100%;
-    background-image: url('/images/concrete-wall.png'),
-        linear-gradient(to top, #4d4d4d, #464647, #404040, #3a393a, #343333);
-    background-repeat: repeat;
-    background-position: center bottom;
-    background-size: contain;
+    background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
     border-radius: 15px;
 
     display: flex;

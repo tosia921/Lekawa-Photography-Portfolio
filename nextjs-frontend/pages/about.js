@@ -104,11 +104,7 @@ const AboutPage = styled.section`
     .about-content {
         min-height: calc(100vh - 17rem);
         width: 100%;
-        background-image: url('/images/concrete-wall.png'),
-            linear-gradient(to top, #4d4d4d, #464647, #404040, #3a393a, #343333);
-        background-repeat: repeat;
-        background-position: center bottom;
-        background-size: contain;
+        background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
         margin-bottom: 1rem;
         padding: 1rem;

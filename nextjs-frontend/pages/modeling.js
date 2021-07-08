@@ -291,11 +291,7 @@ const StyledModelingPage = styled.div`
     .page-content {
         padding: 1rem 2rem 2rem 2rem;
         margin: 0rem 1rem;
-        background-image: url('/images/concrete-wall.png'),
-            linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
-        background-repeat: repeat;
-        background-position: center bottom;
-        background-size: contain;
+        background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
 
         display: flex;
@@ -313,6 +309,13 @@ const StyledModelingPage = styled.div`
         }
         @media ${device.desktop} {
             margin: 0 calc((100vw - 1400px) / 2);
+        }
+
+        .images-container {
+            padding: 1rem 5rem;
+            @media ${device.laptopL} {
+                padding: 1rem 15rem;
+            }
         }
     }
 

@@ -74,11 +74,7 @@ const StyledFooter = styled.footer`
     height: fit-content;
     margin: 0 -1rem;
     padding: 1rem;
-    background-image: url('/images/concrete-wall.png');
-    background-color: #343333;
-    background-repeat: repeat;
-    background-position: center bottom;
-    background-size: contain;
+    background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
 
     display: flex;
     flex-direction: column;

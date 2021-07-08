@@ -112,11 +112,7 @@ const StyledPublicationsList = styled.section`
     }
     .publications-list {
         padding: 2rem 2rem;
-        background-image: url('/images/concrete-wall.png'),
-            linear-gradient(to top, #4d4d4d, #464647, #404040, #3a393a, #343333);
-        background-repeat: repeat;
-        background-position: center bottom;
-        background-size: contain;
+        background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
         height: fit-content;
         display: flex;
@@ -126,6 +122,7 @@ const StyledPublicationsList = styled.section`
     .publication-item {
         margin-bottom: 1.2rem;
         font-size: 1rem;
+        width: 80%;
 
         @media ${device.tablet} {
             font-size: 1.4rem;
