@@ -22,25 +22,52 @@ const About = ({ pageData }) => {
             </Head>
             <h1>{t('About Us')}</h1>
             <div className="about-content">
-                <div className="image-container">
-                    {pageData.aboutUsPage === null ? (
-                        'Add image to your CMS'
-                    ) : (
-                        <Image
-                            className="gallery-preview-background"
-                            src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage.Image.url}`}
-                            alt={pageData.aboutUsPage.AboutImage.Alt}
-                            layout="responsive"
-                            width={pageData.aboutUsPage.AboutImage.Image.width}
-                            height={pageData.aboutUsPage.AboutImage.Image.height}
-                            quality="50"
-                            priority
-                        />
-                    )}
+                <div className="person-1">
+                    <div className="image-container">
+                        {pageData.aboutUsPage === null ? (
+                            'Add image to your CMS'
+                        ) : (
+                            <Image
+                                className="gallery-preview-background"
+                                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage.Image.url}`}
+                                alt={pageData.aboutUsPage.AboutImage.Alt}
+                                layout="responsive"
+                                width={pageData.aboutUsPage.AboutImage.Image.width}
+                                height={pageData.aboutUsPage.AboutImage.Image.height}
+                                quality="50"
+                                priority
+                            />
+                        )}
+                    </div>
+                    <p className="page-content">
+                        {pageData.aboutUsPage.PageContent === null
+                            ? 'Update text to your CMS'
+                            : pageData.aboutUsPage.PageContent}
+                    </p>
                 </div>
-                <p className="page-content">
-                    {pageData.aboutUsPage === null ? 'Update text to your CMS' : pageData.aboutUsPage.PageContent}
-                </p>
+                <div className="person-2">
+                    <div className="image-container">
+                        {pageData.aboutUsPage === null ? (
+                            'Add image to your CMS'
+                        ) : (
+                            <Image
+                                className="gallery-preview-background"
+                                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage2.Image.url}`}
+                                alt={pageData.aboutUsPage.AboutImage2.Alt}
+                                layout="responsive"
+                                width={pageData.aboutUsPage.AboutImage2.Image.width}
+                                height={pageData.aboutUsPage.AboutImage2.Image.height}
+                                quality="50"
+                                priority
+                            />
+                        )}
+                    </div>
+                    <p className="page-content">
+                        {pageData.aboutUsPage.PageContent2 === null
+                            ? 'Update text to your CMS'
+                            : pageData.aboutUsPage.PageContent2}
+                    </p>
+                </div>
             </div>
         </AboutPage>
     );
@@ -59,7 +86,16 @@ export async function getStaticProps({ locale }) {
             query {
                 aboutUsPage(locale: "${locale}") {
                     PageContent
+                    PageContent2
                     AboutImage {
+                        Alt
+                        Image {
+                            width
+                            height
+                            url
+                        }
+                    }
+                    AboutImage2 {
                         Alt
                         Image {
                             width
@@ -107,33 +143,47 @@ const AboutPage = styled.section`
         background-image: linear-gradient(to bottom, #4d4d4d, #464647, #404040, #3a393a, #343333);
         border-radius: 15px;
         margin-bottom: 1rem;
-        padding: 1rem;
+        padding: 3rem 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        @media ${device.tablet} {
-            flex-direction: row;
-            justify-content: center;
-            gap: 2rem;
+        justify-content: center;
+        .person-1 {
+            margin-bottom: 5rem;
         }
-        .image-container {
-            position: relative;
+        .person-1,
+        .person-2 {
+            width: 100%;
             height: fit-content;
-            width: 80%;
-            border-radius: 15px;
-            @media ${device.mobileL} {
-                width: 60%;
-            }
-            @media ${device.laptop} {
-                width: 40%;
-            }
-        }
-        .page-content {
-            margin: 2rem 0;
-            font-weight: 300;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
             @media ${device.tablet} {
-                width: 50%;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+            }
+            .image-container {
+                position: relative;
+                height: fit-content;
+                width: 80%;
+                border-radius: 15px;
+                @media ${device.mobileL} {
+                    width: 40%;
+                }
+                @media ${device.laptop} {
+                    width: 30%;
+                }
+            }
+            .page-content {
+                margin: 2rem 0;
+                font-weight: 300;
+                text-align: center;
+                @media ${device.tablet} {
+                    width: 50%;
+                }
             }
         }
     }
