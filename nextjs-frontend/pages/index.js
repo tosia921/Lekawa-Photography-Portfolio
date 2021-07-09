@@ -91,6 +91,16 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                         'Tomasz Lekawa Photography portfolio website, featuring his best work aswell as past and present magazine publications.'
                     )}
                 />
+                <meta property="og:title" content="Tomasz Lekawa Photography" />
+                <meta property="og:image" content="/LekawaScreenshot.png" />
+                <meta
+                    property="og:description"
+                    content={t(
+                        'Tomasz Lekawa Photography portfolio website, featuring his best work aswell as past and present magazine publications.'
+                    )}
+                />
+                <meta property="og:url" content="http://www.lekawa-photography.co.uk" />
+                />
             </Head>
             <StyledMain>
                 <LandingPage />
