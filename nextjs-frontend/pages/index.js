@@ -94,7 +94,7 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                     )}
                 />
                 <meta property="og:title" content="Tomasz Lekawa Photography" />
-                <meta property="og:image" content={metaImage} />
+                <meta property="og:image" content="https://i.ibb.co/wCr9N6K/Lekawa-Screenshot.png" />
                 <meta
                     property="og:description"
                     content={t(
