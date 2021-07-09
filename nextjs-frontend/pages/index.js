@@ -15,6 +15,8 @@ import PublicationsPreview from '../components/PublicationsPreview';
 import BookingSection from '../components/BookingSection';
 // Media Queries
 import { device } from '../styles/Media';
+// meta image
+import metaImage from '../public/images/LekawaScreenshot.png';
 
 const StyledMain = styled.main`
     .ImageAlicja {
@@ -92,7 +94,7 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                     )}
                 />
                 <meta property="og:title" content="Tomasz Lekawa Photography" />
-                <meta property="og:image" content="https://www.lekawa-photography.co.uk" />
+                <meta property="og:image" content={metaImage} />
                 <meta
                     property="og:description"
                     content={t(
