@@ -102,7 +102,6 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                     )}
                 />
                 <meta property="og:url" content="http://www.lekawa-photography.co.uk" />
-                />
             </Head>
             <StyledMain>
                 <LandingPage />
