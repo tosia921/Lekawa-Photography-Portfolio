@@ -69,7 +69,9 @@ const StyledPreviewGallery = styled.div`
         position: relative;
         z-index: 2;
         background-color: rgba(0, 0, 0, 0.5);
-        padding: 5px 10px;
+        padding: 5px 5px;
+        width: 90%;
+        text-align: center;
         &:hover {
             color: var(--SecondaryTextColor);
         }
