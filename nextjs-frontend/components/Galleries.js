@@ -93,8 +93,8 @@ const StyledGalleryTypes = styled.section`
         display: grid;
         gap: 3rem;
         justify-content: center;
-        grid-template-columns: repeat(1, 100%);
-        grid-auto-rows: 52rem;
+        grid-template-columns: repeat(1, 75%);
+        grid-auto-rows: 46rem;
         @media ${device.tablet} {
             grid-template-columns: repeat(2, 40%);
             grid-auto-rows: 40rem;
