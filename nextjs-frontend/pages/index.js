@@ -156,7 +156,7 @@ export async function getStaticProps({ locale }) {
     const { data } = await client.query({
         query: gql`
             query {
-                imageGalleries(locale: "${locale}") {
+                imageGalleries(locale: "${locale}" sort: "id:asc") {
                     id
                     Name
                     slug

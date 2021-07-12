@@ -49,9 +49,7 @@ const GalleryPageTemplate = ({ galleryImages }) => {
                 <meta name="description" content={galleryImages.SeoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <h1>
-                {t('Gallery')} {galleryImages[0].Name}
-            </h1>
+            <h1>{galleryImages[0].Name}</h1>
             <div className="images-container">
                 <Gallery photos={photos} targetRowHeight={400} onClick={openLightbox} />
                 <ModalGateway>
