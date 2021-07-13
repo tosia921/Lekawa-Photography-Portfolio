@@ -17,6 +17,9 @@ import BookingSection from '../components/BookingSection';
 import { device } from '../styles/Media';
 
 const StyledMain = styled.main`
+    .disable-click {
+        pointer-events: none;
+    }
     .ImageAlicja {
         border-radius: 15px;
     }
@@ -114,28 +117,31 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                         height={1650}
                         quality={75}
                         priority
+                        className="disable-click"
                     />
                     <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
                     <Icons />
                     <div className="homepage-images">
                         <div className="image-home-container">
                             <Image
-                                src="/images/ManInSuitHome.jpg"
-                                alt="Men wearing a suit and glasses"
+                                src="/images/gray1.jpg"
+                                alt="Young boy standing on the street"
                                 layout="fill"
                                 objectFit="cover"
                                 quality={75}
                                 priority
+                                className="disable-click"
                             />
                         </div>
                         <div className="image-home-container">
                             <Image
-                                src="/images/WomenYellowTopHome.jpg"
-                                alt="Women in yellow top"
+                                src="/images/gray2.jpg"
+                                alt="Young girl standing on train station"
                                 layout="fill"
                                 objectFit="cover"
                                 quality={75}
                                 priority
+                                className="disable-click"
                             />
                         </div>
                     </div>
