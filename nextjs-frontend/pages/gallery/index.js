@@ -39,7 +39,7 @@ export async function getStaticProps({ locale }) {
     const { data } = await client.query({
         query: gql`
             query {
-                imageGalleries(locale: "${locale}") {
+                imageGalleries(locale: "${locale}" sort: "id:asc") {
                     id
                     Name
                     slug
@@ -78,17 +78,20 @@ export async function getStaticProps({ locale }) {
 // Styles
 
 const StyledGalleryPage = styled.section`
-    min-height: calc(100vh - 11rem);
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     @media ${device.tablet} {
-        padding: 0 1rem;
+        padding: 1rem 1rem;
     }
     @media ${device.laptop} {
-        padding: 0 calc((100vw - 1100px) / 2);
+        padding: 1rem calc((100vw - 1100px) / 2);
     }
     @media ${device.laptopL} {
-        padding: 0 calc((100vw - 1200px) / 2);
+        padding: 1rem calc((100vw - 1200px) / 2);
     }
     @media ${device.desktop} {
-        padding: 0 calc((100vw - 1400px) / 2);
+        padding: 1rem calc((100vw - 1400px) / 2);
     }
 `;

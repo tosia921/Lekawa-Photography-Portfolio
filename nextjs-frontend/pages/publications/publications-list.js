@@ -14,7 +14,7 @@ const PublicationsList = ({ publicationsList }) => {
     // i18n hook that allows to use translations
     const { t } = useTranslation('publicationsListPage');
     return (
-        <StyledPublicationsList>
+        <>
             <Head>
                 <title>{t('Publications List - Tomasz Lekawa')}</title>
                 <meta
@@ -23,17 +23,19 @@ const PublicationsList = ({ publicationsList }) => {
                 />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <h1>{t('Publications List')}</h1>
-            <ul className="publications-list">
-                {publicationsList === null
-                    ? 'No publications added to your CMS'
-                    : publicationsList.PublicationsListItems.map((publication) => (
-                          <li className="publication-item" key={publication.id}>
-                              {publication.ListItem}
-                          </li>
-                      ))}
-            </ul>
-        </StyledPublicationsList>
+            <StyledPublicationsList>
+                <h1>{t('Publications List')}</h1>
+                <ul className="publications-list">
+                    {publicationsList === null
+                        ? 'No publications added to your CMS'
+                        : publicationsList.PublicationsListItems.map((publication) => (
+                              <li className="publication-item" key={publication.id}>
+                                  {publication.ListItem}
+                              </li>
+                          ))}
+                </ul>
+            </StyledPublicationsList>
+        </>
     );
 };
 
@@ -79,6 +81,7 @@ export async function getStaticProps({ locale }) {
 // Styles
 const StyledPublicationsList = styled.section`
     min-height: calc(100vh - 8rem);
+    margin-bottom: 1rem;
     @media ${device.tablet} {
         padding: 0 1rem;
     }

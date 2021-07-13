@@ -88,6 +88,7 @@ const StyledGalleryTypes = styled.section`
     height: fit-content;
     margin-top: 1rem;
     padding: 2rem 0 5rem 0;
+    margin-bottom: 1rem;
 
     .galleryTypes-grid {
         display: grid;
