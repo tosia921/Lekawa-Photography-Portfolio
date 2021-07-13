@@ -109,7 +109,7 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                 <div className="page-padding">
                     <Quote />
                     <Image
-                        className="ImageAlicja"
+                        className="ImageAlicja disable-click"
                         src="/images/alicjaHome.jpg"
                         alt="Women in Hat"
                         layout="responsive"
@@ -117,7 +117,6 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                         height={1650}
                         quality={75}
                         priority
-                        className="disable-click"
                     />
                     <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
                     <Icons />
