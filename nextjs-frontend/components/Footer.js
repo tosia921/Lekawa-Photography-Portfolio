@@ -43,7 +43,7 @@ const Footer = () => {
                     </div>
                     <a href="tel:07476-33-66-55">
                         <AiFillPhone />
-                        <p className="phone-number">07476 33 66 55</p>
+                        <p className="phone-number">07510 830 333</p>
                     </a>
                 </div>
             </div>
@@ -60,7 +60,7 @@ const Footer = () => {
                 <div className="Copyright">{t('Copyright ©2021 Tomasz Lekawa Photography. All rights reserved.')}</div>
                 <div className="developed">
                     {t('Designed and developed by ')}
-                    <a href="https://www.tomaszposiadala.co.uk">Tomasz Posiadala</a>
+                    <a href="https://www.tomaszposiadala.com">Tomasz Posiadala</a>
                 </div>
             </div>
         </StyledFooter>

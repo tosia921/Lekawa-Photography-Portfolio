@@ -30,9 +30,6 @@ const StyledBookingSection = styled.section`
     @media ${device.tablet} {
         margin: 1rem 1rem;
     }
-    @media ${device.laptop} {
-        margin: 1rem calc((100vw - 1100px) / 2);
-    }
     @media ${device.laptopL} {
         margin: 1rem calc((100vw - 1200px) / 2);
     }

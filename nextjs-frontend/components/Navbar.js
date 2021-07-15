@@ -77,6 +77,19 @@ const StyledHeader = styled.header`
         display: flex;
         align-items: center;
     }
+    @media ${device.tablet} {
+        padding: 0 1rem;
+    }
+    @media ${device.laptop} {
+        padding: 0 calc((100vw - 1100px) / 2);
+    }
+
+    @media ${device.laptopL} {
+        padding: 0 calc((100vw - 1200px) / 2);
+    }
+    @media ${device.desktop} {
+        padding: 0 calc((100vw - 1400px) / 2);
+    }
 `;
 
 const Logo = styled.div`
@@ -127,7 +140,7 @@ const Nav = styled.nav`
                 font-size: 1.6rem;
             }
             @media ${device.laptopL} {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
         }
     }

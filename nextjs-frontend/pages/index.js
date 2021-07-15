@@ -110,8 +110,8 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
                     <Quote />
                     <Image
                         className="ImageAlicja disable-click"
-                        src="/images/alicjaHome.jpg"
-                        alt="Women in Hat"
+                        src="/images/image4-min.jpg"
+                        alt="Women in red hair on the beach deck"
                         layout="responsive"
                         width={2550}
                         height={1650}

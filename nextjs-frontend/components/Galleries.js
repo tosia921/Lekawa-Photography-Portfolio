@@ -105,7 +105,7 @@ const StyledGalleryTypes = styled.section`
             grid-auto-rows: 32rem;
         }
         @media ${device.desktop} {
-            grid-template-columns: repeat(4, 22%);
+            grid-template-columns: repeat(4, 18%);
             grid-auto-rows: 32rem;
         }
     }
