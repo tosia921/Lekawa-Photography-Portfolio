@@ -320,7 +320,10 @@ const StyledModelingPage = styled.div`
         }
 
         .images-container {
-            padding: 1rem 5rem;
+            padding: 1rem 0rem;
+            @media ${device.laptop} {
+                padding: 1rem 5rem;
+            }
             @media ${device.laptopL} {
                 padding: 1rem 15rem;
             }
@@ -339,6 +342,7 @@ const StyledModelingPage = styled.div`
         font-size: 1.6rem;
         font-weight: 400;
         margin-bottom: 2rem;
+        text-align: center;
 
         @media ${device.tablet} {
             font-size: 1.7rem;
