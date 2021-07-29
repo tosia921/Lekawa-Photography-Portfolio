@@ -35,7 +35,7 @@ export default PublicationCard;
 // Styles
 
 const StyledPublicationCard = styled.article`
-    height: 40rem;
+    height: 42rem;
     width: 95%;
     background: var(--BoxBackground);
     border-radius: 15px;
@@ -47,16 +47,19 @@ const StyledPublicationCard = styled.article`
     padding: 2rem 1rem;
     margin-bottom: 2rem;
     @media ${device.tablet} {
+        height: 40rem;
         flex-direction: row;
         justify-content: left;
     }
     .publication-featured-image {
         height: 100%;
-        width: 15rem;
+        width: 100%;
         position: relative;
         border-radius: 15px;
+        margin-bottom: 1rem;
         @media ${device.tablet} {
             width: 28rem;
+            margin-bottom: 0;
         }
         .image {
             border-radius: 10px;
@@ -69,12 +72,13 @@ const StyledPublicationCard = styled.article`
         align-items: center;
         @media ${device.tablet} {
             height: 100%;
+            width: 60%;
             align-items: flex-start;
             margin-left: 1rem;
             padding-left: 2rem;
         }
         h2 {
-            text-align: left;
+            text-align: center;
             font-size: 2.5rem;
             text-shadow: var(--TextShadowSmall);
             cursor: pointer;
@@ -82,6 +86,8 @@ const StyledPublicationCard = styled.article`
                 color: var(--SecondaryTextColor);
             }
             @media ${device.tablet} {
+                margin-bottom: 1rem;
+                text-align: left;
                 font-size: 3.5rem;
             }
             @media ${device.laptop} {
@@ -106,7 +112,9 @@ const StyledPublicationCard = styled.article`
             font-style: italic;
             font-weight: 400;
             @media ${device.tablet} {
+                margin-bottom: 1rem;
                 font-size: 1.6rem;
+                text-align: left;
             }
             @media ${device.laptop} {
                 font-size: 2.1rem;
@@ -117,6 +125,7 @@ const StyledPublicationCard = styled.article`
             font-weight: 400;
             font-size: 1.4rem;
             @media ${device.tablet} {
+                margin-bottom: 1rem;
                 font-size: 1.6rem;
             }
             @media ${device.laptop} {
@@ -127,6 +136,7 @@ const StyledPublicationCard = styled.article`
             font-size: 1.8rem;
             font-style: italic;
             font-weight: 600;
+            margin-bottom: 1rem;
             @media ${device.tablet} {
                 font-size: 2rem;
             }
