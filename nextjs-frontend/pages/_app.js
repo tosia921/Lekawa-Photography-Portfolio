@@ -1,9 +1,9 @@
 import { appWithTranslation } from 'next-i18next';
+import Script from 'next/script';
 import Layout from '../components/Layout';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import '../styles/styles.css';
-import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
     return (
