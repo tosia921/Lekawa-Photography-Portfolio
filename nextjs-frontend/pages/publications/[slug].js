@@ -12,12 +12,21 @@ import Head from 'next/head';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
-const Publication = ({ publication }) => (
+const Publication = ({ publication, currLocale, slug }) => (
     <StyledPublicationPage>
         <Head>
             <title>{publication[0].SeoTitle}</title>
             <meta name="description" content={publication[0].SeoDescription} />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <link
+                rel="alternate"
+                hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                href={
+                    currLocale === 'en'
+                        ? `https://lekawa-photography.co.uk/pl/publications/${slug}/`
+                        : `https://lekawa-photography.co.uk/publications/${slug}/`
+                }
+            />
         </Head>
         <h1 className="title">{publication[0].Title}</h1>
         <div className="markdown-background">
@@ -65,7 +74,8 @@ export async function getStaticProps({ locale, params }) {
     return {
         props: {
             publication: data.publications,
-
+            currLocale: locale,
+            slug: params.slug,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage'])),
             // Will be passed to the page component as props
         },

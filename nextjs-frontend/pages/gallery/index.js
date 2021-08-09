@@ -21,6 +21,15 @@ const GalleryPage = ({ imageGalleries, currLocale }) => {
                 <title>{t('Gallery Title')}</title>
                 <meta name="description" content={t('Gallery Description')} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? 'https://lekawa-photography.co.uk/pl/gallery'
+                            : 'https://lekawa-photography.co.uk/gallery'
+                    }
+                />
             </Head>
             <Galleries imageGalleries={imageGalleries} currLocale={currLocale} />
         </StyledGalleryPage>

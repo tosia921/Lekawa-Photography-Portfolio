@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 // Apollo Client
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Components
+import { useRouter } from 'next/router';
 import LandingPage from '../components/LandingPage';
 import Quote from '../components/Quote';
 import Galleries from '../components/Galleries';
@@ -88,6 +89,13 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
         <>
             <Head>
                 <title>{t('Tomasz Lekawa Photography')}</title>
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en' ? 'https://lekawa-photography.co.uk/pl' : 'https://lekawa-photography.co.uk'
+                    }
+                />
                 <meta
                     name="description"
                     content={t(

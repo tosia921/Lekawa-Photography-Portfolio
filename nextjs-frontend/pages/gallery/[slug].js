@@ -13,7 +13,8 @@ import Head from 'next/head';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
-const GalleryPageTemplate = ({ galleryImages }) => {
+const GalleryPageTemplate = ({ galleryImages, currLocale }) => {
+    console.log(galleryImages);
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
@@ -45,9 +46,18 @@ const GalleryPageTemplate = ({ galleryImages }) => {
     return (
         <StyledGalleryPage>
             <Head>
-                <title>{galleryImages.SeoTitle}</title>
-                <meta name="description" content={galleryImages.SeoDescription} />
+                <title>{galleryImages[0].SeoTitle}</title>
+                <meta name="description" content={galleryImages[0].SeoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? `https://lekawa-photography.co.uk/pl/gallery/${galleryImages[0].slug}/`
+                            : `https://lekawa-photography.co.uk/gallery/${galleryImages[0].slug}/`
+                    }
+                />
             </Head>
             <h1>{galleryImages[0].Name}</h1>
             <div className="images-container">
@@ -115,7 +125,7 @@ export async function getStaticProps({ locale, params }) {
     return {
         props: {
             galleryImages: data.imageGalleries,
-
+            currLocale: locale,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },

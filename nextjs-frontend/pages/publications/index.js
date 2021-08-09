@@ -11,7 +11,7 @@ import Link from 'next/link';
 import PublicationCard from '../../components/PublicationCard';
 import { device } from '../../styles/Media';
 
-const Publications = ({ publications }) => {
+const Publications = ({ publications, currLocale }) => {
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
@@ -29,6 +29,15 @@ const Publications = ({ publications }) => {
                 <title>{t('Publications Title')}</title>
                 <meta name="description" content={t('Publications Description')} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? 'https://lekawa-photography.co.uk/pl/publications'
+                            : 'https://lekawa-photography.co.uk/publications'
+                    }
+                />
             </Head>
             <h1>{t('Publications')}</h1>
             <Link href="/publications/publications-list">{t('Click here to see full list of publications')}</Link>
@@ -81,6 +90,7 @@ export async function getStaticProps({ locale }) {
     return {
         props: {
             publications: data.publications,
+            currLocale: locale,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },

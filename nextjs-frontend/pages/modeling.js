@@ -94,6 +94,15 @@ const ModelingPage = ({ pageData }) => {
                 <title>{pageData === null ? 'no data' : pageData.SeoTitle}</title>
                 <meta name="description" content={pageData === null ? 'no data' : pageData.SeoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? 'https://lekawa-photography.co.uk/pl/modeling/'
+                            : 'https://lekawa-photography.co.uk/modeling/'
+                    }
+                />
             </Head>
             <section className="page-content">
                 <h1>Modeling</h1>

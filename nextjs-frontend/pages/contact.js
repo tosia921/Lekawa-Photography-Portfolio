@@ -58,6 +58,15 @@ const ContactPage = () => {
                 <title>{t('Contact Title')}</title>
                 <meta name="description" content={t('Contact Description')} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? 'https://lekawa-photography.co.uk/pl/contact/'
+                            : 'https://lekawa-photography.co.uk/contact/'
+                    }
+                />
             </Head>
             <h1>{t('Contact Us')}</h1>
             <div className="page-content">

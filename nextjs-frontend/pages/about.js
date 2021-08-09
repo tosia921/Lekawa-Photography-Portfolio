@@ -10,7 +10,7 @@ import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Media Queries
 import { device } from '../styles/Media';
 
-const About = ({ pageData }) => {
+const About = ({ pageData, currLocale }) => {
     const { t } = useTranslation('about-page');
 
     return (
@@ -19,6 +19,15 @@ const About = ({ pageData }) => {
                 <title>{t('About Title')}</title>
                 <meta name="description" content={t('About Description')} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <link
+                    rel="alternate"
+                    hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
+                    href={
+                        currLocale === 'en'
+                            ? 'https://lekawa-photography.co.uk/pl/about/'
+                            : 'https://lekawa-photography.co.uk/about/'
+                    }
+                />
             </Head>
             <h1>{t('About Us')}</h1>
             <div className="about-content">
@@ -111,7 +120,7 @@ export async function getStaticProps({ locale }) {
     return {
         props: {
             pageData: data,
-
+            currLocale: locale,
             ...(await serverSideTranslations(locale, ['commons', 'commons', 'navigation', 'about-page', 'footer'])),
 
             // Will be passed to the page component as props
