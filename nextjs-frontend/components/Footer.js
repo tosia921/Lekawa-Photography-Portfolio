@@ -56,6 +56,10 @@ const Footer = () => {
                     <Link href="/terms-and-conditions" className="terms">
                         {t('Terms and Conditions')}
                     </Link>
+                    <span>|</span>
+                    <Link href="/sitemap.xml" className="terms">
+                        Site Map
+                    </Link>
                 </div>
                 <div className="Copyright">{t('Copyright ©2021 Tomasz Lekawa Photography. All rights reserved.')}</div>
                 <div className="developed">
