@@ -15,8 +15,11 @@ import { device } from '../../styles/Media';
 const Publication = ({ publication, currLocale, slug }) => (
     <StyledPublicationPage>
         <Head>
-            <title>{publication[0].SeoTitle}</title>
-            <meta name="description" content={publication[0].SeoDescription} />
+            <title>{publication[0].SeoTitle === undefined ? '' : publication[0].SeoTitle}</title>
+            <meta
+                name="description"
+                content={publication[0].SeoDescription === undefined ? '' : publication[0].SeoDescription}
+            />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <link
                 rel="alternate"

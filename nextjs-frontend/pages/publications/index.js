@@ -65,7 +65,7 @@ export async function getStaticProps({ locale }) {
     const { data } = await client.query({
         query: gql`
             query {
-                publications(locale: "${locale}") {
+                publications(locale: "${locale}" sort: "id:asc") {
                     id
                     Title
                     Slug
