@@ -9,9 +9,25 @@ import Head from 'next/head';
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Media Queries
 import { device } from '../styles/Media';
+//sanity
+import { getClient } from '../sanity/sanity.server';
+import groq from 'groq';
+import { urlFor } from '../sanity/sanity';
+import { useNextSanityImage } from 'next-sanity-image';
+import { sanityClient } from '../sanity/sanity.server';
+
 
 const About = ({ pageData, currLocale }) => {
     const { t } = useTranslation('about-page');
+
+    console.log(pageData, currLocale)
+
+    const imageProps = useNextSanityImage(
+		sanityClient,
+		pageData[0].aboutImage1
+	);
+
+    console.log(urlFor(imageProps))
 
     return (
         <AboutPage>
@@ -33,28 +49,26 @@ const About = ({ pageData, currLocale }) => {
             <div className="about-content">
                 <div className="person-1">
                     <div className="image-container">
-                        {pageData.aboutUsPage === null ? (
+                        {pageData[0].aboutImage1 === null ? (
                             'Add image to your CMS'
                         ) : (
                             <Image
                                 className="gallery-preview-background"
-                                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage.Image.url}`}
-                                alt={pageData.aboutUsPage.AboutImage.Alt}
+                                {...imageProps}
+                                alt={pageData[0].aboutImage1.altText}
                                 layout="responsive"
-                                width={pageData.aboutUsPage.AboutImage.Image.width}
-                                height={pageData.aboutUsPage.AboutImage.Image.height}
                                 quality="50"
                                 priority
                             />
                         )}
                     </div>
-                    <p className="page-content">
+                    {/* <p className="page-content">
                         {pageData.aboutUsPage.PageContent === null
                             ? 'Update text to your CMS'
                             : pageData.aboutUsPage.PageContent}
-                    </p>
+                    </p> */}
                 </div>
-                <div className="person-2">
+                {/* <div className="person-2">
                     <div className="image-container">
                         {pageData.aboutUsPage === null ? (
                             'Add image to your CMS'
@@ -76,50 +90,69 @@ const About = ({ pageData, currLocale }) => {
                             ? 'Update text to your CMS'
                             : pageData.aboutUsPage.PageContent2}
                     </p>
-                </div>
+                </div> */}
             </div>
         </AboutPage>
     );
 };
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
-export async function getStaticProps({ locale }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticProps({ locale, preview = false }) {
+    // const client = new ApolloClient({
+    //     uri: process.env.STRAPI_GRAPHQL_API,
+    //     cache: new InMemoryCache(),
+    // });
 
-    // GraphQL query
-    const { data } = await client.query({
-        query: gql`
-            query {
-                aboutUsPage(locale: "${locale}") {
-                    PageContent
-                    PageContent2
-                    AboutImage {
-                        Alt
-                        Image {
-                            width
-                            height
-                            url
-                        }
-                    }
-                    AboutImage2 {
-                        Alt
-                        Image {
-                            width
-                            height
-                            url
-                        }
-                    }
-                }
-            }
-        `,
-    });
+    // // GraphQL query
+    // const { data } = await client.query({
+    //     query: gql`
+    //         query {
+    //             aboutUsPage(locale: "${locale}") {
+    //                 PageContent
+    //                 PageContent2
+    //                 AboutImage {
+    //                     Alt
+    //                     Image {
+    //                         width
+    //                         height
+    //                         url
+    //                     }
+    //                 }
+    //                 AboutImage2 {
+    //                     Alt
+    //                     Image {
+    //                         width
+    //                         height
+    //                         url
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     `,
+    // });
+
+    //sanity code
+    const aboutPageData = await getClient(preview).fetch(groq`
+    *[_type == "aboutPage"] {
+        _id,
+        "pageContent1": pageContent1["${locale}"],
+        "pageContent2": pageContent2["${locale}"],
+        aboutImage1 {
+           "altText": altText["${locale}"],
+           asset
+        },
+        aboutImage2 {
+          "altText": altText["${locale}"],
+           asset
+        }
+      }
+    `)
+    // end sanity code
 
     return {
         props: {
-            pageData: data,
+            // pageData: data,
+            pageData: aboutPageData,
             currLocale: locale,
             ...(await serverSideTranslations(locale, ['commons', 'commons', 'navigation', 'about-page', 'footer'])),
 

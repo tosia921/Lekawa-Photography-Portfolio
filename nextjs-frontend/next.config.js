@@ -3,6 +3,6 @@ const { i18n } = require('./next-i18next.config');
 module.exports = {
     i18n,
     images: {
-        domains: ['strapi-space.ams3.digitaloceanspaces.com'],
+        domains: ['strapi-space.ams3.digitaloceanspaces.com', 'cdn.sanity.io' ],
     },
 };
