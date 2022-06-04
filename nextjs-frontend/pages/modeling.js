@@ -2,8 +2,6 @@ import React, { useState, useCallback } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import axios from 'axios';
-// Apollo Client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -15,9 +13,15 @@ import Carousel, { Modal, ModalGateway } from 'react-images';
 // Media Queries
 import { useRouter } from 'next/router';
 import { device } from '../styles/Media';
+//sanity
+import { getClient } from '../sanity/sanity.server';
+import groq from 'groq';
+import { nextSanityImage } from '../sanity/sanity.server';
 
 // GalleryPageTemplate Component
 const ModelingPage = ({ pageData }) => {
+
+    console.log(pageData);
     // defining state for succesfully send message text
     const [sendSuccesfully, setSendSuccesfully] = useState(false);
     // Hook that allows me to use nexti18next translations
@@ -46,15 +50,18 @@ const ModelingPage = ({ pageData }) => {
     if (pageData === null) {
         console.log('missing image data');
     } else {
-        pageData.PageGallery.forEach((pageGalleryImage) => {
+        pageData[0].imageGallery.images.forEach((pageGalleryImage) => {
+            const imgData = nextSanityImage(pageGalleryImage)
             photos.push({
-                src: `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageGalleryImage.Image.url}`,
-                width: pageGalleryImage.Image.width,
-                height: pageGalleryImage.Image.height,
-                alt: pageGalleryImage.Alt,
+                src: imgData.src,
+                width: imgData.width,
+                height: imgData.height,
+                alt: pageGalleryImage.alt,
             });
         });
     }
+
+    console.log(photos)
 
     // destructuring values from provided useForm hook
     const {
@@ -91,8 +98,8 @@ const ModelingPage = ({ pageData }) => {
     return (
         <StyledModelingPage>
             <Head>
-                <title>{pageData === null ? 'no data' : pageData.SeoTitle}</title>
-                <meta name="description" content={pageData === null ? 'no data' : pageData.SeoDescription} />
+                <title>{pageData === null ? 'no data' : pageData[0].seoTitle}</title>
+                <meta name="description" content={pageData === null ? 'no data' : pageData[0].seoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link
                     rel="alternate"
@@ -104,9 +111,10 @@ const ModelingPage = ({ pageData }) => {
                     }
                 />
             </Head>
+            
             <section className="page-content">
                 <h1>Modeling</h1>
-                <p>{pageData === null ? 'Add text yo your CMS' : pageData.PageText}</p>
+                <p>{pageData === null ? 'Add text yo your CMS' : pageData[0].pageText}</p>
                 <div className="images-container">
                     <Gallery photos={photos} targetRowHeight={275} onClick={openLightbox} />
                     <ModalGateway>
@@ -255,35 +263,30 @@ const ModelingPage = ({ pageData }) => {
 export default ModelingPage;
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
-export async function getStaticProps({ locale }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
-
-    // GraphQL query
-    const { data } = await client.query({
-        query: gql`
-        query {
-            modelingPage(locale: "${locale}")  {
-              PageText
-              SeoTitle
-              SeoDescription
-              PageGallery {
-                Image {
-                  url
-                  width
-                  height
-                }
-              }
-            }
-        }
-        `,
-    });
+export async function getStaticProps({ locale, preview = false }) {
+    
+    //sanity code
+    const modelingPageData = await getClient(preview).fetch(groq`
+    *[_type == "modelingPage"] {
+        _id,
+        "pageText": pageText["${locale}"],
+        imageGallery {
+           images[] {
+             _type,
+             _key,
+             asset,
+             "alt": alt["${locale}"]
+           }
+        },
+        "seoTitle": seoTitle["${locale}"],
+        "seoDescription": seoDescription["${locale}"]
+      }
+    `)
+    // end sanity code
 
     return {
         props: {
-            pageData: data.modelingPage,
+            pageData: modelingPageData,
 
             ...(await serverSideTranslations(locale, [
                 'common',

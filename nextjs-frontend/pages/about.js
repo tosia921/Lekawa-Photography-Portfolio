@@ -5,29 +5,16 @@ import Image from 'next/image';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
-// Apollo client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
 // Media Queries
 import { device } from '../styles/Media';
 //sanity
 import { getClient } from '../sanity/sanity.server';
 import groq from 'groq';
-import { urlFor } from '../sanity/sanity';
-import { useNextSanityImage } from 'next-sanity-image';
-import { sanityClient } from '../sanity/sanity.server';
+import { nextSanityImage } from '../sanity/sanity.server';
 
 
 const About = ({ pageData, currLocale }) => {
     const { t } = useTranslation('about-page');
-
-    console.log(pageData, currLocale)
-
-    const imageProps = useNextSanityImage(
-		sanityClient,
-		pageData[0].aboutImage1
-	);
-
-    console.log(urlFor(imageProps))
 
     return (
         <AboutPage>
@@ -54,7 +41,7 @@ const About = ({ pageData, currLocale }) => {
                         ) : (
                             <Image
                                 className="gallery-preview-background"
-                                {...imageProps}
+                                {...nextSanityImage(pageData[0].aboutImage1)}
                                 alt={pageData[0].aboutImage1.altText}
                                 layout="responsive"
                                 quality="50"
@@ -62,35 +49,33 @@ const About = ({ pageData, currLocale }) => {
                             />
                         )}
                     </div>
-                    {/* <p className="page-content">
-                        {pageData.aboutUsPage.PageContent === null
+                    <p className="page-content">
+                        {pageData[0].pageContent1 === null
                             ? 'Update text to your CMS'
-                            : pageData.aboutUsPage.PageContent}
-                    </p> */}
+                            : pageData[0].pageContent1}
+                    </p>
                 </div>
-                {/* <div className="person-2">
+                <div className="person-2">
                     <div className="image-container">
                         {pageData.aboutUsPage === null ? (
                             'Add image to your CMS'
                         ) : (
                             <Image
                                 className="gallery-preview-background"
-                                src={`${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${pageData.aboutUsPage.AboutImage2.Image.url}`}
-                                alt={pageData.aboutUsPage.AboutImage2.Alt}
+                                {...nextSanityImage(pageData[0].aboutImage2)}
+                                alt={pageData[0].aboutImage2.altText}
                                 layout="responsive"
-                                width={pageData.aboutUsPage.AboutImage2.Image.width}
-                                height={pageData.aboutUsPage.AboutImage2.Image.height}
                                 quality="50"
                                 priority
                             />
                         )}
                     </div>
                     <p className="page-content">
-                        {pageData.aboutUsPage.PageContent2 === null
+                        {pageData[0].pageContent1 === null
                             ? 'Update text to your CMS'
-                            : pageData.aboutUsPage.PageContent2}
+                            : pageData[0].pageContent2}
                     </p>
-                </div> */}
+                </div>
             </div>
         </AboutPage>
     );
@@ -98,39 +83,7 @@ const About = ({ pageData, currLocale }) => {
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
 export async function getStaticProps({ locale, preview = false }) {
-    // const client = new ApolloClient({
-    //     uri: process.env.STRAPI_GRAPHQL_API,
-    //     cache: new InMemoryCache(),
-    // });
-
-    // // GraphQL query
-    // const { data } = await client.query({
-    //     query: gql`
-    //         query {
-    //             aboutUsPage(locale: "${locale}") {
-    //                 PageContent
-    //                 PageContent2
-    //                 AboutImage {
-    //                     Alt
-    //                     Image {
-    //                         width
-    //                         height
-    //                         url
-    //                     }
-    //                 }
-    //                 AboutImage2 {
-    //                     Alt
-    //                     Image {
-    //                         width
-    //                         height
-    //                         url
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     `,
-    // });
-
+    
     //sanity code
     const aboutPageData = await getClient(preview).fetch(groq`
     *[_type == "aboutPage"] {

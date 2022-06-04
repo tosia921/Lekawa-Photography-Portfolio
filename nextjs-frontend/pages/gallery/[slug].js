@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-// Apollo Client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+//sanity
+import { getClient } from '../../sanity/sanity.server';
+import groq from 'groq';
+import { nextSanityImage } from '../../sanity/sanity.server';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -13,8 +15,8 @@ import Head from 'next/head';
 import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
-const GalleryPageTemplate = ({ galleryImages, currLocale }) => {
-    console.log(galleryImages);
+const GalleryPageTemplate = ({ galleryPageData, currLocale }) => {
+    console.log(galleryPageData);
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 
@@ -34,32 +36,37 @@ const GalleryPageTemplate = ({ galleryImages, currLocale }) => {
     const photos = [];
 
     // Populating photos Array with Images from CMS with correct url's and other neccessery data.
-    galleryImages[0].GalleryImages.forEach((galleryImage) => {
-        photos.push({
-            src: `${process.env.NEXT_PUBLIC_GRAPHQL_API_URL}${galleryImage.Image.url}`,
-            width: galleryImage.Image.width,
-            height: galleryImage.Image.height,
-            alt: galleryImage.Alt,
+    if (galleryPageData === null) {
+        console.log('missing image data');
+    } else {
+        galleryPageData[0].imageGallery.images.forEach((pageGalleryImage) => {
+            const imgData = nextSanityImage(pageGalleryImage)
+            photos.push({
+                src: imgData.src,
+                width: imgData.width,
+                height: imgData.height,
+                alt: pageGalleryImage.alt,
+            });
         });
-    });
+    }
 
     return (
         <StyledGalleryPage>
             <Head>
-                <title>{galleryImages[0].SeoTitle}</title>
-                <meta name="description" content={galleryImages[0].SeoDescription} />
+                <title>{galleryPageData[0].seoTitle}</title>
+                <meta name="description" content={galleryPageData[0].seoDescription} />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link
                     rel="alternate"
                     hrefLang={currLocale === 'en' ? 'pl' : 'en-gb'}
                     href={
                         currLocale === 'en'
-                            ? `https://lekawa-photography.co.uk/pl/gallery/${galleryImages[0].slug}/`
-                            : `https://lekawa-photography.co.uk/gallery/${galleryImages[0].slug}/`
+                            ? `https://lekawa-photography.co.uk/pl/gallery/${galleryPageData[0].slug.current}/`
+                            : `https://lekawa-photography.co.uk/gallery/${galleryPageData[0].slug.current}/`
                     }
                 />
             </Head>
-            <h1>{galleryImages[0].Name}</h1>
+            <h1>{galleryPageData[0].title}</h1>
             <div className="images-container">
                 <Gallery photos={photos} targetRowHeight={400} onClick={openLightbox} />
                 <ModalGateway>
@@ -84,47 +91,35 @@ const GalleryPageTemplate = ({ galleryImages, currLocale }) => {
 export default GalleryPageTemplate;
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
-export async function getStaticProps({ locale, params }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticProps({ locale, params, preview = false }) {
 
-    // GraphQL query
-    const { data } = await client.query({
-        query: gql`
-        query {
-            imageGalleries(locale: "${locale}", where: { slug: "${params.slug}" }) {
-              Name
-              slug
-              SeoTitle
-              SeoDescription
-              FeaturedImage {
-                AltText
-                Image {
-                  alternativeText
-                  url
-                  width
-                  height
-                }
-              }
-              GalleryImages {
-                Alt
-                  Image {
-                  id
-                  url
-                  width
-                  height
-                }
-              }
-            }
-          }
-        `,
-    });
+    //sanity code
+    const galleryPageData = await getClient(preview).fetch(groq`
+    *[_type == "imageGalleries" && slug.current == "${params.slug}"] {
+        "title": title["${locale}"],
+        slug,
+        "seoTitle": seoTitle["${locale}"],
+        "seoDescription": seoDescription["${locale}"],
+        featuredImage {
+         _type,
+         "altText": altText["${locale}"],
+         asset,
+       },
+       imageGallery {
+                  images[] {
+                    _type,
+                    _key,
+                    asset,
+                    "alt": alt["${locale}"]
+                  }
+               }
+       }
+    `)
+    // end sanity code
 
     return {
         props: {
-            galleryImages: data.imageGalleries,
+            galleryPageData: galleryPageData,
             currLocale: locale,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
@@ -133,30 +128,23 @@ export async function getStaticProps({ locale, params }) {
 }
 
 // getStaticPaths async function that generates url for each static gallery page.
-export async function getStaticPaths({ locales }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticPaths({ locales, preview = false }) {
 
-    // GraphQL query
-    const { data } = await client.query({
-        query: gql`
-            query {
-                imageGalleries(locale: "en") {
-                    slug
-                }
-            }
-        `,
-    });
+    //sanity code
+    const slugs = await getClient(preview).fetch(groq`
+    *[_type == "imageGalleries"] {
+        slug
+       }
+    `)
+    // end sanity code
 
     // empty array for future paths
     const paths = [];
 
     // adding generated path for each available local, each imageGallery gets its own page URL.
     locales.forEach((local) => {
-        data.imageGalleries.forEach((imageGallery) => {
-            paths.push({ params: { slug: imageGallery.slug }, locale: local });
+        slugs.forEach((slug) => {
+            paths.push({ params: { slug: slug.slug.current }, locale: local });
         });
     });
 
