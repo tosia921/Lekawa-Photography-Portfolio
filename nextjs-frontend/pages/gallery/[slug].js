@@ -16,7 +16,7 @@ import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
 const GalleryPageTemplate = ({ galleryPageData, currLocale }) => {
-    console.log(galleryPageData);
+
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
 

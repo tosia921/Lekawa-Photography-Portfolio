@@ -8,6 +8,11 @@ export default {
         title: 'Publications List',
         type: 'textList',
       }
-    ]
+    ],
+    preview: {
+      select: {
+        title: 'publicationsList.en'
+      }
+    }
   }
   

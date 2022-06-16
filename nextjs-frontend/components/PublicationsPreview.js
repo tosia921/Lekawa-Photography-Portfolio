@@ -9,6 +9,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import { useTranslation } from 'next-i18next';
 // media queries
 import { device } from '../styles/Media';
+import { nextSanityImage } from '../sanity/sanity.server';
 
 const responsive = {
     0: { items: 1 },
@@ -20,15 +21,13 @@ const PublicationsPreview = ({ publications }) => {
     // translations hook
     const { t } = useTranslation('commons');
 
-    // filtering all publications down to the ones with HomePage vlue set to true, which means it should be displayed on homepage PublicationPreview.
-    const FilteredPublications = publications.filter((publication) => publication.HomePage);
-
     // Populating photos Array with Images from CMS with correct url's and other neccessery data.
-    const PublicationsPhotos = FilteredPublications.map((publication) => (
-        <Link href={`publications/${publication.Slug}`}>
+    const PublicationsPhotos = publications.map((publication) => (
+        <Link href={`publications/${publication.slug.current}`}>
             <Image
                 className="image"
-                src={publication.FeaturedImage.Image[0].url}
+                src={nextSanityImage(publication.previewImage).src}
+                loader={nextSanityImage(publication.previewImage).loader}
                 alt="Men wearing a suit and glasses"
                 layout="fill"
                 objectFit="contain"

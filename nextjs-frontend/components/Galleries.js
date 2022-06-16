@@ -6,24 +6,24 @@ import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 // Media Queries
 import { device } from '../styles/Media';
+import { nextSanityImage } from '../sanity/sanity.server';
 
 // Gallery Preiview Card Component
 const GalleryPreview = ({ data, currLocale }) => {
-    const ImageSrc = data.FeaturedImage.Image[0].url;
 
     return (
         <StyledPreviewGallery>
             <Image
                 className="gallery-preview-background"
-                src={ImageSrc}
-                alt={data.FeaturedImage.AltText}
+                {...nextSanityImage(data.featuredImage)}
+                alt={data.featuredImage.altText}
                 layout="fill"
                 objectFit="cover"
                 quality="50"
                 priority
             />
-            <Link href={`/gallery/${data.slug}`} locale={currLocale}>
-                {data.Name}
+            <Link href={`/gallery/${data.slug.current}`} locale={currLocale}>
+                {data.title}
             </Link>
         </StyledPreviewGallery>
     );

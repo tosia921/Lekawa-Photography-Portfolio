@@ -4,39 +4,48 @@ import Image from 'next/image';
 // Media Queries
 import Link from 'next/link';
 import { device } from '../styles/Media';
+import { nextSanityImage } from '../sanity/sanity.server';
 
-const PublicationCard = ({ publication }) => (
-    <StyledPublicationCard>
-        <div className="publication-featured-image">
-            <Image
-                className="image"
-                src={publication.FeaturedImage.Image[0].url}
-                alt="Men wearing a suit and glasses"
-                layout="fill"
-                objectFit="contain"
-                quality={50}
-                priority
-            />
-        </div>
-        <div className="content">
-            <Link href={`publications/${publication.Slug}`}>
-                <h2>{publication.Title}</h2>
-            </Link>
-            <p className="publication-type">{publication.SmallText1}</p>
-            <p className="smalltext">{publication.SmallText2}</p>
-            <p className="location">{publication.Location}</p>
-        </div>
-        <p className="date">{publication.Date}</p>
-    </StyledPublicationCard>
-);
+const PublicationCard = ({ publication }) => {
+    const publicationImgData = nextSanityImage(publication.previewImage)
+    console.log(publication)
+    return (
+        <StyledPublicationCard>
+            <div className="publication-featured-image">
+                <Image
+                    className="image"
+                    src={publicationImgData.src}
+                    loader={publicationImgData.loader}
+                    alt={publication.previewImage.altText}
+                    layout="fill"
+                    objectFit="contain"
+                    quality={50}
+                    priority
+                />
+            </div>
+            <div className="content">
+                <Link href={`publications/${publication.slug.current}`}>
+                    <h2>{publication.title}</h2>
+                </Link>
+                <p className="publication-type">{publication.smallText1}</p>
+                <p className="smalltext">{publication.smallText2}</p>
+                <p className="location">{publication.location}</p>
+            </div>
+            <p className="date">{publication.Date}</p>
+        </StyledPublicationCard>
+    )
+}
+    
+
 
 export default PublicationCard;
 
 // Styles
 
 const StyledPublicationCard = styled.article`
-    height: 42rem;
-    width: 95%;
+    width: 100%;
+    aspect-ratio: 3/1;
+    min-height: 500px;
     background: var(--BoxBackground);
     border-radius: 15px;
     display: flex;
@@ -46,10 +55,10 @@ const StyledPublicationCard = styled.article`
     justify-content: center;
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    @media ${device.tablet} {
-        height: 40rem;
+    @media ${device.laptop} {
+        width: 45%;
         flex-direction: row;
-        justify-content: left;
+        min-height: 300px;
     }
     .publication-featured-image {
         height: 100%;
@@ -57,7 +66,7 @@ const StyledPublicationCard = styled.article`
         position: relative;
         border-radius: 15px;
         margin-bottom: 1rem;
-        @media ${device.tablet} {
+        @media ${device.laptop} {
             width: 28rem;
             margin-bottom: 0;
         }
@@ -70,7 +79,8 @@ const StyledPublicationCard = styled.article`
         flex-direction: column;
         justify-content: top;
         align-items: center;
-        @media ${device.tablet} {
+        padding-top: 1rem;
+        @media ${device.laptop} {
             height: 100%;
             width: 60%;
             align-items: flex-start;
@@ -78,8 +88,8 @@ const StyledPublicationCard = styled.article`
             padding-left: 2rem;
         }
         h2 {
-            text-align: center;
-            font-size: 2.5rem;
+            text-align: left;
+            font-size: 1.8rem;
             text-shadow: var(--TextShadowSmall);
             cursor: pointer;
             &:hover {
@@ -88,22 +98,22 @@ const StyledPublicationCard = styled.article`
             @media ${device.tablet} {
                 margin-bottom: 1rem;
                 text-align: left;
-                font-size: 3.5rem;
+                font-size: 2rem;
             }
             @media ${device.laptop} {
-                font-size: 4rem;
+                font-size: 2.5rem;
             }
         }
 
         p {
             font-family: Kanit;
-            font-size: 1.6rem;
-            text-align: center;
+            font-size: 1.4rem;
+            text-align: left;
             @media ${device.tablet} {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             @media ${device.laptop} {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
         .smalltext {
@@ -117,7 +127,7 @@ const StyledPublicationCard = styled.article`
                 text-align: left;
             }
             @media ${device.laptop} {
-                font-size: 2.1rem;
+                font-size: 1.6rem;
             }
         }
         .location {
@@ -156,7 +166,7 @@ const StyledPublicationCard = styled.article`
             bottom: 2rem;
         }
         @media ${device.laptop} {
-            font-size: 2rem;
+            font-size: 1.6rem;
         }
     }
 `;

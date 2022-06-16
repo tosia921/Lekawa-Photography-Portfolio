@@ -4,6 +4,12 @@ export default {
   type: 'document',
   fields: [
     {
+      name: "order",
+      title: "Order",
+      type: "number",
+      hidden: true,
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'localeString',
@@ -50,7 +56,11 @@ export default {
     {
       name: 'Date',
       title: 'date',
-      type: 'datetime',
+      type: 'date',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+        calendarTodayLabel: 'Today'
+      }
     },
     {
       name: 'seoTitle',
@@ -68,11 +78,6 @@ export default {
       type: 'boolean',
     },
     {
-      name: 'isDisplayedTop',
-      title: 'Display at the top of the publications',
-      type: 'boolean',
-    },
-    {
       name: 'bodyEnglish',
       title: 'Body English',
       type: 'blockContentEnglish',
@@ -82,5 +87,11 @@ export default {
       title: 'Body Polish',
       type: 'blockContentPolish',
     },
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title.en',
+      media: 'previewImage'
+    }
+  }
 }

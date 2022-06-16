@@ -47,6 +47,12 @@ export default {
         title: 'SEO Description',
         type: 'localeString',
       }
-    ]
+    ],
+    preview: {
+      select: {
+        title: 'title.en',
+        media: 'featuredImage'
+      }
+    }
   }
   

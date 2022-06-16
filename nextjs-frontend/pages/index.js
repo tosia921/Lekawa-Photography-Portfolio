@@ -4,8 +4,9 @@ import Image from 'next/image';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-// Apollo Client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+//sanity
+import { getClient } from '../sanity/sanity.server';
+import groq from 'groq';
 // Components
 import { useRouter } from 'next/router';
 import LandingPage from '../components/LandingPage';
@@ -85,6 +86,9 @@ const StyledMain = styled.main`
 const Homepage = ({ imageGalleries, currLocale, publications }) => {
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
+
+    console.log(imageGalleries,publications)
+
     return (
         <>
             <Head>
@@ -160,64 +164,91 @@ const Homepage = ({ imageGalleries, currLocale, publications }) => {
     );
 };
 
-export async function getStaticProps({ locale }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticProps({ locale, preview = false }) {
+    
+    //sanity code
+    const publicationsCarouselData = await getClient(preview).fetch(groq`
+    *[_type == "publication" && isHomepage == true] {
+        "title": title["${locale}"],
+         _id,
+        slug,
+        previewImage {
+            _type,
+            "altText": altText["${locale}"],
+            asset,
+          },
+       }
+    `)
+    const imageGalleriesData = await getClient(preview).fetch(groq`
+    *[_type == "imageGalleries"] {
+        "title": title["${locale}"],
+         _id,
+        slug,
+        featuredImage {
+            _type,
+            "altText": altText["${locale}"],
+            asset,
+          },
+        imageGallery
+       }
+    `)
 
-    const { data } = await client.query({
-        query: gql`
-            query {
-                imageGalleries(locale: "${locale}" sort: "id:asc") {
-                    id
-                    Name
-                    slug
-                    FeaturedImage {
-                        AltText
-                        Image {
-                            alternativeText
-                            url
-                            width
-                            height
-                        }
-                    }
-                    GalleryImages {
-                        Alt
-                        Image {
-                            url
-                            width
-                            height
-                        }
-                    }
-                }
-                publications(locale: "${locale}") {
-                    id
-                    Title
-                    Slug
-                    HomePage
-                    FeaturedImage {
-                        AltText
-                        Image {
-                            url
-                            width
-                            height
-                        }
-                    }
-                    SmallText1
-                    SmallText2
-                    Location
-                    Date
-                }
-            }
-        `,
-    });
+    // end sanity code
+
+    // const { data } = await client.query({
+    //     query: gql`
+    //         query {
+    //             imageGalleries(locale: "${locale}" sort: "id:asc") {
+    //                 id
+    //                 Name
+    //                 slug
+    //                 FeaturedImage {
+    //                     AltText
+    //                     Image {
+    //                         alternativeText
+    //                         url
+    //                         width
+    //                         height
+    //                     }
+    //                 }
+    //                 GalleryImages {
+    //                     Alt
+    //                     Image {
+    //                         url
+    //                         width
+    //                         height
+    //                     }
+    //                 }
+    //             }
+    //             publications(locale: "${locale}") {
+    //                 id
+    //                 Title
+    //                 Slug
+    //                 HomePage
+    //                 FeaturedImage {
+    //                     AltText
+    //                     Image {
+    //                         url
+    //                         width
+    //                         height
+    //                     }
+    //                 }
+    //                 SmallText1
+    //                 SmallText2
+    //                 Location
+    //                 Date
+    //             }
+    //         }
+    //     `,
+    // });
+
+
 
     return {
         props: {
             currLocale: locale,
-            imageGalleries: data.imageGalleries,
-            publications: data.publications,
+            imageGalleries: imageGalleriesData,
+            publications: publicationsCarouselData,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },
