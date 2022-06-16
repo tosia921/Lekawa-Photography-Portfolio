@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// Apollo Client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+//sanity
+import { getClient } from '../../sanity/sanity.server';
+import groq from 'groq';
 // i18n
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -11,6 +12,7 @@ import { device } from '../../styles/Media';
 
 // GalleryPageTemplate Component
 const PublicationsList = ({ publicationsList }) => {
+    console.log(publicationsList)
     // i18n hook that allows to use translations
     const { t } = useTranslation('publicationsListPage');
     return (
@@ -25,15 +27,24 @@ const PublicationsList = ({ publicationsList }) => {
             </Head>
             <StyledPublicationsList>
                 <h1>{t('Publications List')}</h1>
-                <ul className="publications-list">
-                    {publicationsList === null
+                <div className='publications-list'>
+                {   publicationsList === null
                         ? 'No publications added to your CMS'
-                        : publicationsList.PublicationsListItems.map((publication) => (
-                              <li className="publication-item" key={publication.id}>
-                                  {publication.ListItem}
-                              </li>
-                          ))}
-                </ul>
+                        : publicationsList.map(list => (
+                        <div key={list._id}>
+                            <h2>{list.title}</h2>
+                            <ul>
+                                { list.publicationsList.list.map((publication) => (
+                                        <li className="publication-item" key={publication.id}>
+                                            {publication.name}
+                                        </li>
+                                    ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+                </div>
+                
             </StyledPublicationsList>
         </>
     );
@@ -42,29 +53,27 @@ const PublicationsList = ({ publicationsList }) => {
 export default PublicationsList;
 
 // getStaticProps Async function, that pulls in data from Sanity CMS based on current locale and slug passed in params object from getStaticPaths.
-export async function getStaticProps({ locale }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticProps({ locale, preview=false }) {
 
-    // GraphQL query
-    const { data } = await client.query({
-        query: gql`
-            query {
-                publicationsListPage(locale: "${locale}") {
-                    PublicationsListItems {
-                        id
-                        ListItem
-                    }
-                }
-            }
-        `,
-    });
+    //sanity code
+    const publicationsListData = await getClient(preview).fetch(groq`
+    *[_type == "publicationList"] {
+        "title": title["${locale}"],
+         _id,
+        publicationsList {
+         list[] {
+         _key,
+         "name": name["${locale}"]
+        }
+       }
+       
+       }
+    `)
+    // end sanity code
 
     return {
         props: {
-            publicationsList: data.publicationsListPage,
+            publicationsList: publicationsListData,
 
             ...(await serverSideTranslations(locale, [
                 'common',
@@ -82,6 +91,7 @@ export async function getStaticProps({ locale }) {
 const StyledPublicationsList = styled.section`
     min-height: calc(100vh - 8rem);
     margin-bottom: 1rem;
+    
     @media ${device.tablet} {
         padding: 0 1rem;
     }
@@ -103,6 +113,15 @@ const StyledPublicationsList = styled.section`
             margin: 4rem 0;
         }
     }
+    h2 {
+        text-align: start;
+        font-size: 3rem;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    ul {
+        list-style-type: none;
+    }
     .num-of-pub {
         font-size: 1.4rem;
         margin-bottom: 2rem;
@@ -122,18 +141,19 @@ const StyledPublicationsList = styled.section`
         display: flex;
         flex-direction: column;
         overflow-wrap: break-word;
+        
     }
     .publication-item {
         margin-bottom: 1.2rem;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         width: 80%;
         height: fit-content;
 
         @media ${device.tablet} {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
         }
         @media ${device.laptop} {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
         }
 
         &:first-child {
@@ -141,5 +161,13 @@ const StyledPublicationsList = styled.section`
         }
         p {
         }
+    }
+    .publication-item::after {
+        content: '';
+        display: block;
+        margin-top: 5px;
+        height: 1px;
+        opacity: 0.5;
+        background-color: lightgrey;
     }
 `;

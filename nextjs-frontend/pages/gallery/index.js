@@ -2,9 +2,9 @@ import React from 'react';
 // i18n
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-// Apollo Client
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-
+// Sanity
+import { getClient } from '../../sanity/sanity.server'
+import groq from 'groq';
 // Components
 import styled from 'styled-components';
 import Head from 'next/head';
@@ -15,6 +15,7 @@ import { device } from '../../styles/Media';
 const GalleryPage = ({ imageGalleries, currLocale }) => {
     // Hook that allows me to use nexti18next translations
     const { t } = useTranslation('commons');
+
     return (
         <StyledGalleryPage>
             <Head>
@@ -39,45 +40,27 @@ const GalleryPage = ({ imageGalleries, currLocale }) => {
 export default GalleryPage;
 
 // async get staic props function
-export async function getStaticProps({ locale }) {
-    const client = new ApolloClient({
-        uri: process.env.STRAPI_GRAPHQL_API,
-        cache: new InMemoryCache(),
-    });
+export async function getStaticProps({ locale, preview=false }) {
 
-    const { data } = await client.query({
-        query: gql`
-            query {
-                imageGalleries(locale: "${locale}" sort: "id:asc") {
-                    id
-                    Name
-                    slug
-                    FeaturedImage {
-                        AltText
-                        Image {
-                            alternativeText
-                            url
-                            width
-                            height
-                        }
-                    }
-                    GalleryImages {
-                        Alt
-                        Image {
-                            url
-                            width
-                            height
-                        }
-                    }
-                }
-            }
-        `,
-    });
+    //sanity code
+    const GalleryPreviews = await getClient(preview).fetch(groq`
+    *[_type == "imageGalleries"] {
+        "title": title["${locale}"],
+         _id,
+        slug,
+        featuredImage {
+            _type,
+            "altText": altText["${locale}"],
+            asset,
+          },
+        imageGallery
+       }
+    `)
 
     return {
         props: {
             currLocale: locale,
-            imageGalleries: data.imageGalleries,
+            imageGalleries: GalleryPreviews,
             ...(await serverSideTranslations(locale, ['common', 'commons', 'navigation', 'homepage', 'footer'])),
             // Will be passed to the page component as props
         },

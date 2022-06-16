@@ -1,6 +1,6 @@
 export const config = {
     dataset: 'production',
-    projectId: 't3dtiwjk',
+    projectId: `${process.env.SANITY_PROJECT_ID}`,
     apiVersion: '2021-10-21',
     useCdn: 'production'
 }

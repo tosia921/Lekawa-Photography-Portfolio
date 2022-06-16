@@ -38,7 +38,7 @@ const Galleries = ({ imageGalleries, currLocale }) => {
             <h2>{t('Galleries')}</h2>
             <div className="galleryTypes-grid">
                 {imageGalleries.map((imageGallery) => (
-                    <GalleryPreview data={imageGallery} currLocale={currLocale} key={imageGallery.id} />
+                    <GalleryPreview data={imageGallery} currLocale={currLocale} key={imageGallery._id} />
                 ))}
             </div>
         </StyledGalleryTypes>
